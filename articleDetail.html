@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mubarak Afolabi — Article Details</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body class="bg-primary-background-dark text-text-light min-h-screen flex flex-col">
+
+    <nav id="site-navbar"
+        class="sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+        <ul class="flex justify-around items-center py-4">
+            <li><a href="index.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Vector.svg"
+                         alt="Home Icon" class="w-8 h-8"><span>HOME</span></a></li>
+            <li><a href="about.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/About Icon.svg"
+                         alt="About Icon" class="w-8 h-8"><span>ABOUT</span></a></li>
+            <li><a href="projects.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Projects Icon.svg"
+                         alt="Projects Icon" class="w-8 h-8"><span>PROJECTS</span></a></li>
+            <li><a href="articles.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Articles Icon.svg"
+                         alt="Articles Icon" class="w-8 h-8"><span>ARTICLES</span></a></li>
+            <li><a href="hireMe.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/HireMe Icon.svg"
+                         alt="Hire Me Icon" class="w-8 h-8"><span>HIRE ME</span></a></li>
+            <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img
+                     src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark
+                         mode</span></li>
+        </ul>
+    </nav>
+
+    <main class="flex-1 py-10 px-4 container mx-auto">
+        <section class="max-w-4xl mx-auto">
+            <h1 id="article-detail-title" class="bg-[#CDEDA2] text-black border border-black p-4 mb-4 rounded-lg text-center font-extrabold text-3xl">
+                </h1>
+            <p id="article-detail-date" class="text-white mb-2 text-base italic text-center">
+                </p>
+            <p id="article-detail-metadata" class="text-white mb-6 text-lg font-medium text-center">
+                </p>
+
+            <div id="article-detail-content-card" class="bg-white border border-white rounded-2xl p-8 shadow-lg text-black">
+                <div id="article-detail-full-content" class="prose max-w-none">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-text-muted bg-primary-background-dark py-4 z-40 mt-2">
+        <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
+    </footer>
+
+    <script>
+        // === Navbar show/hide ===
+        const nav = document.getElementById('site-navbar');
+        let hideTimer;
+
+        function showNavbar() {
+            nav.classList.remove('-translate-y-full');
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
+        }
+        window.addEventListener('scroll', showNavbar);
+        document.addEventListener('DOMContentLoaded', showNavbar);
+        nav.addEventListener('mouseenter', showNavbar);
+        nav.addEventListener('mouseleave', showNavbar);
+        window.addEventListener('mousemove', e => {
+            if (e.clientY < 50) showNavbar();
+        });
+
+        // === Dark mode toggle ===
+        const toggleLi = document.getElementById('dark-toggle');
+        const toggleIcon = document.getElementById('dark-toggle-icon');
+        toggleLi.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+        });
+        if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
+
+
+        // === Article Detail Content Loading ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            // --- Sample Article Data ---
+            // In a real application, you would fetch this data from an API or a database.
+            // For this example, we'll use a JavaScript object.
+            const articles = {
+                "ai-ethics": {
+                    title: "The Ethical Implications of AI in Design",
+                    date: "Published: May 15, 2025",
+                    metadata: "Author: Mubarak Afolabi | Category: AI, Ethics, Design",
+                    fullContent: `
+                        <p class="mb-4">Artificial intelligence is rapidly transforming the design landscape, offering unprecedented capabilities for automation, personalization, and efficiency. However, this transformative power comes with a critical responsibility to address the ethical implications inherent in its application.</p>
+                        <p class="mb-4">One of the most significant challenges is **bias**. AI systems learn from data, and if that data reflects existing societal biases, the AI will perpetuate and even amplify them. This can lead to discriminatory outcomes in areas like facial recognition, hiring algorithms, and even product recommendations. Designers must be acutely aware of the datasets used and advocate for diverse, representative, and unbiased data.</p>
+                        <p class="mb-4">**Transparency** is another cornerstone of ethical AI design. Users should understand how an AI system works, why it made a particular decision, and what data it's using. Black-box algorithms that provide no insight into their reasoning can erode trust and make it impossible to identify and correct errors or biases.</p>
+                        <p class="mb-4">Finally, **accountability** is crucial. When an AI system causes harm, who is responsible? Is it the developer, the deployer, or the user? Establishing clear lines of accountability for AI-driven products and services is vital for building public confidence and ensuring that ethical considerations are not an afterthought.</p>
+                        <p class="mb-4">As designers, our role extends beyond aesthetics and functionality. We must be champions of ethical AI, advocating for fair, transparent, and accountable systems that serve humanity equitably and responsibly. This requires a multidisciplinary approach, collaborating with ethicists, legal experts, and policymakers to shape the future of AI in design.</p>
+                    `
+                },
+                "frontend-trends": {
+                    title: "Frontend Frameworks: A Look at 2025 Trends",
+                    date: "Published: April 28, 2025",
+                    metadata: "Author: Mubarak Afolabi | Category: Web Development, Frontend",
+                    fullContent: `
+                        <p class="mb-4">The frontend development ecosystem is ever-evolving, with new frameworks and libraries emerging regularly. As we look at 2025, several key trends are shaping the future of web development.</p>
+                        <p class="mb-4">**React** continues to dominate, with its vast ecosystem, strong community support, and continuous innovation. Its component-based architecture remains highly attractive for building complex user interfaces. However, **Vue.js** is steadily gaining ground, particularly for its approachability and excellent documentation, making it a favorite for many developers.</p>
+                        <p class="mb-4">**Angular**, backed by Google, maintains its strong presence, especially in enterprise-level applications due to its comprehensive framework and opinionated structure. The rise of **Svelte** and **SolidJS** signals a growing interest in compiled frameworks that offer superior performance by shifting more work to the build step rather than the runtime.</p>
+                        <p class="mb-4">Beyond individual frameworks, we're seeing an increased emphasis on **server-side rendering (SSR)** and **static site generation (SSG)** to improve initial load times and SEO. Frameworks like Next.js (React), Nuxt.js (Vue), and SvelteKit (Svelte) are leading this charge, providing powerful tooling for these approaches.</p>
+                        <p class="mb-4">The importance of **Web Components** is also growing, offering a standardized way to create reusable UI components that are framework-agnostic. While not a replacement for full frameworks, they provide a strong foundation for building interoperable and future-proof interfaces. The trend in 2025 is clearly towards performance, developer experience, and versatility.</p>
+                    `
+                },
+                "ux-principles": {
+                    title: "Mastering UX: Core Principles for Engaging Interfaces",
+                    date: "Published: March 10, 2025",
+                    metadata: "Author: Mubarak Afolabi | Category: UI/UX, Design",
+                    fullContent: `
+                        <p class="mb-4">User Experience (UX) design is more than just making things look pretty; it's about creating interfaces that are intuitive, efficient, and delightful to use. Mastering UX involves adhering to core principles that put the user at the center of the design process.</p>
+                        <p class="mb-4">The first principle is **usability**. Can users easily learn and effectively use your product to achieve their goals? This involves clear navigation, predictable interactions, and consistent design patterns. A usable interface minimizes frustration and maximizes efficiency.</p>
+                        <p class="mb-4">Next, consider **accessibility**. Your product should be usable by as many people as possible, regardless of their abilities or circumstances. This includes designing for users with visual impairments, hearing loss, motor disabilities, and cognitive differences. Accessible design benefits everyone.</p>
+                        <p class="mb-4">**Findability** is crucial. Can users easily find the information or features they're looking for? This involves good information architecture, clear labeling, and effective search functionalities. If users can't find it, they can't use it.</p>
+                        <p class="mb-4">**Desirability** refers to the emotional connection users form with your product. Does it feel good to use? Is it aesthetically pleasing? Does it evoke positive emotions? Desirability often comes from subtle details, delightful animations, and a strong brand personality.</p>
+                        <p class="mb-4">Finally, **credibility** and **value** are paramount. Users need to trust your product and feel that it provides genuine value. This is built through clear communication, reliable performance, and transparent practices. By focusing on these core principles, designers can create truly engaging and successful user experiences that stand the test of time.</p>
+                    `
+                }
+            };
+
+            const article = articles[articleId];
+
+            if (article) {
+                document.getElementById('article-detail-title').textContent = article.title;
+                document.getElementById('article-detail-date').textContent = article.date;
+                document.getElementById('article-detail-metadata').textContent = article.metadata;
+                document.getElementById('article-detail-full-content').innerHTML = article.fullContent;
+            } else {
+                // Handle case where article ID is not found
+                document.getElementById('article-detail-title').textContent = "Article Not Found";
+                document.getElementById('article-detail-date').textContent = "";
+                document.getElementById('article-detail-metadata').textContent = "";
+                document.getElementById('article-detail-full-content').innerHTML = `
+                    <p class="text-center text-lg text-gray-600">The article you are looking for does not exist.</p>
+                    <p class="text-center text-lg text-gray-600">Please return to the <a href="articles.html" class="text-blue-600 hover:underline">articles list</a>.</p>
+                `;
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@tailwind base;
+
+@layer base {
+  html {
+    font-family: theme('fontFamily.sans');
+  }
+}
+
+@tailwind components;
+
+@layer components {
+  /* Primary CTA button */
+  .btn-primary {
+    @apply bg-primary border border-black text-black px-6 py-2 rounded-lg transition-colors duration-1000;
+  }
+  .btn-primary:hover {
+    @apply bg-black border-primary text-primary;
+  }
+
+  /* Uniform icon sizing: 24×24 and inherit text color */
+  .btn-primary svg {
+    @apply w-6 h-6 fill-current transition-colors duration-300;
+  }
+  .btn-primary:hover svg {
+    @apply text-primary;
+  }
+
+  /* Visit Website link style: icon left + primary hover */
+  .visit-cta:hover {
+    @apply underline;
+  }
+  .visit-cta svg,
+  .visit-cta span {
+    @apply transition-colors duration-300;
+  }
+  .visit-cta:hover svg,
+  .visit-cta:hover span {
+    @apply text-primary;
+  }
+
+  /* Carousel arrow button */
+  .btn-carousel {
+    @apply bg-secondary-background-dark border border-white w-10 h-10 flex items-center justify-center rounded-full;
+  }
+
+  /* Navbar styling */
+  .navbar {
+    @apply border border-black backdrop-blur bg-primary-background-dark bg-opacity-50;
+  }
+}
+
+/* --- Custom Overrides for Article Page --- */
+/* This will ensure the background and text colors are applied */
+#article-detail-title {
+  background-color: #CDEDA2 !important; /* !important to override Tailwind if needed */
+  color: #000000 !important;
+}
+
+#article-detail-content-card {
+  background-color: #FFFFFF !important; /* !important to override Tailwind if needed */
+  color: #000000 !important;
+}
+
+/* Ensure text within the content card is black */
+#article-detail-full-content p {
+  color: #000000 !important;
+}
+/* --- End Custom Overrides --- */
+
+/* Grayscale Mode */
+body.grayscale-mode {
+  filter: grayscale(100%);
+  transition: filter 0.5s ease-in-out; /* Smooth transition for the filter */
+}
+
+@tailwind utilities;

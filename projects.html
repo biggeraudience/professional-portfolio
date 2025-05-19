@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mubarak Afolabi — Projects</title>
+  <link href="css/style.css" rel="stylesheet" />
+
+  <style>
+    /* Existing styles */
+    #site-navbar ul li img {
+      width: 32px;
+      height: 32px;
+    }
+
+    #site-navbar ul li a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .thin-line {
+      height: 0.5px;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .tech-stack-icons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+   .project-item {
+      position: sticky;
+      top: 60px;          /* bump it below your navbar */
+      z-index: 1;
+      transition: opacity 0.3s ease-out;
+
+      min-height: calc(100vh - 60px); }
+
+    #projects-list {
+      display: flex;
+      flex-direction: column;
+      /* Adjust this gap to control initial spacing between cards */
+      gap: 2rem;
+      /* Important for positioning context of sticky children */
+      position: relative;
+      /* Need sufficient height to allow sticky elements to stick */
+      /* This will be managed by JS adding padding to body */
+    }
+
+    /* Style to prevent body scrolling when projects are stacking */
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    /* Ensure main content has proper flow */
+      #projects-main {
+          flex-1; /* Keep flex-1 as before */
+          padding-top: 10px; /* Adjust padding if navbar overlaps content */
+          padding-bottom: 0; /* Padding bottom will be added to body */
+      }
+  </style>
+</head>
+
+<body class="bg-primary-background-dark text-text-light min-h-screen flex flex-col">
+
+  <nav id="site-navbar"
+    class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+    <ul class="flex justify-around items-center py-4">
+      <li><a href="index.html" class="flex flex-col items-center"><img src="../assets/Vector.svg"
+            alt="Home Icon"><span>HOME</span></a></li>
+      <li><a href="about.html" class="flex flex-col items-center"><img src="../assets/About Icon.svg"
+            alt="About Icon"><span>ABOUT</span></a></li>
+      <li><a href="projects.html" class="flex flex-col items-center"><img src="../assets/Projects Icon.svg"
+            alt="Projects Icon"><span>PROJECTS</span></a></li>
+      <li><a href="articles.html" class="flex flex-col items-center"><img src="../assets/Articles Icon.svg"
+            alt="Articles Icon"><span>ARTICLES</span></a></li>
+      <li><a href="hireMe.html" class="flex flex-col items-center"><img src="../assets/HireMe Icon.svg"
+            alt="Hire Me Icon"><span>HIRE ME</span></a></li>
+      <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img src="../assets/ToggleOff Icon.svg"
+          alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark mode</span></li>
+    </ul>
+  </nav>
+
+  <main id="projects-main">
+    <div class="container mx-auto px-4">
+
+      <h2 class="text-xl font-bold pt-6 pl-4 text-text-light">Projects</h2>
+      <div class="thin-line mt-3 mx-4"></div>
+
+      <div id="projects-list" class="mt-4">
+
+        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="alpha">
+          <div class="flex flex-col lg:flex-row gap-6">
+            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
+              <h3 class="text-lg font-semibold text-text-light mb-4">Project Alpha - Web Application</h3>
+              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
+                <img src="https://via.placeholder.com/800x600" alt="Project Alpha Image"
+                  class="block w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
+              <p class="mb-2">This is the description for Project Alpha. It's a comprehensive web application built using
+                modern technologies. We focused on creating a seamless user experience and robust backend performance.
+                Describe the project's purpose, key features, and your role.</p>
+              <p>Paragraph two elaborating on the project details. You can mention specific challenges faced and
+                solutions implemented. This text should give a good overview.</p>
+              <p>A third paragraph if needed to fill space or add more context. The max-height will ensure this
+                container doesn't push the tech stack and button too far down relative to the image height.</p>
+            </div>
+          </div>
+          <div class="tech-stack-icons w-full mt-6">
+            <img src="../assets/tech-icons/react.svg" alt="React Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/node.svg" alt="Node Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/tailwind.svg" alt="Tailwind Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/mongodb.svg" alt="MongoDB Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/javascript.svg" alt="JavaScript Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/html5.svg" alt="HTML5 Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/css3.svg" alt="CSS3 Icon" class="w-8 h-8">
+          </div>
+          <div class="w-full flex justify-center mt-4">
+            <button class="btn-primary explore-btn">explore project</button>
+          </div>
+        </section>
+
+        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="beta">
+          <div class="flex flex-col lg:flex-row gap-6">
+            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
+              <h3 class="text-lg font-semibold text-text-light mb-4">Project Beta - Mobile App</h3>
+              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
+                <img src="https://via.placeholder.com/800x600?text=Project+Beta" alt="Project Beta Image"
+                  class="block w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
+              <p class="mb-2">Description for Project Beta. This project was a mobile application developed for [Purpose].
+                It involved [mention technologies like React Native, Flutter, Swift/Kotlin]. Explain the key features
+                and target audience.</p>
+              <p>Details about the development process, design considerations, and any unique aspects of the app. Discuss
+                the challenges of mobile development you encountered.</p>
+            </div>
+          </div>
+          <div class="tech-stack-icons w-full mt-6">
+            <img src="../assets/tech-icons/react-native.svg" alt="React Native Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/firebase.svg" alt="Firebase Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/javascript.svg" alt="JavaScript Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/css3.svg" alt="CSS3 Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/figma.svg" alt="Figma Icon" class="w-8 h-8">
+          </div>
+          <div class="w-full flex justify-center mt-4">
+            <button class="btn-primary explore-btn">explore project</button>
+          </div>
+        </section>
+
+        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="gamma">
+          <div class="flex flex-col lg:flex-row gap-6">
+            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
+              <h3 class="text-lg font-semibold text-text-light mb-4">Project Gamma - Data Visualization</h3>
+              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
+                <img src="https://via.placeholder.com/800x600?text=Project+Gamma" alt="Project Gamma Image"
+                  class="block w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
+              <p class="mb-2">Description for Project Gamma. This project focused on visualizing complex datasets to provide actionable insights. It involved [mention technologies like D3.js, Chart.js, Python/R for data processing].</p>
+              <p>Discuss the challenges of handling large datasets and designing effective visualizations. Explain the impact and results of the project.</p>
+            </div>
+          </div>
+          <div class="tech-stack-icons w-full mt-6">
+            <img src="../assets/tech-icons/d3js.svg" alt="D3.js Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/python.svg" alt="Python Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/javascript.svg" alt="JavaScript Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/html5.svg" alt="HTML5 Icon" class="w-8 h-8">
+          </div>
+          <div class="w-full flex justify-center mt-4">
+            <button class="btn-primary explore-btn">explore project</button>
+          </div>
+        </section>
+          <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="delta">
+          <div class="flex flex-col lg:flex-row gap-6">
+            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
+              <h3 class="text-lg font-semibold text-text-light mb-4">Project Delta - E-commerce Platform</h3>
+              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
+                <img src="https://via.placeholder.com/800x600?text=Project+Delta" alt="Project Delta Image"
+                  class="block w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
+              <p class="mb-2">Description for Project Delta. This project involved building a full-featured e-commerce platform with user authentication, product listings, cart functionality, and payment integration.</p>
+              <p>Details on the backend architecture (e.g., Node.js, Django, Ruby on Rails), frontend framework (e.g., React, Vue, Angular), and database design (e.g., PostgreSQL, MySQL).</p>
+            </div>
+          </div>
+          <div class="tech-stack-icons w-full mt-6">
+            <img src="../assets/tech-icons/react.svg" alt="React Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/nodejs.svg" alt="Node.js Icon" class="w-8 h-8">
+             <img src="../assets/tech-icons/express.svg" alt="Express Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/postgresql.svg" alt="PostgreSQL Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/stripe.svg" alt="Stripe Icon" class="w-8 h-8">
+          </div>
+          <div class="w-full flex justify-center mt-4">
+            <button class="btn-primary explore-btn">explore project</button>
+          </div>
+        </section>
+
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center text-text-muted bg-primary-background-dark py-4 z-40 mt-2">
+    <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
+  </footer>
+
+  <script>
+  
+    const nav = document.getElementById('site-navbar');
+    let hideTimer;
+
+    function showNavbar() {
+      nav.classList.remove('-translate-y-full');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
+    }
+    window.addEventListener('scroll', showNavbar);
+    document.addEventListener('DOMContentLoaded', showNavbar);
+    nav.addEventListener('mouseenter', showNavbar);
+    nav.addEventListener('mouseleave', showNavbar);
+    window.addEventListener('mousemove', e => {
+      if (e.clientY < 50) showNavbar();
+    });
+
+    
+    const toggleLi = document.getElementById('dark-toggle');
+    const toggleIcon = document.getElementById('dark-toggle-icon');
+    toggleLi.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+    });
+    if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.explore-btn').forEach(btn => btn.addEventListener('click', e => {
+        e.preventDefault();
+        // Get the parent project-item to find the data-project-id
+        const projectItem = e.target.closest('.project-item');
+        if (projectItem) {
+            const projectId = projectItem.dataset.projectId;
+            window.location.href = `projectDetail.html?id=${projectId}`;
+        } else {
+            console.error("Could not find parent .project-item for the clicked button.");
+            window.location.href = 'projectDetail.html'; // Fallback
+        }
+      }));
+    });
+
+    // === Project Card Stack Scroll Animation ===
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectsList = document.getElementById('projects-list');
+      const projectItems = projectsList.querySelectorAll('.project-item');
+      const body = document.body;
+
+      if (projectItems.length === 0) return;
+
+      const projectsMain = document.getElementById('projects-main');
+      const projectsListTop = projectsList.offsetTop + projectsMain.offsetTop; // Account for main's padding/margin
+
+
+      let totalStackingHeight = 0;
+      let firstCardHeight = 0;
+      let cardGap = 0;
+
+        const resizeObserver = new ResizeObserver(entries => {
+            calculateStackingMetrics();
+            onScroll(); 
+        });
+
+
+        function calculateStackingMetrics() {
+            if (projectItems.length === 0) return;
+
+            
+            const computedStyle = window.getComputedStyle(projectsList);
+            cardGap = parseFloat(computedStyle.getPropertyValue('gap'));
+            if (isNaN(cardGap)) {
+                 cardGap = 0; 
+                 console.warn("Could not determine CSS gap for #projects-list. Stacking height might be inaccurate.");
+            }
+
+
+            firstCardHeight = projectItems[0].offsetHeight;
+            let totalInitialHeight = 0;
+              projectItems.forEach(item => {
+                  totalInitialHeight += item.offsetHeight;
+              });
+
+              totalInitialHeight += (projectItems.length - 1) * cardGap;
+
+
+              
+              const viewportHeight    = window.innerHeight;
+          const extraScrollSpace  = Math.max(0, viewportHeight - firstCardHeight);
+          totalStackingHeight   = totalInitialHeight - firstCardHeight + extraScrollSpace;
+
+              body.style.paddingBottom = `${totalStackingHeight}px`;
+
+              projectItems.forEach(item => {
+                 resizeObserver.observe(item); 
+            });
+
+            onScroll();
+        }
+
+
+      function onScroll() {
+        const scrollY = window.scrollY; 
+
+        const animationZoneStart = projectsListTop;
+
+        const animationZoneEnd = animationZoneStart + totalStackingHeight;
+
+        const isAnimating = scrollY >= animationZoneStart && scrollY <= animationZoneEnd;
+
+        if (isAnimating) {
+          body.classList.add('no-scroll');
+              window.scrollTo(0, clamp(scrollY, animationZoneStart, animationZoneEnd));
+        } else {
+           body.classList.remove('no-scroll');
+        }
+
+        const animationProgress = clamp((scrollY - animationZoneStart) / totalStackingHeight, 0, 1);
+
+
+        projectItems.forEach((currentItem, index) => {
+              if (index === 0) {
+                  currentItem.style.zIndex = 100; 
+                  currentItem.style.opacity = 1; 
+                  return;
+              }
+
+              const previousItem = projectItems[index - 1];
+
+              
+              const itemStackingStartScroll = initialOffsets[index - 1] || projectsListTop; 
+              const itemStackingEndScroll = initialOffsets[index];
+
+              const itemProgress = clamp((scrollY - itemStackingStartScroll) / (itemStackingEndScroll - itemStackingStartScroll), 0, 1);
+
+                 currentItem.style.zIndex = 10 + index; 
+
+              if (index > 0) {
+                   previousItem.style.opacity = `${1 - itemProgress}`;
+
+                  if (scrollY > itemStackingEndScroll) {
+                       previousItem.style.opacity = 0; 
+                  } else if (scrollY < itemStackingStartScroll) {
+                       previousItem.style.opacity = 1; 
+                  }
+              }
+
+
+        });
+
+          if (scrollY > animationZoneEnd) {
+               projectItems.forEach((item, index) => {
+                  item.style.zIndex = 10 + index;
+               });
+          }
+
+
+           if (scrollY >= animationZoneEnd) {
+            body.classList.remove('no-scroll');
+            body.style.paddingBottom = '0'; 
+        } else if (scrollY < animationZoneStart) {
+            
+              body.classList.remove('no-scroll');
+              body.style.paddingBottom = `${totalStackingHeight}px`; 
+        }
+
+      }
+
+
+      function clamp(x, min, max) {
+        return Math.min(Math.max(x, min), max);
+      }
+
+      
+        let initialOffsets = [];
+        function calculateInitialOffsets() {
+            initialOffsets = Array.from(projectItems).map(item => item.offsetTop);
+        }
+
+
+      
+      document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                calculateInitialOffsets();
+                calculateStackingMetrics(); 
+            }, 100); 
+      });
+
+      window.addEventListener('resize', () => {
+            calculateInitialOffsets();
+            calculateStackingMetrics(); 
+      });
+
+      window.addEventListener('scroll', onScroll);
+
+
+      
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<!-- navbar.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar Demo</title>
+  <link href="css/input.css" rel="stylesheet" />
+</head>
+<body class="bg-primary-background-dark text-text-light">
+
+  <!-- Sticky Navbar -->
+  <nav id="site-navbar" class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full">
+    <ul class="flex justify-around items-center py-4">
+      <li class="flex flex-col items-center text-white">
+        <!-- Home Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-1" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 3.293l6 6V15h-4v-4H6v4H2v-5.707l6-6z"/>
+        </svg>
+        <span>HOME</span>
+      </li>
+      <li class="flex flex-col items-center text-white">
+        <!-- About Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-1" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM8 4a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm1 8H7v-1h1v-3H7V8h2v4z"/>
+        </svg>
+        <span>ABOUT</span>
+      </li>
+      <li class="flex flex-col items-center text-white">
+        <!-- Projects Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-1" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M2 2h4v4H2V2zm0 8h4v4H2v-4zm8-8h4v4h-4V2zm0 8h4v4h-4v-4z"/>
+        </svg>
+        <span>PROJECTS</span>
+      </li>
+      <li class="flex flex-col items-center text-white">
+        <!-- Articles Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-1" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M2 2h12v2H2V2zm0 4h12v2H2V6zm0 4h8v2H2v-2z"/>
+        </svg>
+        <span>ARTICLES</span>
+      </li>
+      <li class="flex flex-col items-center text-white">
+        <!-- Hire Me Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-1" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 0a5 5 0 0 0-5 5v3.5h1V5a4 4 0 0 1 8 0v3.5h1V5a5 5 0 0 0-5-5z"/>
+          <path d="M3.5 9h9a.5.5 0 0 1 .5.5V15H3v-5.5a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+        <span>HIRE ME</span>
+      </li>
+      <li class="flex flex-col items-center text-white">
+        <!-- Dark Mode Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-1" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M6 0a.5.5 0 0 0 0 1 5 5 0 1 1 0 10 .5.5 0 0 0 0 1A6 6 0 1 0 6 0z"/>
+        </svg>
+        <span>dark mode</span>
+      </li>
+    </ul>
+  </nav>
+
+  <script>
+    // Show/hide navbar on scroll
+    let lastScroll = 0;
+    const nav = document.getElementById('site-navbar');
+    window.addEventListener('scroll', () => {
+      const current = window.pageYOffset;
+      if (current > lastScroll) {
+        // scrolling down
+        nav.classList.add('-translate-y-full');
+      } else {
+        // scrolling up
+        nav.classList.remove('-translate-y-full');
+      }
+      lastScroll = current;
+    });
+  </script>
+</body>
+</html>

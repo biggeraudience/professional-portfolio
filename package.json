@@ -1,0 +1,23 @@
+{
+  "name": "professional-portfolio",
+  "version": "1.0.0",
+  "description": "My professional portfolio built with HTML, Tailwind CSS, and Decap CMS.",
+  "main": "index.html",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./input.css -o ./css/style.css --minify",
+    "watch:css": "npx tailwindcss -i ./input.css -o ./css/style.css --watch"
+  },
+  "keywords": [
+    "portfolio",
+    "tailwindcss",
+    "decap-cms",
+    "netlify"
+  ],
+  "author": "Mubarak Afolabi",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  }
+}

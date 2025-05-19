@@ -1,0 +1,93 @@
+<!-- Carousel Component -->
+<div id="carousel" class="relative overflow-hidden rounded-lg group">
+  <!-- Slides Container -->
+  <div id="carousel-track" class="flex transition-transform duration-500">
+    <!-- Example Item (Image) -->
+    <div class="carousel-item flex-shrink-0 w-full h-64">
+      <img src="path/to/image1.jpg" alt="Slide 1" class="object-cover w-full h-full" />
+    </div>
+    <!-- Example Item (Video) -->
+    <div class="carousel-item flex-shrink-0 w-full h-64 relative">
+      <video id="video-1" src="path/to/video1.mp4" class="object-cover w-full h-full" muted loop></video>
+      <!-- Play/Pause Control -->
+      <button id="video-control" class="btn-carousel absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden">
+        <!-- Icon toggles via script -->
+      </button>
+    </div>
+    <!-- Add more .carousel-item blocks as needed -->
+  </div>
+
+  <!-- Navigation Buttons -->
+  <button id="carousel-prev" class="btn-carousel absolute left-2 top-1/2 transform -translate-y-1/2">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff">
+      <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/>
+    </svg>
+  </button>
+  <button id="carousel-next" class="btn-carousel absolute right-2 top-1/2 transform -translate-y-1/2">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff">
+      <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('carousel-track');
+    const items = Array.from(track.children);
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const carousel = document.getElementById('carousel');
+    const controlBtn = document.getElementById('video-control');
+    let index = 0;
+    const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>';
+    const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z"/></svg>';
+
+    const updatePosition = () => {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      setupVideoControl();
+    };
+
+    prevBtn.addEventListener('click', () => {
+      index = (index - 1 + items.length) % items.length;
+      updatePosition();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      index = (index + 1) % items.length;
+      updatePosition();
+    });
+
+    // Auto-cycle
+    let autoCycle = setInterval(() => {
+      index = (index + 1) % items.length;
+      updatePosition();
+    }, 5000);
+
+    // Pause auto on hover
+    carousel.addEventListener('mouseenter', () => clearInterval(autoCycle));
+    carousel.addEventListener('mouseleave', () => autoCycle = setInterval(() => {
+      index = (index + 1) % items.length;
+      updatePosition();
+    }, 5000));
+
+    function setupVideoControl() {
+      const current = items[index];
+      const video = current.querySelector('video');
+      if (!video) {
+        controlBtn.classList.add('hidden');
+        return;
+      }
+      // show control on hover
+      carousel.addEventListener('mouseover', () => controlBtn.classList.remove('hidden'));
+      carousel.addEventListener('mouseout', () => controlBtn.classList.add('hidden'));
+      controlBtn.innerHTML = video.paused ? playIcon : pauseIcon;
+      controlBtn.onclick = () => {
+        if (video.paused) video.play(); else video.pause();
+        controlBtn.innerHTML = video.paused ? playIcon : pauseIcon;
+      };
+    }
+
+    // initial setup
+    updatePosition();
+  });
+</script>

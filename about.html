@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mubarak Afolabi — About</title>
+  <link href="/css/style.css" rel="stylesheet" />
+</head>
+<body class="bg-primary-background-dark text-text-light">
+
+  <style>
+    /* Ensure all navbar icons are 32×32 */
+    #site-navbar ul li img {
+      width: 32px;
+      height: 32px;
+    }
+      /* Make every nav link area clickable and show pointer */
+    #site-navbar ul li a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: white; /* Ensure text color is white as in index.html */
+      cursor: pointer;
+    }
+  </style>
+
+  <nav id="site-navbar" class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+    <ul class="flex justify-around items-center py-4">
+      <li>
+        <a href="/index.html" class="flex flex-col items-center">
+          <img src="../assets/Vector.svg" alt="Home Icon">
+          <span>HOME</span>
+        </a>
+      </li>
+      <li>
+        <a href="/about.html" class="flex flex-col items-center">
+          <img src="../assets/About Icon.svg" alt="About Icon">
+          <span>ABOUT</span>
+        </a>
+      </li>
+      <li>
+        <a href="/projects.html" class="flex flex-col items-center">
+          <img src="../assets/Projects Icon.svg" alt="Projects Icon">
+          <span>PROJECTS</span>
+        </a>
+      </li>
+      <li>
+        <a href="/articles.html" class="flex flex-col items-center">
+          <img src="../assets/Articles Icon.svg" alt="Articles Icon">
+          <span>ARTICLES</span>
+        </a>
+      </li>
+      <li>
+        <a href="/hireMe.html" class="flex flex-col items-center">
+          <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
+          <span>HIRE ME</span>
+        </a>
+      </li>
+      <li id="dark-toggle" class="flex flex-col items-center cursor-pointer">
+        <img src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
+        <span>dark mode</span>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="py-10">
+    <div class="container mx-auto space-y-8 px-4">
+      <section class="bg-secondary text-text-dark p-6 rounded-2xl">
+        <h2 class="text-xl font-bold pt-4 pl-6 mb-4">About Me</h2>
+        <div class="px-6 space-y-4">
+          <p>Your main "About Me" introductory text goes here. You can write about your journey, passion, and what drives you in development and design. Explain your philosophy and overall approach.</p>
+          <p>Use multiple paragraphs here to break up the text and make it easy to read. Tailwind's `space-y-4` on the parent div will automatically add space between these paragraphs.</p>
+        </div>
+
+        <div class="h-px bg-text-dark w-full mt-4"></div>
+
+        <h2 class="text-xl font-bold pt-6 pl-6 mb-4">Skills & Tools</h2>
+        <div class="px-6 space-y-2">
+          <p>A showcase of the programming languages, frameworks, and tools you're proficient with.</p>
+        </div>
+
+        <div class="h-px bg-text-dark w-full mt-4"></div>
+
+        <h2 class="text-xl font-bold pt-6 pl-6 mb-4">Experience</h2>
+        <div class="px-6 space-y-2">
+          <p>Summary of your work history, notable roles, and the impact you've made at various companies or on projects.</p>
+        </div>
+
+        <div class="h-px bg-text-dark w-full mt-4"></div>
+
+        <h2 class="text-xl font-bold pt-6 pl-6 mb-4">Philosophy</h2>
+        <div class="px-6 space-y-2">
+          <p>Talk about your beliefs when it comes to building software, design thinking, collaboration, or innovation.</p>
+        </div>
+
+        <div class="h-px bg-text-dark w-full mt-4"></div>
+
+        <h2 class="text-xl font-bold pt-6 pl-6 mb-4">Beyond Work</h2>
+        <div class="px-6 space-y-2">
+          <p>What do you love to do when you're not coding? Travel, writing, gaming, photography, etc. This is the humanizing bit.</p>
+        </div>
+
+        <div class="h-px bg-text-dark w-full mt-4"></div>
+
+        <div class="mt-10 text-center text-text-dark">
+          <p>Want to dive deeper and know more about me?</p>
+          <div class="flex justify-center items-center mt-4 space-x-[4px]">
+            <button class="btn-primary flex items-center">
+              <div class="btn-icon-wrapper mr-[4px]"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000"><path d="M480-400q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400ZM320-240h320v-23q0-24-13-44t-36-30q-26-11-53.5-17t-57.5-6q-30 0-57.5 6T369-337q-23 10-36 30t-13 44v23ZM720-80H240q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80Zm0-80v-446L526-800H240v640h480Zm-480 0v-640 640Z"/></svg></div>
+              <div class="btn-text-wrapper">View Resume</div>
+            </button>
+            <button class="btn-primary flex items-center">
+              <div class="btn-text-wrapper">Get In Touch</div>
+              <div class="btn-icon-wrapper ml-[4px]"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000"><path d="M560-520h280v-200H560v200Zm140-50-100-70v-40l100 70 100-70v40l-100 70ZM80-120q-33 0-56.5-23.5T0-200v-560q0-33 23.5-56.5T80-840h800q33 0 56.5 23.5T960-760v560q0 33-23.5 56.5T880-120H80Zm556-80h244v-560H80v560h4q42-75 116-117.5T360-360q86 0 160 42.5T636-200ZM360-400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM182-200h356q-34-38-80.5-59T360-280q-51 0-97 21t-81 59Zm178-280q-17 0-28.5-11.5T320-520q0-17 11.5-28.5T360-560q17 0 28.5 11.5T400-520q0 17-11.5 28.5T360-480Zm120 0Z"/></svg></div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="flex flex-col items-center text-text-muted z-10">
+        <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
+      </section>
+    </div>
+  </div>
+<script>
+    // === Navbar show/hide ===
+    const nav = document.getElementById('site-navbar');
+    let hideTimer;
+
+    function showNavbar() {
+      nav.classList.remove('-translate-y-full');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
+    }
+      // This function is not strictly necessary since showNavbar handles hiding,
+      // but keeping it matches the index.html structure if needed elsewhere.
+    function hideNavbar() {
+      nav.classList.add('-translate-y-full');
+    }
+
+
+    window.addEventListener('scroll', showNavbar);
+    document.addEventListener('DOMContentLoaded', showNavbar);
+    nav.addEventListener('mouseenter', showNavbar);
+    // Updated mouseleave to call showNavbar which resets the timer and eventually hides
+    nav.addEventListener('mouseleave', showNavbar);
+    window.addEventListener('mousemove', (e) => {
+      // Show navbar if mouse is in the top 50 pixels
+      if (e.clientY < 50) showNavbar();
+    });
+
+    // === Dark mode / Grayscale toggle ===
+    const toggleLi = document.getElementById('dark-toggle');
+    const toggleIcon = document.getElementById('dark-toggle-icon');
+    const body = document.body; // Get the body element
+
+    toggleLi.addEventListener('click', () => {
+      // Toggle the 'dark' class for dark mode on the root element
+      const isDark = document.documentElement.classList.toggle('dark');
+
+      // Toggle the 'grayscale-mode' class on the body for grayscale effect
+      body.classList.toggle('grayscale-mode');
+
+      // Update the toggle icon based on the 'dark' mode state
+      toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+
+      // Save states in localStorage to persist preferences
+      if (isDark) {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+
+      if (body.classList.contains('grayscale-mode')) {
+        localStorage.setItem('grayscale', 'true');
+      } else {
+        localStorage.removeItem('grayscale'); // Remove the item if grayscale is off
+      }
+    });
+
+    // Initial check for dark mode and grayscale on load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check for dark mode preference
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+        toggleIcon.src = '../assets/ToggleOn Icon.svg';
+      } else {
+        document.documentElement.classList.remove('dark');
+        toggleIcon.src = '../assets/ToggleOff Icon.svg';
+      }
+
+      // Check for grayscale preference
+      if (localStorage.getItem('grayscale') === 'true') {
+        body.classList.add('grayscale-mode');
+      } else {
+        body.classList.remove('grayscale-mode');
+      }
+    });
+  </script>
+
+</body>
+</html>
