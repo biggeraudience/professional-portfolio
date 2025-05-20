@@ -1,196 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="site-title-meta">Mubarak Afolabi — Article Details</title>
+    <title>Mubarak Afolabi — Article Details</title>
     <link href="css/style.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml-browser@4.1.0/dist/js-yaml.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="js/contentLoader.js"></script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <style>
-        /* Navbar styles from articles.html */
-        #site-navbar ul li img {
-            width: 32px;
-            height: 32px;
-        }
-
-        #site-navbar ul li a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Specific styles for article detail page */
-        #article-detail-title {
-            background-color: #CDEDA2;
-            color: black;
-            border: 1px solid black;
-            padding: 1rem 2rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            font-weight: 800;
-            font-size: 2.25rem;
-            /* text-3xl */
-        }
-
-        #article-detail-date,
-        #article-detail-metadata {
-            color: white;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        #article-detail-date {
-            font-size: 1rem;
-            /* text-base */
-            font-style: italic;
-        }
-
-        #article-detail-metadata {
-            font-size: 1.125rem;
-            /* text-lg */
-            font-weight: 500;
-        }
-
-        #article-detail-content-card {
-            background-color: white;
-            border: 1px solid white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            /* shadow-lg */
-            color: black;
-            line-height: 1.75;
-            /* prose line-height */
-        }
-
-        /* Basic Markdown rendering styles for prose */
-        #article-detail-full-content h1,
-        #article-detail-full-content h2,
-        #article-detail-full-content h3,
-        #article-detail-full-content h4,
-        #article-detail-full-content h5,
-        #article-detail-full-content h6 {
-            font-weight: bold;
-            margin-top: 1.5em;
-            margin-bottom: 0.75em;
-            line-height: 1.2;
-        }
-
-        #article-detail-full-content h1 {
-            font-size: 2.25em;
-            /* 2xl */
-        }
-
-        #article-detail-full-content h2 {
-            font-size: 1.875em;
-            /* xl */
-        }
-
-        #article-detail-full-content h3 {
-            font-size: 1.5em;
-            /* lg */
-        }
-
-        #article-detail-full-content p {
-            margin-bottom: 1em;
-        }
-
-        #article-detail-full-content ul,
-        #article-detail-full-content ol {
-            margin-bottom: 1em;
-            padding-left: 1.5em;
-        }
-
-        #article-detail-full-content ul li {
-            list-style-type: disc;
-        }
-
-        #article-detail-full-content ol li {
-            list-style-type: decimal;
-        }
-
-        #article-detail-full-content a {
-            color: #007bff;
-            text-decoration: underline;
-        }
-
-        #article-detail-full-content strong {
-            font-weight: bold;
-        }
-
-        #article-detail-full-content em {
-            font-style: italic;
-        }
-
-        #article-detail-full-content code {
-            background-color: #f3f4f6;
-            padding: 0.2em 0.4em;
-            border-radius: 0.3em;
-            font-family: monospace;
-            font-size: 0.9em;
-        }
-
-        #article-detail-full-content pre {
-            background-color: #f3f4f6;
-            padding: 1em;
-            border-radius: 0.5em;
-            overflow-x: auto;
-        }
-    </style>
 </head>
-
 <body class="bg-primary-background-dark text-text-light min-h-screen flex flex-col">
 
     <nav id="site-navbar"
-        class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+        class="sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
         <ul class="flex justify-around items-center py-4">
-            <li><a href="index.html" class="flex flex-col items-center"><img src="assets/Vector.svg"
-                        alt="Home Icon"><span>HOME</span></a></li>
-            <li><a href="about.html" class="flex flex-col items-center"><img src="assets/About Icon.svg"
-                        alt="About Icon"><span>ABOUT</span></a></li>
-            <li><a href="projects.html" class="flex flex-col items-center"><img src="assets/Projects Icon.svg"
-                        alt="Projects Icon"><span>PROJECTS</span></a></li>
-            <li><a href="articles.html" class="flex flex-col items-center"><img src="assets/Articles Icon.svg"
-                        alt="Articles Icon"><span>ARTICLES</span></a></li>
-            <li><a href="hireMe.html" class="flex flex-col items-center"><img src="assets/HireMe Icon.svg"
-                        alt="Hire Me Icon"><span>HIRE ME</span></a></li>
-            
+            <li><a href="index.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Vector.svg"
+                         alt="Home Icon" class="w-8 h-8"><span>HOME</span></a></li>
+            <li><a href="about.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/About Icon.svg"
+                         alt="About Icon" class="w-8 h-8"><span>ABOUT</span></a></li>
+            <li><a href="projects.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Projects Icon.svg"
+                         alt="Projects Icon" class="w-8 h-8"><span>PROJECTS</span></a></li>
+            <li><a href="articles.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Articles Icon.svg"
+                         alt="Articles Icon" class="w-8 h-8"><span>ARTICLES</span></a></li>
+            <li><a href="hireMe.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/HireMe Icon.svg"
+                         alt="Hire Me Icon" class="w-8 h-8"><span>HIRE ME</span></a></li>
             <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img
-                    src="assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark
-                        mode</span></li>
+                     src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark
+                         mode</span></li>
         </ul>
     </nav>
 
     <main class="flex-1 py-10 px-4 container mx-auto">
         <section class="max-w-4xl mx-auto">
-            <h1 id="article-detail-title">
-                Loading Article...
-            </h1>
-            <p id="article-detail-date" class="text-base italic">
+            <h1 id="article-detail-title" class="bg-[#CDEDA2] text-black border border-black p-4 mb-4 rounded-lg text-center font-extrabold text-3xl">
+                </h1>
+            <p id="article-detail-date" class="text-white mb-2 text-base italic text-center">
                 </p>
-            <p id="article-detail-metadata" class="text-lg font-medium">
+            <p id="article-detail-metadata" class="text-white mb-6 text-lg font-medium text-center">
                 </p>
 
-            <div id="article-detail-content-card">
+            <div id="article-detail-content-card" class="bg-white border border-white rounded-2xl p-8 shadow-lg text-black">
                 <div id="article-detail-full-content" class="prose max-w-none">
-                    <p class="text-center text-text-muted">Fetching article content...</p>
                     </div>
             </div>
         </section>
     </main>
 
     <footer class="text-center text-text-muted bg-primary-background-dark py-4 z-40 mt-2">
-        <span id="footer-text">
-            </span>
+        <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
     </footer>
 
     <script>
@@ -216,75 +70,78 @@
         const toggleIcon = document.getElementById('dark-toggle-icon');
         toggleLi.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
-            toggleIcon.src = isDark ? 'assets/ToggleOn Icon.svg' : 'assets/ToggleOff Icon.svg';
+            toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
         });
-        if (document.documentElement.classList.contains('dark')) toggleIcon.src = 'assets/ToggleOn Icon.svg';
+        if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
 
 
         // === Article Detail Content Loading ===
-        document.addEventListener('DOMContentLoaded', async () => {
+        document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const articleSlug = urlParams.get('slug'); // Get slug from URL
+            const articleId = urlParams.get('id');
 
-            const titleElement = document.getElementById('article-detail-title');
-            const dateElement = document.getElementById('article-detail-date');
-            const metadataElement = document.getElementById('article-detail-metadata');
-            const contentElement = document.getElementById('article-detail-full-content');
-
-            // Update Site Title in <head>
-            const siteTitleMeta = document.getElementById('site-title-meta');
-            // Update Header Profile Photo
-            const headerProfilePhoto = document.getElementById('profile-photo-header');
-            // Update Footer Text
-            const footerTextSpan = document.getElementById('footer-text');
-
-
-            try {
-                const siteSettings = await loadSiteSettings();
-                if (siteTitleMeta) {
-                    siteTitleMeta.textContent = siteSettings.siteTitle ? `${siteSettings.siteTitle} — Article Details` : 'Mubarak Afolabi — Article Details';
+            // --- Sample Article Data ---
+            // In a real application, you would fetch this data from an API or a database.
+            // For this example, we'll use a JavaScript object.
+            const articles = {
+                "ai-ethics": {
+                    title: "The Ethical Implications of AI in Design",
+                    date: "Published: May 15, 2025",
+                    metadata: "Author: Mubarak Afolabi | Category: AI, Ethics, Design",
+                    fullContent: `
+                        <p class="mb-4">Artificial intelligence is rapidly transforming the design landscape, offering unprecedented capabilities for automation, personalization, and efficiency. However, this transformative power comes with a critical responsibility to address the ethical implications inherent in its application.</p>
+                        <p class="mb-4">One of the most significant challenges is **bias**. AI systems learn from data, and if that data reflects existing societal biases, the AI will perpetuate and even amplify them. This can lead to discriminatory outcomes in areas like facial recognition, hiring algorithms, and even product recommendations. Designers must be acutely aware of the datasets used and advocate for diverse, representative, and unbiased data.</p>
+                        <p class="mb-4">**Transparency** is another cornerstone of ethical AI design. Users should understand how an AI system works, why it made a particular decision, and what data it's using. Black-box algorithms that provide no insight into their reasoning can erode trust and make it impossible to identify and correct errors or biases.</p>
+                        <p class="mb-4">Finally, **accountability** is crucial. When an AI system causes harm, who is responsible? Is it the developer, the deployer, or the user? Establishing clear lines of accountability for AI-driven products and services is vital for building public confidence and ensuring that ethical considerations are not an afterthought.</p>
+                        <p class="mb-4">As designers, our role extends beyond aesthetics and functionality. We must be champions of ethical AI, advocating for fair, transparent, and accountable systems that serve humanity equitably and responsibly. This requires a multidisciplinary approach, collaborating with ethicists, legal experts, and policymakers to shape the future of AI in design.</p>
+                    `
+                },
+                "frontend-trends": {
+                    title: "Frontend Frameworks: A Look at 2025 Trends",
+                    date: "Published: April 28, 2025",
+                    metadata: "Author: Mubarak Afolabi | Category: Web Development, Frontend",
+                    fullContent: `
+                        <p class="mb-4">The frontend development ecosystem is ever-evolving, with new frameworks and libraries emerging regularly. As we look at 2025, several key trends are shaping the future of web development.</p>
+                        <p class="mb-4">**React** continues to dominate, with its vast ecosystem, strong community support, and continuous innovation. Its component-based architecture remains highly attractive for building complex user interfaces. However, **Vue.js** is steadily gaining ground, particularly for its approachability and excellent documentation, making it a favorite for many developers.</p>
+                        <p class="mb-4">**Angular**, backed by Google, maintains its strong presence, especially in enterprise-level applications due to its comprehensive framework and opinionated structure. The rise of **Svelte** and **SolidJS** signals a growing interest in compiled frameworks that offer superior performance by shifting more work to the build step rather than the runtime.</p>
+                        <p class="mb-4">Beyond individual frameworks, we're seeing an increased emphasis on **server-side rendering (SSR)** and **static site generation (SSG)** to improve initial load times and SEO. Frameworks like Next.js (React), Nuxt.js (Vue), and SvelteKit (Svelte) are leading this charge, providing powerful tooling for these approaches.</p>
+                        <p class="mb-4">The importance of **Web Components** is also growing, offering a standardized way to create reusable UI components that are framework-agnostic. While not a replacement for full frameworks, they provide a strong foundation for building interoperable and future-proof interfaces. The trend in 2025 is clearly towards performance, developer experience, and versatility.</p>
+                    `
+                },
+                "ux-principles": {
+                    title: "Mastering UX: Core Principles for Engaging Interfaces",
+                    date: "Published: March 10, 2025",
+                    metadata: "Author: Mubarak Afolabi | Category: UI/UX, Design",
+                    fullContent: `
+                        <p class="mb-4">User Experience (UX) design is more than just making things look pretty; it's about creating interfaces that are intuitive, efficient, and delightful to use. Mastering UX involves adhering to core principles that put the user at the center of the design process.</p>
+                        <p class="mb-4">The first principle is **usability**. Can users easily learn and effectively use your product to achieve their goals? This involves clear navigation, predictable interactions, and consistent design patterns. A usable interface minimizes frustration and maximizes efficiency.</p>
+                        <p class="mb-4">Next, consider **accessibility**. Your product should be usable by as many people as possible, regardless of their abilities or circumstances. This includes designing for users with visual impairments, hearing loss, motor disabilities, and cognitive differences. Accessible design benefits everyone.</p>
+                        <p class="mb-4">**Findability** is crucial. Can users easily find the information or features they're looking for? This involves good information architecture, clear labeling, and effective search functionalities. If users can't find it, they can't use it.</p>
+                        <p class="mb-4">**Desirability** refers to the emotional connection users form with your product. Does it feel good to use? Is it aesthetically pleasing? Does it evoke positive emotions? Desirability often comes from subtle details, delightful animations, and a strong brand personality.</p>
+                        <p class="mb-4">Finally, **credibility** and **value** are paramount. Users need to trust your product and feel that it provides genuine value. This is built through clear communication, reliable performance, and transparent practices. By focusing on these core principles, designers can create truly engaging and successful user experiences that stand the test of time.</p>
+                    `
                 }
-                if (headerProfilePhoto) {
-                    headerProfilePhoto.src = siteSettings.profilePhotoHeader || 'assets/profile.jpg';
-                }
-                if (footerTextSpan) {
-                    footerTextSpan.textContent = siteSettings.footerText || '© 2025 Mubarak Afolabi. All rights reserved.';
-                }
+            };
 
-                if (!articleSlug) {
-                    titleElement.textContent = "Error: No Article Specified";
-                    contentElement.innerHTML = `<p class="text-center text-lg text-gray-600">No article slug found in the URL. Please return to the <a href="articles.html" class="text-blue-600 hover:underline">articles list</a>.</p>`;
-                    return;
-                }
+            const article = articles[articleId];
 
-                const article = await loadArticleBySlug(articleSlug); // Fetch specific article by slug
-
-                if (article) {
-                    titleElement.textContent = article.title;
-                    dateElement.textContent = `Published: ${new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`;
-                    metadataElement.textContent = `Author: ${article.author || 'Mubarak Afolabi'} | Category: ${article.categories ? article.categories.join(', ') : 'Uncategorized'}`;
-                    contentElement.innerHTML = marked.parse(article.body); // Render Markdown body
-                } else {
-                    titleElement.textContent = "Article Not Found";
-                    dateElement.textContent = "";
-                    metadataElement.textContent = "";
-                    contentElement.innerHTML = `
-                        <p class="text-center text-lg text-gray-600">The article you are looking for does not exist or could not be loaded.</p>
-                        <p class="text-center text-lg text-gray-600">Please return to the <a href="articles.html" class="text-blue-600 hover:underline">articles list</a>.</p>
-                    `;
-                }
-            } catch (error) {
-                console.error("Failed to load article or site settings:", error);
-                titleElement.textContent = "Error Loading Article";
-                dateElement.textContent = "";
-                metadataElement.textContent = "";
-                contentElement.innerHTML = `
-                    <p class="text-center text-lg text-red-500">There was an error loading the article. Please try again later.</p>
-                    <p class="text-center text-lg text-red-500">You can also return to the <a href="articles.html" class="text-blue-600 hover:underline">articles list</a>.</p>
+            if (article) {
+                document.getElementById('article-detail-title').textContent = article.title;
+                document.getElementById('article-detail-date').textContent = article.date;
+                document.getElementById('article-detail-metadata').textContent = article.metadata;
+                document.getElementById('article-detail-full-content').innerHTML = article.fullContent;
+            } else {
+                // Handle case where article ID is not found
+                document.getElementById('article-detail-title').textContent = "Article Not Found";
+                document.getElementById('article-detail-date').textContent = "";
+                document.getElementById('article-detail-metadata').textContent = "";
+                document.getElementById('article-detail-full-content').innerHTML = `
+                    <p class="text-center text-lg text-gray-600">The article you are looking for does not exist.</p>
+                    <p class="text-center text-lg text-gray-600">Please return to the <a href="articles.html" class="text-blue-600 hover:underline">articles list</a>.</p>
                 `;
             }
         });
     </script>
-</body>
 
+</body>
 </html>

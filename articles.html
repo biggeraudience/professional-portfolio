@@ -4,13 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="site-title-meta">Mubarak Afolabi — Articles</title>
+    <title>Mubarak Afolabi — Articles</title>
     <link href="css/style.css" rel="stylesheet" />
-
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml-browser@4.1.0/dist/js-yaml.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="js/contentLoader.js"></script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
         /* Existing styles from projects page for navbar and general layout */
@@ -37,11 +32,10 @@
         .article-item {
             position: sticky;
             top: 60px;
-            /* Adjust this if your navbar height changes */
+           
             z-index: 1;
             transition: opacity 0.3s ease-out;
-            /* Added transition for smooth opacity change */
-            /* min-height: calc(100vh - 60px); Removed, handled by calculated padding */
+            min-height: calc(100vh - 60px);
         }
 
         #articles-list {
@@ -49,6 +43,7 @@
             flex-direction: column;
             /* Adjust this gap to control initial spacing between cards */
             gap: 1rem;
+            /* Changed from 2rem to 1rem */
             /* Important for positioning context of sticky children */
             position: relative;
         }
@@ -61,8 +56,11 @@
         /* Ensure main content has proper flow */
         #articles-main {
             flex-1;
+            /* Keep flex-1 as before */
             padding-top: 10px;
+            /* Adjust padding if navbar overlaps content */
             padding-bottom: 0;
+            /* Padding bottom will be added to body */
         }
 
         /* Specific styles for article cards */
@@ -134,19 +132,18 @@
     <nav id="site-navbar"
         class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
         <ul class="flex justify-around items-center py-4">
-            <li><a href="index.html" class="flex flex-col items-center"><img src="assets/Vector.svg"
+            <li><a href="index.html" class="flex flex-col items-center"><img src="../assets/Vector.svg"
                         alt="Home Icon"><span>HOME</span></a></li>
-            <li><a href="about.html" class="flex flex-col items-center"><img src="assets/About Icon.svg"
+            <li><a href="about.html" class="flex flex-col items-center"><img src="../assets/About Icon.svg"
                         alt="About Icon"><span>ABOUT</span></a></li>
-            <li><a href="projects.html" class="flex flex-col items-center"><img src="assets/Projects Icon.svg"
+            <li><a href="projects.html" class="flex flex-col items-center"><img src="../assets/Projects Icon.svg"
                         alt="Projects Icon"><span>PROJECTS</span></a></li>
-            <li><a href="articles.html" class="flex flex-col items-center"><img src="assets/Articles Icon.svg"
+            <li><a href="articles.html" class="flex flex-col items-center"><img src="../assets/Articles Icon.svg"
                         alt="Articles Icon"><span>ARTICLES</span></a></li>
-            <li><a href="hireMe.html" class="flex flex-col items-center"><img src="assets/HireMe Icon.svg"
+            <li><a href="hireMe.html" class="flex flex-col items-center"><img src="../assets/HireMe Icon.svg"
                         alt="Hire Me Icon"><span>HIRE ME</span></a></li>
-           
             <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img
-                    src="assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark
+                    src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark
                         mode</span></li>
         </ul>
     </nav>
@@ -158,14 +155,61 @@
             <div class="thin-line mt-3 mx-4"></div>
 
             <div id="articles-list" class="mt-4">
-                <p class="text-center text-text-light">Loading articles...</p>
+
+                <section class="article-item" data-article-id="ai-ethics">
+                    <h3 class="article-card-title text-lg font-bold">The Ethical Implications of AI in Design</h3>
+                    <p class="article-card-date">Published: May 15, 2025</p>
+                    <p class="article-card-metadata">Author: Mubarak Afolabi | Category: AI, Ethics, Design</p>
+                    <div class="article-card-wrapper">
+                        <p class="article-card-snippet">
+                            Exploring the critical ethical considerations designers face when integrating artificial
+                            intelligence into their products and services. We delve into issues of bias, transparency,
+                            and accountability.
+                        </p>
+                        <div class="w-full flex justify-center mt-auto">
+                            <button class="btn-primary read-on-btn">Read On</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-item" data-article-id="frontend-trends">
+                    <h3 class="article-card-title text-lg font-bold">Frontend Frameworks: A Look at 2025 Trends</h3>
+                    <p class="article-card-date">Published: April 28, 2025</p>
+                    <p class="article-card-metadata">Author: Mubarak Afolabi | Category: Web Development, Frontend</p>
+                    <div class="article-card-wrapper">
+                        <p class="article-card-snippet">
+                            A comprehensive overview of the most popular and emerging frontend frameworks in 2025,
+                            discussing their strengths, weaknesses, and ideal use cases for modern web applications.
+                        </p>
+                        <div class="w-full flex justify-center mt-auto">
+                            <button class="btn-primary read-on-btn">Read On</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="article-item" data-article-id="ux-principles">
+                    <h3 class="article-card-title text-lg font-bold">Mastering UX: Core Principles for Engaging
+                        Interfaces</h3>
+                    <p class="article-card-date">Published: March 10, 2025</p>
+                    <p class="article-card-metadata">Author: Mubarak Afolabi | Category: UI/UX, Design</p>
+                    <div class="article-card-wrapper">
+                        <p class="article-card-snippet">
+                            This article breaks down the fundamental principles of User Experience (UX) design,
+                            offering practical tips and insights to create truly engaging and user-friendly digital
+                            products.
+                        </p>
+                        <div class="w-full flex justify-center mt-auto">
+                            <button class="btn-primary read-on-btn">Read On</button>
+                        </div>
+                    </div>
+                </section>
+
             </div>
         </div>
     </main>
 
     <footer class="text-center text-text-muted bg-primary-background-dark py-4 z-40 mt-2">
-        <span id="footer-text">
-            </span>
+        <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
     </footer>
 
     <script>
@@ -191,100 +235,49 @@
         const toggleIcon = document.getElementById('dark-toggle-icon');
         toggleLi.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
-            toggleIcon.src = isDark ? 'assets/ToggleOn Icon.svg' : 'assets/ToggleOff Icon.svg';
+            toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
         });
-        if (document.documentElement.classList.contains('dark')) toggleIcon.src = 'assets/ToggleOn Icon.svg';
+        if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
 
 
-        // === Article List & Animation Loading ===
-        document.addEventListener('DOMContentLoaded', async () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.read-on-btn').forEach(btn => btn.addEventListener('click', e => {
+                e.preventDefault();
+                const articleItem = e.target.closest('.article-item');
+                if (articleItem) {
+                    const articleId = articleItem.dataset.articleId;
+                    window.location.href = `articleDetail.html?id=${articleId}`;
+                } else {
+                    console.error("Could not find parent .article-item for the clicked button.");
+                    window.location.href = 'articleDetail.html'; // Fallback
+                }
+            }));
+        });
+
+        // === Article Card Stack Scroll Animation ===
+        document.addEventListener('DOMContentLoaded', () => {
             const articlesList = document.getElementById('articles-list');
-            const articlesMain = document.getElementById('articles-main');
+            const articleItems = articlesList.querySelectorAll('.article-item');
             const body = document.body;
 
-            // Update Site Title in <head>
-            const siteTitleMeta = document.getElementById('site-title-meta');
-            // Update Header Profile Photo
-            const headerProfilePhoto = document.getElementById('profile-photo-header');
-            // Update Footer Text
-            const footerTextSpan = document.getElementById('footer-text');
-
-            try {
-                const siteSettings = await loadSiteSettings();
-                if (siteTitleMeta) {
-                    siteTitleMeta.textContent = siteSettings.siteTitle ? `${siteSettings.siteTitle} — Articles` : 'Mubarak Afolabi — Articles';
-                }
-                if (headerProfilePhoto) {
-                    headerProfilePhoto.src = siteSettings.profilePhotoHeader || 'assets/profile.jpg';
-                }
-                if (footerTextSpan) {
-                    footerTextSpan.textContent = siteSettings.footerText || '© 2025 Mubarak Afolabi. All rights reserved.';
-                }
-
-                const articles = await loadArticlesList(); // Load articles from CMS
-
-                articlesList.innerHTML = ''; // Clear loading message
-
-                if (articles.length === 0) {
-                    articlesList.innerHTML = '<p class="text-center text-text-muted">No articles found.</p>';
-                    return;
-                }
-
-                articles.sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first
-
-                articles.forEach(article => {
-                    const articleHtml = `
-                        <section class="article-item" data-article-slug="${article.slug}">
-                            <h3 class="article-card-title text-lg font-bold">${article.title}</h3>
-                            <p class="article-card-date">Published: ${new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                            <p class="article-card-metadata">Author: ${article.author || 'Mubarak Afolabi'} | Category: ${article.categories ? article.categories.join(', ') : 'Uncategorized'}</p>
-                            <div class="article-card-wrapper">
-                                <p class="article-card-snippet">
-                                    ${article.description || 'No snippet available.'}
-                                </p>
-                                <div class="w-full flex justify-center mt-auto">
-                                    <button class="btn-primary read-on-btn" data-slug="${article.slug}">Read On</button>
-                                </div>
-                            </div>
-                        </section>
-                    `;
-                    articlesList.insertAdjacentHTML('beforeend', articleHtml);
-                });
-
-                // Add event listeners for "Read On" buttons after dynamic content is added
-                document.querySelectorAll('.read-on-btn').forEach(btn => btn.addEventListener('click', e => {
-                    e.preventDefault();
-                    const articleSlug = e.target.dataset.slug; // Get slug from data attribute
-                    window.location.href = `articleDetail.html?slug=${articleSlug}`; // Pass slug to detail page
-                }));
-
-                // Re-initialize animation after content is loaded
-                initArticleStackingAnimation();
-
-            } catch (error) {
-                console.error("Failed to load articles or site settings:", error);
-                articlesList.innerHTML = '<p class="text-center text-red-500">Failed to load articles. Please try again later.</p>';
-            }
-
-            let articleItems = articlesList.querySelectorAll('.article-item');
             if (articleItems.length === 0) return;
+
+            const articlesMain = document.getElementById('articles-main');
+            const articlesListTop = articlesList.offsetTop + articlesMain.offsetTop;
+
 
             let totalStackingHeight = 0;
             let firstCardHeight = 0;
             let cardGap = 0;
-            let initialOffsets = []; // To store initial offsetTops of cards
 
             const resizeObserver = new ResizeObserver(entries => {
                 calculateStackingMetrics();
                 onScroll();
             });
 
+
             function calculateStackingMetrics() {
-                articleItems = articlesList.querySelectorAll('.article-item'); // Re-query in case of changes
-                if (articleItems.length === 0) {
-                    body.style.paddingBottom = '0';
-                    return;
-                }
+                if (articleItems.length === 0) return;
 
                 const computedStyle = window.getComputedStyle(articlesList);
                 cardGap = parseFloat(computedStyle.getPropertyValue('gap'));
@@ -293,6 +286,7 @@
                     console.warn("Could not determine CSS gap for #articles-list. Stacking height might be inaccurate.");
                 }
 
+                // Get the height of the first complete card (including title, metadata, and the white wrapper)
                 firstCardHeight = articleItems[0].offsetHeight;
                 let totalInitialHeight = 0;
                 articleItems.forEach(item => {
@@ -302,20 +296,8 @@
                 totalInitialHeight += (articleItems.length - 1) * cardGap;
 
                 const viewportHeight = window.innerHeight;
-                // The space needed for all cards to 'stack' and the last one to be fully visible at the top
-                const requiredScrollHeight = (articleItems.length - 1) * (firstCardHeight + cardGap) + firstCardHeight;
-
-                // Adjust totalStackingHeight based on actual scroll needed for each card to reach the top
-                totalStackingHeight = 0;
-                for (let i = 0; i < articleItems.length; i++) {
-                    // For each card after the first, we need to scroll its height + gap to bring it to top
-                    if (i > 0) {
-                        totalStackingHeight += (articleItems[i-1].offsetHeight + cardGap);
-                    }
-                }
-                 // Add extra space so the user can scroll to the bottom of the last article easily
-                totalStackingHeight += viewportHeight * 0.7; // Example: Add 70% of viewport height
-
+                const extraScrollSpace = Math.max(0, viewportHeight - firstCardHeight);
+                totalStackingHeight = totalInitialHeight - firstCardHeight + extraScrollSpace;
 
                 body.style.paddingBottom = `${totalStackingHeight}px`;
 
@@ -323,7 +305,6 @@
                     resizeObserver.observe(item);
                 });
 
-                calculateInitialOffsets(); // Recalculate offsets on resize
                 onScroll();
             }
 
@@ -331,73 +312,68 @@
             function onScroll() {
                 const scrollY = window.scrollY;
 
-                const animationZoneStart = articlesList.offsetTop + articlesMain.offsetTop;
-                // Calculate animationZoneEnd based on the cumulative heights of cards + gaps
-                let currentCumulativeHeight = 0;
-                for(let i = 0; i < articleItems.length; i++) {
-                    currentCumulativeHeight += articleItems[i].offsetHeight;
-                    if (i < articleItems.length - 1) {
-                        currentCumulativeHeight += cardGap;
-                    }
-                }
-                // The end is when the last item is at the top of the viewport minus sticky offset (60px)
-                const animationZoneEnd = animationZoneStart + currentCumulativeHeight - window.innerHeight + 60; // 60px is the top offset for sticky
+                const animationZoneStart = articlesListTop;
 
-                if (scrollY >= animationZoneStart && scrollY <= animationZoneEnd) {
+                const animationZoneEnd = animationZoneStart + totalStackingHeight;
+
+                const isAnimating = scrollY >= animationZoneStart && scrollY <= animationZoneEnd;
+
+                if (isAnimating) {
                     body.classList.add('no-scroll');
                     window.scrollTo(0, clamp(scrollY, animationZoneStart, animationZoneEnd));
                 } else {
                     body.classList.remove('no-scroll');
                 }
 
+                const animationProgress = clamp((scrollY - animationZoneStart) / totalStackingHeight, 0, 1);
+
+
                 articleItems.forEach((currentItem, index) => {
-                    const stickyOffset = 60; // The `top` value for sticky positioning
+                    if (index === 0) {
+                        currentItem.style.zIndex = 100;
+                        currentItem.style.opacity = 1;
+                        return;
+                    }
 
-                    // Each card becomes visible and sticks as it reaches `stickyOffset` from the top
-                    // The "trigger point" for a card to start sticking is its initial position minus the stickyOffset
-                    const triggerPoint = initialOffsets[index] - stickyOffset;
+                    const previousItem = articleItems[index - 1];
 
-                    // How far past its trigger point the scroll has gone
-                    const scrollPastTrigger = scrollY - triggerPoint;
 
-                    // When the previous item is at stickyOffset + its height, the current item should be fully visible
-                    const nextCardTriggerPoint = (index + 1 < articleItems.length) ? (initialOffsets[index + 1] - stickyOffset) : (triggerPoint + firstCardHeight + cardGap);
+                    const itemStackingStartScroll = initialOffsets[index - 1] || articlesListTop;
+                    const itemStackingEndScroll = initialOffsets[index];
 
-                    // Fade out the current item when the next item is about to start sticking
-                    let opacity = 1;
-                    if (index < articleItems.length - 1) {
-                        const nextItemTrigger = initialOffsets[index + 1] - stickyOffset;
-                        if (scrollY > nextItemTrigger) {
-                            // Current item should start fading out as the next one comes into view
-                            const fadeStart = nextItemTrigger;
-                            const fadeEnd = nextItemTrigger + (currentItem.offsetHeight * 0.5); // Fade over half its height
-                            opacity = 1 - clamp((scrollY - fadeStart) / (fadeEnd - fadeStart), 0, 1);
+                    const itemProgress = clamp((scrollY - itemStackingStartScroll) / (itemStackingEndScroll - itemStackingStartScroll), 0, 1);
+
+                    currentItem.style.zIndex = 10 + index;
+
+                    if (index > 0) {
+                        previousItem.style.opacity = `${1 - itemProgress}`;
+
+                        if (scrollY > itemStackingEndScroll) {
+                            previousItem.style.opacity = 0;
+                        } else if (scrollY < itemStackingStartScroll) {
+                            previousItem.style.opacity = 1;
                         }
                     }
 
-                    currentItem.style.zIndex = 10 + index;
-                    currentItem.style.opacity = opacity;
 
-                    // Adjust `top` to keep it sticky at 60px when in its active range
-                    if (scrollY > triggerPoint && scrollY < nextCardTriggerPoint) {
-                        currentItem.style.top = `${stickyOffset}px`;
-                    } else if (scrollY <= triggerPoint) {
-                        currentItem.style.top = `${initialOffsets[index] - scrollY}px`; // Unstick when scrolling up past its initial position
-                    } else {
-                        // After it has been "scrolled past" by the next card taking its place
-                        currentItem.style.top = `-${currentItem.offsetHeight + cardGap}px`; // Move it far up, or set display none.
-                        currentItem.style.opacity = 0; // Ensure it's hidden
-                    }
                 });
 
-                // When scrolling reaches the very end of the animation zone, release body scroll
-                if (scrollY >= animationZoneEnd - 100) { // Small buffer before releasing
-                    body.classList.remove('no-scroll');
-                    body.style.paddingBottom = '0'; // Reset padding once animation is "done"
-                } else if (scrollY < animationZoneStart) {
-                    body.classList.remove('no-scroll');
-                    body.style.paddingBottom = `${totalStackingHeight}px`; // Maintain padding before animation starts
+                if (scrollY > animationZoneEnd) {
+                    articleItems.forEach((item, index) => {
+                        item.style.zIndex = 10 + index;
+                    });
                 }
+
+
+                if (scrollY >= animationZoneEnd) {
+                    body.classList.remove('no-scroll');
+                    body.style.paddingBottom = '0';
+                } else if (scrollY < animationZoneStart) {
+
+                    body.classList.remove('no-scroll');
+                    body.style.paddingBottom = `${totalStackingHeight}px`;
+                }
+
             }
 
 
@@ -405,26 +381,31 @@
                 return Math.min(Math.max(x, min), max);
             }
 
+
+            let initialOffsets = [];
             function calculateInitialOffsets() {
-                articleItems = articlesList.querySelectorAll('.article-item'); // Refresh node list
                 initialOffsets = Array.from(articleItems).map(item => item.offsetTop);
             }
 
-            function initArticleStackingAnimation() {
-                calculateInitialOffsets();
-                calculateStackingMetrics();
-                window.addEventListener('scroll', onScroll);
-                window.addEventListener('resize', () => {
+
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
                     calculateInitialOffsets();
                     calculateStackingMetrics();
-                });
-                onScroll(); // Call once on load to set initial state
-            }
+                }, 100);
+            });
 
-            // Call initialization function after articles are loaded
-            // (This call is now placed inside the DOMContentLoaded async block after articles are appended)
+            window.addEventListener('resize', () => {
+                calculateInitialOffsets();
+                calculateStackingMetrics();
+            });
+
+            window.addEventListener('scroll', onScroll);
+
+
         });
     </script>
+
 </body>
 
 </html>
