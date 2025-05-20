@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="js/contentLoader.js"></script>
 
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <style>
     /* Ensure all navbar icons are 32×32 */
     #site-navbar ul li img {
@@ -60,7 +62,7 @@
           <span>HIRE ME</span>
         </a>
       </li>
-      
+
       <li id="dark-toggle" class="flex flex-col items-center cursor-pointer">
         <img src="assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
         <span>dark mode</span>
@@ -132,8 +134,7 @@
       clearTimeout(hideTimer);
       hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
     }
-      // This function is not strictly necessary since showNavbar handles hiding,
-      // but keeping it matches the index.html structure if needed elsewhere.
+
     function hideNavbar() {
       nav.classList.add('-translate-y-full');
     }
