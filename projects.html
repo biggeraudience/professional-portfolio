@@ -8,7 +8,7 @@
   <link href="css/style.css" rel="stylesheet" />
 
   <style>
-    /* Ensure all navbar icons are 32×32 */
+    /* Ensure all navbar icons are 32x32 */
     #site-navbar ul li img {
       width: 32px;
       height: 32px;
@@ -25,33 +25,6 @@
       /* no underlines */
       cursor: pointer;
       /* pointer on hover */
-    }
-
-    /* --- NEW CSS for Section Card Stack Animation --- */
-    .section-card {
-      position: sticky;
-      /* Adjust this value to control where the cards 'stick' on scroll, below your navbar */
-      top: 100px;
-      /* Ensures cards stack correctly, initial z-index */
-      z-index: 1;
-      /* Smooth fade out transition */
-      transition: opacity 0.3s ease-out;
-    }
-
-    /* Ensure the container for sections is set up for sticky children */
-    #sections-list {
-      display: flex;
-      flex-direction: column;
-      /* Adjust this gap to control initial spacing between cards */
-      gap: 2rem;
-      /* Using a gap to visually separate sections */
-      position: relative;
-      /* Important for positioning context of sticky children */
-    }
-
-    /* Style to prevent body scrolling when sections are stacking */
-    body.no-scroll {
-      overflow: hidden;
     }
 
     /* --- Mobile-specific Navbar Styles --- */
@@ -76,37 +49,8 @@
       }
     }
 
-    /* Invisible Scrollbar for Project Description */
-    .project-description-scroll {
-      overflow-y: auto;
-      /* Enable vertical scrolling */
-      -ms-overflow-style: none;
-      /* IE and Edge */
-      scrollbar-width: none;
-      /* Firefox */
-    }
 
-    .project-description-scroll::-webkit-scrollbar {
-      display: none;
-      /* Hide scrollbar for Chrome, Safari, Opera */
-    }
-
-
-    /* Existing projects.html specific styles */
-    #site-navbar ul li img {
-      width: 32px;
-      height: 32px;
-    }
-
-    #site-navbar ul li a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: white;
-      cursor: pointer;
-    }
-
+    /* Existing styles for projects.html below */
     .thin-line {
       height: 0.5px;
       background-color: rgba(255, 255, 255, 0.5);
@@ -151,42 +95,36 @@
   <nav id="site-navbar"
     class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
     <ul class="flex justify-around items-center py-4">
-
       <li>
         <a href="index.html">
           <img src="../assets/Vector.svg" alt="Home Icon">
           <span>HOME</span>
         </a>
       </li>
-
       <li>
         <a href="about.html">
           <img src="../assets/About Icon.svg" alt="About Icon">
           <span>ABOUT</span>
         </a>
       </li>
-
       <li>
         <a href="projects.html">
           <img src="../assets/Projects Icon.svg" alt="Projects Icon">
           <span>PROJECTS</span>
         </a>
       </li>
-
       <li>
         <a href="articles.html">
           <img src="../assets/Articles Icon.svg" alt="Articles Icon">
           <span>ARTICLES</span>
         </a>
       </li>
-
       <li>
         <a href="hireMe.html">
           <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
           <span>HIRE ME</span>
         </a>
       </li>
-
       <li id="dark-toggle" class="flex flex-col items-center text-white cursor-pointer">
         <img src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
         <span>dark mode</span>
@@ -202,9 +140,7 @@
 
       <div id="projects-list" class="mt-4">
 
-        <section
-          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
-          data-project-id="alpha">
+        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="alpha">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Alpha - Web Application</h3>
@@ -214,8 +150,7 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">This is the description for Project Alpha. It's a comprehensive web application built
-                using
+              <p class="mb-2">This is the description for Project Alpha. It's a comprehensive web application built using
                 modern technologies. We focused on creating a seamless user experience and robust backend performance.
                 Describe the project's purpose, key features, and your role.</p>
               <p>Paragraph two elaborating on the project details. You can mention specific challenges faced and
@@ -238,9 +173,7 @@
           </div>
         </section>
 
-        <section
-          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
-          data-project-id="beta">
+        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="beta">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Beta - Mobile App</h3>
@@ -250,12 +183,10 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Beta. This project was a mobile application developed for
-                [Purpose].
+              <p class="mb-2">Description for Project Beta. This project was a mobile application developed for [Purpose].
                 It involved [mention technologies like React Native, Flutter, Swift/Kotlin]. Explain the key features
                 and target audience.</p>
-              <p>Details about the development process, design considerations, and any unique aspects of the app.
-                Discuss
+              <p>Details about the development process, design considerations, and any unique aspects of the app. Discuss
                 the challenges of mobile development you encountered.</p>
             </div>
           </div>
@@ -271,9 +202,7 @@
           </div>
         </section>
 
-        <section
-          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
-          data-project-id="gamma">
+        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="gamma">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Gamma - Data Visualization</h3>
@@ -283,11 +212,8 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Gamma. This project focused on visualizing complex datasets to
-                provide actionable insights. It involved [mention technologies like D3.js, Chart.js, Python/R for data
-                processing].</p>
-              <p>Discuss the challenges of handling large datasets and designing effective visualizations. Explain the
-                impact and results of the project.</p>
+              <p class="mb-2">Description for Project Gamma. This project focused on visualizing complex datasets to provide actionable insights. It involved [mention technologies like D3.js, Chart.js, Python/R for data processing].</p>
+              <p>Discuss the challenges of handling large datasets and designing effective visualizations. Explain the impact and results of the project.</p>
             </div>
           </div>
           <div class="tech-stack-icons w-full mt-6">
@@ -300,9 +226,7 @@
             <button class="btn-primary explore-btn">explore project</button>
           </div>
         </section>
-        <section
-          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
-          data-project-id="delta">
+          <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="delta">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Delta - E-commerce Platform</h3>
@@ -312,16 +236,14 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Delta. This project involved building a full-featured e-commerce
-                platform with user authentication, product listings, cart functionality, and payment integration.</p>
-              <p>Details on the backend architecture (e.g., Node.js, Django, Ruby on Rails), frontend framework (e.g.,
-                React, Vue, Angular), and database design (e.g., PostgreSQL, MySQL).</p>
+              <p class="mb-2">Description for Project Delta. This project involved building a full-featured e-commerce platform with user authentication, product listings, cart functionality, and payment integration.</p>
+              <p>Details on the backend architecture (e.g., Node.js, Django, Ruby on Rails), frontend framework (e.g., React, Vue, Angular), and database design (e.g., PostgreSQL, MySQL).</p>
             </div>
           </div>
           <div class="tech-stack-icons w-full mt-6">
             <img src="../assets/tech-icons/react.svg" alt="React Icon" class="w-8 h-8">
             <img src="../assets/tech-icons/nodejs.svg" alt="Node.js Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/express.svg" alt="Express Icon" class="w-8 h-8">
+              <img src="../assets/tech-icons/express.svg" alt="Express Icon" class="w-8 h-8">
             <img src="../assets/tech-icons/postgresql.svg" alt="PostgreSQL Icon" class="w-8 h-8">
             <img src="../assets/tech-icons/stripe.svg" alt="Stripe Icon" class="w-8 h-8">
           </div>
@@ -373,14 +295,19 @@
       if (e.clientY < 50) showNavbar();
     });
 
-
+    // Dark-mode toggle
     const toggleLi = document.getElementById('dark-toggle');
     const toggleIcon = document.getElementById('dark-toggle-icon');
     toggleLi.addEventListener('click', () => {
       const isDark = document.documentElement.classList.toggle('dark');
-      toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+      toggleIcon.src = isDark ?
+        '../assets/ToggleOn Icon.svg' :
+        '../assets/ToggleOff Icon.svg';
     });
-    if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
+    // Set initial toggle icon based on dark mode status
+    if (document.documentElement.classList.contains('dark')) {
+      toggleIcon.src = '../assets/ToggleOn Icon.svg';
+    }
 
 
     document.addEventListener('DOMContentLoaded', () => {
