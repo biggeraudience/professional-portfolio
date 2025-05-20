@@ -2,454 +2,442 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mubarak Afolabi — Project Details</title>
-  <link href="css/style.css" rel="stylesheet" />
-  <style>
-    /* Ensure all navbar icons are 32x32 */
-    #site-navbar ul li img {
-      width: 32px;
-      height: 32px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mubarak Afolabi — Project Details</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-    /* Make every nav link area clickable and show pointer */
-    #site-navbar ul li a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #fff;
-      /* keep your white text */
-      text-decoration: none;
-      /* no underlines */
-      cursor: pointer;
-      /* pointer on hover */
-    }
+    <style>
+        /* Ensure all navbar icons are 32x32 */
+        #site-navbar ul li img {
+            width: 32px;
+            height: 32px;
+        }
 
-    /* --- Mobile-specific Navbar Styles --- */
-    @media (max-width: 768px) {
-      #site-navbar ul li img {
-        width: 24px;
-        /* Smaller icon size for mobile */
-        height: 24px;
-      }
+        /* Make every nav link area clickable and show pointer */
+        #site-navbar ul li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            /* keep your white text */
+            text-decoration: none;
+            /* no underlines */
+            cursor: pointer;
+            /* pointer on hover */
+        }
 
-      #site-navbar ul li a {
-        font-size: 0.75rem;
-        /* Smaller font size for labels */
-        /* Adjusted gap between icon and label, and overall nav item gap */
-      }
+        /* --- Mobile-specific Navbar Styles --- */
+        @media (max-width: 768px) {
+            #site-navbar ul li img {
+                width: 24px;
+                /* Smaller icon size for mobile */
+                height: 24px;
+            }
 
-      #site-navbar ul {
-        padding: 0.5rem 0;
-        /* Adjust overall padding if needed */
-        gap: 0.5rem;
-        /* Add gap between each nav item */
-      }
-    }
+            #site-navbar ul li a {
+                font-size: 0.75rem;
+                /* Smaller font size for labels */
+                /* Adjusted gap between icon and label, and overall nav item gap */
+            }
+
+            #site-navbar ul {
+                padding: 0.5rem 0;
+                /* Adjust overall padding if needed */
+                gap: 0.5rem;
+                /* Add gap between each nav item */
+            }
+        }
+
+        /* Existing styles for projectDetail.html */
+        .thin-line {
+            height: 0.5px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .section-heading {
+            font-size: 1.25rem;
+            /* text-xl */
+            font-weight: 700;
+            /* font-bold */
+            padding-top: 1.5rem;
+            /* pt-6 */
+            padding-left: 1.5rem;
+            /* pl-6 */
+            margin-bottom: 1rem;
+            /* mb-4 */
+            color: #FFFFFF;
+            /* text-text-light */
+        }
+
+        .section-content {
+            padding-left: 1.5rem;
+            /* px-6 */
+            padding-right: 1.5rem;
+            /* px-6 */
+            margin-bottom: 1rem;
+            /* mb-4 */
+            color: #FFFFFF;
+            /* text-text-light */
+        }
+
+        .project-detail-thin-line {
+            height: 0.5px;
+            background-color: rgba(255, 255, 255, 0.5);
+            width: 100%;
+            margin-top: 1rem;
+        }
 
 
-    /* Existing styles for projectDetail.html */
-    .thin-line {
-      height: 0.5px;
-      background-color: rgba(255, 255, 255, 0.5);
-    }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: white;
+            background-color: #262626;
+            /* secondary-background-dark */
+            border: 1px solid white;
+            border-radius: 9999px;
+            /* full rounded */
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
 
-    .tech-stack-icons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 0.75rem;
-    }
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background-color: #121212;
+            /* primary-background-dark */
+            border-color: #CDEDA2;
+            /* primary */
+        }
 
-    #project-detail-content {
-      padding-top: 10px;
-      padding-bottom: 2rem;
-    }
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 1rem !important;
+        }
 
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      border: 1px solid white;
-      border-radius: 0.5rem;
-      aspect-ratio: 16/9; /* Ensures consistent aspect ratio for images/videos */
-      margin-bottom: 1.5rem;
-    }
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 1;
+        }
 
-    .carousel-slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      height: 100%;
-    }
-
-    .carousel-slide {
-      min-width: 100%;
-      flex-shrink: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .carousel-slide img,
-    .carousel-slide video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Use contain to fit the entire image/video within the frame */
-    }
-
-    .carousel-nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 20;
-      font-size: 1.5rem;
-      border-radius: 0.25rem;
-    }
-
-    .carousel-nav-btn.prev {
-      left: 10px;
-    }
-
-    .carousel-nav-btn.next {
-      right: 10px;
-    }
-
-    .carousel-indicators {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-      gap: 0.5rem;
-    }
-
-    .carousel-indicator {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.4);
-      cursor: pointer;
-    }
-
-    .carousel-indicator.active {
-      background-color: white;
-    }
-
-    /* Styles for the project links section */
-    .project-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .project-links a {
-      display: inline-block;
-      background-color: #4CAF50; /* Example button color */
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .project-links a:hover {
-      background-color: #45a049;
-    }
-  </style>
+        .swiper-pagination-bullet-active {
+            background: #CDEDA2;
+            /* primary color */
+        }
+    </style>
 </head>
 
 <body class="bg-primary-background-dark text-text-light min-h-screen flex flex-col">
 
-  <nav id="site-navbar"
-    class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
-    <ul class="flex justify-around items-center py-4">
-      <li>
-        <a href="index.html">
-          <img src="../assets/Vector.svg" alt="Home Icon">
-          <span>HOME</span>
-        </a>
-      </li>
-      <li>
-        <a href="about.html">
-          <img src="../assets/About Icon.svg" alt="About Icon">
-          <span>ABOUT</span>
-        </a>
-      </li>
-      <li>
-        <a href="projects.html">
-          <img src="../assets/Projects Icon.svg" alt="Projects Icon">
-          <span>PROJECTS</span>
-        </a>
-      </li>
-      <li>
-        <a href="articles.html">
-          <img src="../assets/Articles Icon.svg" alt="Articles Icon">
-          <span>ARTICLES</span>
-        </a>
-      </li>
-      <li>
-        <a href="hireMe.html">
-          <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
-          <span>HIRE ME</span>
-        </a>
-      </li>
-      <li id="dark-toggle" class="flex flex-col items-center text-white cursor-pointer">
-        <img src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
-        <span>theme</span>
-      </li>
-    </ul>
-  </nav>
+    <nav id="site-navbar"
+        class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+        <ul class="flex justify-around items-center py-4">
+            <li><a href="index.html" class="flex flex-col items-center"><img src="../assets/Vector.svg"
+                        alt="Home Icon"><span>HOME</span></a></li>
+            <li><a href="about.html" class="flex flex-col items-center"><img src="../assets/About Icon.svg"
+                        alt="About Icon"><span>ABOUT</span></a></li>
+            <li><a href="projects.html" class="flex flex-col items-center"><img src="../assets/Projects Icon.svg"
+                        alt="Projects Icon"><span>PROJECTS</span></a></li>
+            <li><a href="articles.html" class="flex flex-col items-center"><img src="../assets/Articles Icon.svg"
+                        alt="Articles Icon"><span>ARTICLES</span></a></li>
+            <li><a href="hireMe.html" class="flex flex-col items-center"><img src="../assets/HireMe Icon.svg"
+                        alt="Hire Me Icon"><span>HIRE ME</span></a></li>
+            <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img
+                    src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark mode</span></li>
+        </ul>
+    </nav>
 
-  <main id="project-detail-content" class="container mx-auto px-4">
-    <h2 class="text-xl font-bold pt-6 pl-4 text-text-light" id="project-title"></h2>
-    <div class="thin-line mt-3 mx-4"></div>
+    <main class="flex-1 container mx-auto px-4 py-8">
+        <section class="bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6">
+            <h1 class="text-3xl font-bold text-center text-text-light mb-2" id="project-title"></h1>
+            <p class="text-xl text-center text-text-light mb-4" id="project-type"></p>
+            <p class="text-lg text-center text-text-light mb-6" id="project-role"></p>
 
-    <section id="project-details" class="bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mt-4">
-      <div class="carousel-container">
-        <div class="carousel-slides" id="carousel-slides">
-          </div>
-        <button class="carousel-nav-btn prev" id="carousel-prev">&#10094;</button>
-        <button class="carousel-nav-btn next" id="carousel-next">&#10095;</button>
-      </div>
-      <div class="carousel-indicators" id="carousel-indicators">
-        </div>
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-      <div class="text-text-light text-sm overflow-y-auto pr-2 mt-4" id="project-description">
-        </div>
+            <h2 class="section-heading">The Project Problem</h2>
+            <div class="section-content" id="project-problem">
+            </div>
 
-      <div class="tech-stack-icons w-full mt-6" id="project-tech-stack">
-        </div>
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-      <div class="w-full flex justify-center mt-4 project-links" id="project-links">
-        </div>
-    </section>
-  </main>
+            <h2 class="section-heading">The Goal</h2>
+            <div class="section-content" id="project-goal">
+            </div>
 
-  <footer class="text-center text-text-muted bg-primary-background-dark py-4 z-40 mt-auto">
-    <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
-  </footer>
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-  <script>
-    const nav = document.getElementById('site-navbar');
-    let hideTimer;
+            <h2 class="section-heading">Design Research and UI/UX Process</h2>
+            <div class="section-content" id="project-design-process">
+            </div>
 
-    function showNavbar() {
-      nav.classList.remove('-translate-y-full');
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(hideNavbar, 2500);
-    }
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-    function hideNavbar() {
-      nav.classList.add('-translate-y-full');
-    }
+            <h2 class="section-heading">Project Visuals</h2>
+            <div
+                class="swiper-container w-full h-[500px] bg-secondary-background-dark rounded-lg overflow-hidden relative mb-8">
+                <div class="swiper-wrapper" id="project-visuals-swiper">
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
 
-    window.addEventListener('scroll', showNavbar);
-    document.addEventListener('DOMContentLoaded', showNavbar);
-    nav.addEventListener('mouseenter', showNavbar);
-    nav.addEventListener('mouseleave', () => {
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(hideNavbar, 2500);
-    });
-    window.addEventListener('mousemove', (e) => {
-      if (e.clientY < 50) showNavbar();
-    });
 
-    // Dark-mode toggle
-    const toggleLi = document.getElementById('dark-toggle');
-    const toggleIcon = document.getElementById('dark-toggle-icon');
-    toggleLi.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      toggleIcon.src = isDark ?
-        '../assets/ToggleOn Icon.svg' :
-        '../assets/ToggleOff Icon.svg';
-    });
-    if (document.documentElement.classList.contains('dark')) {
-      toggleIcon.src = '../assets/ToggleOn Icon.svg';
-    }
+            <h2 class="section-heading">About the Project</h2>
+            <div class="section-content" id="project-about">
+            </div>
 
-    const projectsData = {
-      "haya": {
-        title: "HAYA - E-commerce Website with Admin Dashboard",
-        description: `
-          <p class="mb-2">HAYA is a dynamic e-commerce platform designed to offer a seamless shopping experience for users and a robust management system for administrators. As the <b>lead designer and developer</b> for this project, I spearheaded the creation of both the user-facing website and its comprehensive admin dashboard.</p>
-          <p>The platform features intuitive product Browse, a secure checkout process, user authentication, and order management. The admin dashboard provides powerful tools for inventory-control, user management, order tracking, and content updates, ensuring efficient operation of the online store.</p>
-          <p>My role encompassed the entire development lifecycle, from initial <b>Figma</b> designs, translating them into responsive and engaging <b>React</b> components, to building a powerful and scalable backend with <b>Express.js</b> and storing data efficiently using <b>MongoDB</b>. The project emphasized clean, modular code and was managed using <b>Git</b> for version control, ensuring collaborative development and easy deployment.</p>
-        `,
-        images: [
-          "assets/haya/mubarak1.png",
-          "assets/haya/women landing page.png",
-         
-          "assets/haya/Screenshot (159).png",
-          "assets/haya/Screenshot (162).png",
-          "assets/haya/Screenshot (138) - Copy.png",
-          "assets/haya/Screenshot (141).png",
-          "assets/haya/Screenshot (151).png",
-          "assets/haya/Screenshot (155).png",
-          "assets/haya/Screenshot (158).png",
-          "assets/haya/Haya - Google Chrome 2025-03-31 07-53-10.mp4"
-        ],
-        techStack: [
-          "react", "express", "scss", "mongodb", "figma", "git"
-        ],
-        liveLink: "#", // Replace with actual link
-        githubLink: "#" // Replace with actual link
-      },
-      "buckingham-royal-college": {
-        title: "Buckingham Royal College - Website and School Management System",
-        description: `
-          <p class="mb-2">This project involved developing a sophisticated website and comprehensive school management system for Buckingham Royal College, an upscale educational institution in the UK. The system was designed to streamline administrative tasks, enhance communication, and provide a rich online presence for the college.</p>
-          <p>Key features include student and faculty portals, curriculum management, attendance tracking, grade reporting, and a robust communication system. The public-facing website showcases the college's values, facilities, and academic programs, serving as a primary point of contact for prospective students and parents.</p>
-          <p>Leveraging <b>Figma</b> for detailed UI/UX design, the frontend was crafted with <b>React</b> and styled using <b>SCSS</b> to ensure a modern, responsive, and visually appealing interface. The backend, built with <b>Express.js</b>, manages data efficiently with <b>MongoDB</b>, providing a scalable and secure foundation for the entire system. <b>Git</b> was utilized for version control, facilitating collaborative development and deployment.</p>
-        `,
-        images: [
-          "assets/brc/iPhone 16 - 7.png",
-          "assets/brc/iPhone 16 - 9.png",
-          "assets/brc/iPhone 16 - 10.png",
-          "assets/brc/iPhone 16 - 11.png",
-          "assets/brc/iPhone 16 - 12.png",
-          "assets/brc/iPhone 16 - 13.png",
-          "assets/brc/iPhone 16 - 14.png",
-          "assets/brc/iPhone 16 - 15.png"
-        ],
-        techStack: [
-          "react", "express", "scss", "mongodb", "figma", "git"
-        ],
-        liveLink: "#", // Replace with actual link
-        githubLink: "#" // Replace with actual link
-      }
-    };
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const projectId = urlParams.get('id');
-      const project = projectsData[projectId];
+            <h2 class="section-heading">Tech Stack</h2>
+            <div class="section-content flex flex-wrap gap-4 items-center" id="project-tech-stack">
+            </div>
 
-      if (project) {
-        document.getElementById('project-title').textContent = project.title;
-        document.getElementById('project-description').innerHTML = project.description;
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-        const carouselSlides = document.getElementById('carousel-slides');
-        const carouselIndicators = document.getElementById('carousel-indicators');
-        carouselSlides.innerHTML = '';
-        carouselIndicators.innerHTML = '';
+            <h2 class="section-heading">Challenges</h2>
+            <div class="section-content" id="project-challenges">
+            </div>
 
-        project.images.forEach((src, index) => {
-          const slide = document.createElement('div');
-          slide.classList.add('carousel-slide');
-          const isVideo = src.endsWith('.mp4') || src.endsWith('.mov') || src.endsWith('.webm'); // Add more video formats as needed
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-          if (isVideo) {
-            const video = document.createElement('video');
-            video.src = `../${src}`;
-            video.controls = true;
-            video.loop = true; // Optional: loop video
-            video.muted = true; // Optional: mute video by default
-            video.playsInline = true; // Important for iOS autoplay
-            slide.appendChild(video);
-          } else {
-            const img = document.createElement('img');
-            img.src = `../${src}`;
-            img.alt = `${project.title} Image ${index + 1}`;
-            slide.appendChild(img);
-          }
-          carouselSlides.appendChild(slide);
+            <h2 class="section-heading">Solutions</h2>
+            <div class="section-content" id="project-solutions">
+            </div>
 
-          const indicator = document.createElement('div');
-          indicator.classList.add('carousel-indicator');
-          if (index === 0) indicator.classList.add('active');
-          indicator.dataset.index = index;
-          carouselIndicators.appendChild(indicator);
-        });
+            <div class="project-detail-thin-line mx-auto mb-6"></div>
 
-        const techStackContainer = document.getElementById('project-tech-stack');
-        techStackContainer.innerHTML = '';
-        project.techStack.forEach(tech => {
-          const img = document.createElement('img');
-          img.src = `../assets/tech-icons/${tech}.png`;
-          img.alt = `${tech} Icon`;
-          img.classList.add('w-8', 'h-8');
-          techStackContainer.appendChild(img);
-        });
+            <h2 class="section-heading">Lessons</h2>
+            <div class="section-content" id="project-lessons">
+            </div>
 
-        const projectLinksContainer = document.getElementById('project-links');
-        projectLinksContainer.innerHTML = '';
-        if (project.liveLink && project.liveLink !== '#') {
-          const liveLink = document.createElement('a');
-          liveLink.href = project.liveLink;
-          liveLink.textContent = "View Live";
-          liveLink.target = "_blank";
-          projectLinksContainer.appendChild(liveLink);
+            <div class="w-full flex justify-center mt-6 project-links" id="project-links">
+                </div>
+        </section>
+    </main>
+
+    <footer class="text-center text-text-muted bg-primary-background-dark py-4 z-40 mt-2">
+        <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // === Navbar show/hide ===
+        const nav = document.getElementById('site-navbar');
+        let hideTimer;
+
+        function showNavbar() {
+            nav.classList.remove('-translate-y-full');
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
         }
-        if (project.githubLink && project.githubLink !== '#') {
-          const githubLink = document.createElement('a');
-          githubLink.href = project.githubLink;
-          githubLink.textContent = "GitHub Repo";
-          githubLink.target = "_blank";
-          projectLinksContainer.appendChild(githubLink);
+        window.addEventListener('scroll', showNavbar);
+        document.addEventListener('DOMContentLoaded', showNavbar);
+        nav.addEventListener('mouseenter', showNavbar);
+        nav.addEventListener('mouseleave', showNavbar);
+        window.addEventListener('mousemove', e => {
+            if (e.clientY < 50) showNavbar();
+        });
+
+        // === Dark mode toggle ===
+        const toggleLi = document.getElementById('dark-toggle');
+        const toggleIcon = document.getElementById('dark-toggle-icon');
+        toggleLi.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+        });
+        if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
+
+
+        // Project Data (Replace with your actual project details)
+        const projects = {
+            "haya": {
+                title: "HAYA - E-commerce Website with Admin Dashboard",
+                type: "E-commerce Platform",
+                role: "Lead Designer & Developer",
+                problem: `Existing e-commerce solutions were either too generic, expensive, or lacked the specific customization features needed for a modern, fashion-focused online store. The client desired a visually appealing, highly functional platform with a robust backend for efficient product and order management. They also faced the challenge of integrating seamless user experiences, including secure payment gateways and intuitive product Browse, to attract and retain customers in a competitive online market.`,
+                goal: `Our primary goal was to build a comprehensive, scalable, and user-friendly e-commerce platform for HAYA, complete with an intuitive admin dashboard. This aimed to provide a seamless shopping experience for customers and powerful management tools for administrators. Key objectives included creating a responsive design that works flawlessly across devices, implementing secure user authentication and payment processing, and developing a flexible product catalog system capable of handling various product attributes. Ultimately, we wanted to empower HAYA to effectively manage its online sales and growth.`,
+                designProcess: `The design process for HAYA began with in-depth competitive analysis of leading e-commerce platforms to identify best practices and common user expectations. We then conducted brainstorming sessions with the client to define the brand's aesthetic and functional requirements. Initial wireframes were created in **Figma** to map out the user flow and page layouts. These were then refined into high-fidelity prototypes, focusing on visual appeal, usability, and responsiveness. Extensive user testing was performed on prototypes to gather feedback and iterate on design elements, ensuring an intuitive and engaging user experience for both the shopper and the admin. The visual design focused on a clean, modern aesthetic with clear calls to action, tailored to the fashion industry.`,
+                visuals: [
+                    { type: "image", src: "../assets/haya/mubarak1.png" },
+                    { type: "image", src: "../assets/haya/women landing page.png" },
+                    { type: "image", src: "../assets/haya/Screenshot (159).png" },
+                    { type: "image", src: "../assets/haya/Screenshot (162).png" },
+                    { type: "image", src: "../assets/haya/Screenshot (138) - Copy.png" },
+                    { type: "image", src: "../assets/haya/Screenshot (141).png" },
+                    { type: "image", src: "../assets/haya/Screenshot (151).png" },
+                    { type: "image", src: "../assets/haya/Screenshot (155).png" },
+                    { type: "image", src: "../assets/haya/Screenshot (158).png" },
+                    { type: "video", src: "../assets/haya/Haya - Google Chrome 2025-03-31 07-53-10.mp4" }
+                ],
+                about: `HAYA is a robust e-commerce platform built to provide a seamless online shopping experience for users and comprehensive management capabilities for administrators. As the **lead designer and developer**, I spearheaded the creation of both the customer-facing website and its extensive admin dashboard. Key functionalities include intuitive product Browse with filtering and search options, a secure shopping cart and checkout process, user authentication, and detailed order tracking. The **admin dashboard** empowers the client with tools for **inventory control**, **user management**, **order fulfillment**, and dynamic **content updates**, ensuring efficient operation.
+                <p class="mt-4">The frontend was meticulously crafted using **React** to deliver a responsive and engaging user interface, while the backend was developed with **Express.js** to provide a scalable and secure API. **MongoDB** was chosen as the database for its flexibility and performance in handling product and order data. **SCSS** was used for efficient and modular styling, and **Git** facilitated version control and collaborative development throughout the project lifecycle. The platform is designed for scalability, allowing for future expansions and integration of new features as the business grows.</p>`,
+                techStack: [
+                    { name: "React", icon: "../assets/tech-icons/react.svg" },
+                    { name: "Express.js", icon: "../assets/tech-icons/express.svg" },
+                    { name: "SCSS", icon: "../assets/tech-icons/scss.png" },
+                    { name: "MongoDB", icon: "../assets/tech-icons/mongodb.svg" },
+                    { name: "Figma", icon: "../assets/tech-icons/figma.svg" },
+                    { name: "Git", icon: "../assets/tech-icons/git.svg" },
+                ],
+                challenges: `One significant challenge was implementing a highly customizable **product variation system** (e.g., sizes, colors) that could be easily managed by the admin while providing a clear selection process for customers. Ensuring **secure and seamless payment gateway integration** with multiple options also presented complexity. Furthermore, optimizing the platform for **performance and responsiveness** across various devices, especially with numerous product images and dynamic content, required careful attention to asset loading and rendering efficiency. Managing user sessions and cart persistence across different interactions also posed an interesting challenge.`,
+                solutions: `To tackle product variations, we developed a dynamic schema in MongoDB that allows for flexible attribute definitions, coupled with a user-friendly interface in the admin dashboard for managing product options and inventory per variation. For payment integration, we utilized **Stripe's API** for secure and versatile payment processing, implementing robust error handling and webhook listeners for transaction status updates. Performance and responsiveness were achieved through optimized **React component rendering**, lazy loading of images, efficient state management, and judicious use of **SCSS** for responsive styling. Server-side rendering (SSR) was considered for future optimization, but client-side rendering with careful data fetching proved sufficient for initial deployment. User session and cart persistence were managed using a combination of **JSON Web Tokens (JWT)** for authentication and local storage for guest carts, ensuring a consistent user experience.`,
+                lessons: `This project underscored the critical importance of a **well-defined database schema** in e-commerce, especially when dealing with complex product attributes and relationships. I learned valuable lessons in designing for **scalability** from the outset, considering future growth in users and product catalog size. The iterative design and development process, with continuous feedback loops, was vital in refining both the user experience and administrative functionalities. Moreover, managing **security considerations**—from user authentication to payment processing—was paramount, emphasizing the need for robust validation and encryption practices. The experience reinforced my proficiency in full-stack development, particularly in integrating complex frontend and backend systems for a commercial application.`
+            },
+            "buckingham-royal-college": {
+                title: "Buckingham Royal College - Website and School Management System",
+                type: "Educational Platform & Management System",
+                role: "Fullstack Developer, UI/UX Designer",
+                problem: `Buckingham Royal College, an upscale educational institution, required a modern and sophisticated online presence that accurately reflected its prestige and offerings. Their existing digital infrastructure was outdated, lacked a comprehensive student/faculty management system, and offered poor user experience. This led to inefficiencies in administrative tasks, communication bottlenecks, and an inability to effectively showcase the college's values and academic programs to prospective students and parents.`,
+                goal: `The primary goal was to develop a high-end, responsive website and a robust school management system for Buckingham Royal College. This aimed to modernize their digital presence, streamline administrative operations, enhance communication among stakeholders, and provide a secure, user-friendly platform for students, faculty, and parents. Specific objectives included creating a visually appealing public website, developing secure portals for different user roles, and implementing features for curriculum, attendance, and grade management to improve overall institutional efficiency.`,
+                designProcess: `The design process for Buckingham Royal College involved extensive stakeholder interviews with college administration, faculty, and potential users to gather requirements and understand their specific needs. We then moved to **Figma** for detailed UI/UX design, starting with sitemaps and user flows to define the information architecture. Low-fidelity wireframes were created to establish layout and content hierarchy, followed by high-fidelity mockups that captured the college's elegant branding. The design emphasized a clean, intuitive, and sophisticated aesthetic, ensuring ease of navigation for all user types. Usability testing was conducted on interactive prototypes to identify pain points and ensure a smooth user experience, particularly for the complex functionalities within the management system.`,
+                visuals: [
+                    { type: "image", src: "../assets/brc/iPhone 16 - 7.png" },
+                    { type: "image", src: "../assets/brc/iPhone 16 - 9.png" },
+                    { type: "image", src: "../assets/brc/iPhone 16 - 10.png" },
+                    { type: "image", src: "../assets/brc/iPhone 16 - 11.png" },
+                    { type: "image", src: "../assets/brc/iPhone 16 - 12.png" },
+                    { type: "image", src: "../assets/brc/iPhone 16 - 13.png" },
+                    { type: "image", src: "../assets/brc/iPhone 16 - 14.png" },
+                    { type: "image", src: "../assets/brc/iPhone 16 - 15.png" }
+                ],
+                about: `This project involved the development of a comprehensive **website and school management system** tailored for Buckingham Royal College, a prestigious educational institution. The platform provides a public-facing website showcasing the college's academic programs, facilities, and unique value proposition to attract prospective students. It also features a sophisticated backend management system with dedicated portals for **students, faculty, and administrators**. Key functionalities within the management system include **student enrollment and records**, **course and curriculum management**, **attendance tracking**, **grade reporting**, and a secure internal communication system.
+                <p class="mt-4">The frontend was meticulously built with **React**, ensuring a highly interactive and responsive user interface across all devices. **SCSS** was used for advanced styling and maintainability. The backend, powered by **Express.js**, handles all data operations and user authentication, providing a secure and scalable foundation. **MongoDB** serves as the database, offering flexibility for managing diverse educational data. **Git** was employed for robust version control, facilitating collaborative development and seamless deployment. The entire system is designed to streamline operations, enhance communication, and provide a modern digital environment for the college community.</p>`,
+                techStack: [
+                    { name: "React", icon: "../assets/tech-icons/react.svg" },
+                    { name: "Express.js", icon: "../assets/tech-icons/express.svg" },
+                    { name: "SCSS", icon: "../assets/tech-icons/scss.png" },
+                    { name: "MongoDB", icon: "../assets/tech-icons/mongodb.svg" },
+                    { name: "Figma", icon: "../assets/tech-icons/figma.svg" },
+                    { name: "Git", icon: "../assets/tech-icons/git.svg" },
+                ],
+                challenges: `A primary challenge was designing and integrating a complex **role-based access control (RBAC) system** to ensure different user types (students, faculty, admin) had appropriate but restricted access to various modules and data. Another significant hurdle was handling the **migration of existing student and faculty data** into the new MongoDB schema while maintaining data integrity. Ensuring **high levels of security and data privacy** for sensitive student information, in compliance with educational regulations, was also paramount. Additionally, optimizing the system for concurrent use by a large number of users during peak times (e.g., registration) presented performance challenges.`,
+                solutions: `To address the RBAC challenge, we implemented a granular permission system on the backend using **JWTs (JSON Web Tokens)** and middleware, meticulously defining routes and data access based on user roles. For data migration, we developed custom scripts to extract, transform, and load existing data into MongoDB, with rigorous validation checks at each stage. Data security was ensured through **end-to-end encryption**, secure authentication protocols (including hashed passwords), and regular security audits. Performance optimization for concurrent users involved implementing **database indexing**, server-side caching, and optimizing API response times through efficient query design. Scalability was also a key consideration, with the architecture designed to handle increased user loads and data volumes.`,
+                lessons: `This project significantly deepened my understanding of developing **complex, multi-user systems** with intricate permission structures. I learned the critical importance of meticulous **data migration planning** and execution to avoid data loss or corruption. The project also highlighted the nuances of balancing comprehensive functionality with an intuitive user experience, particularly within an educational context where users may have varying levels of technical proficiency. Furthermore, maintaining stringent **security standards** throughout the development lifecycle for sensitive information reinforced best practices in web application security. This experience greatly enhanced my skills in full-stack development, database management, and designing scalable software solutions.`
+            },
+        };
+
+        // Custom function to create a link button
+        function createLinkButton(href, text, target = "_blank") {
+            const link = document.createElement('a');
+            link.href = href;
+            link.textContent = text;
+            link.target = target;
+            link.className = 'inline-block bg-[#4CAF50] text-white py-2 px-4 rounded-lg font-bold transition-colors duration-300 hover:bg-[#45a049] mx-2'; // Tailwind classes for button styling
+            return link;
         }
 
-        // Carousel Logic
-        let currentIndex = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const indicators = document.querySelectorAll('.carousel-indicator');
-        const totalSlides = slides.length;
+        function getProjectDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectId = urlParams.get('id');
 
-        function updateCarousel() {
-          carouselSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
-          indicators.forEach((indicator, index) => {
-            indicator.classList.toggle('active', index === currentIndex);
-          });
+            if (!projectId || !projects[projectId]) {
+                // Handle case where project ID is not found or invalid
+                console.error("Project not found:", projectId);
+                document.getElementById('project-title').textContent = "Project Not Found";
+                document.getElementById('project-type').textContent = "";
+                document.getElementById('project-role').textContent = "";
+                document.getElementById('project-problem').innerHTML = "<p>The project you are looking for does not exist or an invalid ID was provided.</p>";
+                document.getElementById('project-goal').innerHTML = "";
+                document.getElementById('project-design-process').innerHTML = "";
+                document.getElementById('project-about').innerHTML = "";
+                document.getElementById('project-tech-stack').innerHTML = "";
+                document.getElementById('project-challenges').innerHTML = "";
+                document.getElementById('project-solutions').innerHTML = "";
+                document.getElementById('project-lessons').innerHTML = "";
+                document.title = "Project Not Found";
+
+                // Clear Swiper content
+                const swiperWrapper = document.getElementById('project-visuals-swiper');
+                swiperWrapper.innerHTML = '';
+                return;
+            }
+
+            const project = projects[projectId];
+
+            // Populate static content
+            document.getElementById('project-title').textContent = project.title;
+            document.getElementById('project-type').textContent = project.type;
+            document.getElementById('project-role').textContent = `My Role: ${project.role}`;
+            document.getElementById('project-problem').innerHTML = `<p>${project.problem}</p>`;
+            document.getElementById('project-goal').innerHTML = `<p>${project.goal}</p>`;
+            document.getElementById('project-design-process').innerHTML = `<p>${project.designProcess}</p>`;
+            document.getElementById('project-about').innerHTML = project.about;
+            document.getElementById('project-challenges').innerHTML = project.challenges;
+            document.getElementById('project-solutions').innerHTML = project.solutions;
+            document.getElementById('project-lessons').innerHTML = project.lessons;
+            document.title = `${project.title} Details`;
+
+
+            // Populate Tech Stack
+            const techStackContainer = document.getElementById('project-tech-stack');
+            techStackContainer.innerHTML = ''; // Clear previous content
+            project.techStack.forEach(tech => {
+                const div = document.createElement('div');
+                div.className = 'flex flex-col items-center';
+                div.innerHTML = `<img src="${tech.icon}" alt="${tech.name} Icon" class="w-10 h-10">
+                                     <span class="text-xs mt-1">${tech.name}</span>`;
+                techStackContainer.appendChild(div);
+            });
+
+            // Populate Swiper Visuals
+            const swiperWrapper = document.getElementById('project-visuals-swiper');
+            swiperWrapper.innerHTML = ''; // Clear previous content
+            project.visuals.forEach(visual => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide flex items-center justify-center';
+                if (visual.type === 'image') {
+                    slide.innerHTML = `<img src="${visual.src}" alt="${project.title} ${visual.type}" class="w-full h-full object-contain">`;
+                } else if (visual.type === 'video') {
+                    slide.innerHTML = `<video controls class="w-full h-full object-contain">
+                                             <source src="${visual.src}" type="video/mp4">
+                                             Your browser does not support the video tag.
+                                           </video>`;
+                }
+                swiperWrapper.appendChild(slide);
+            });
+
+            // Initialize Swiper after content is loaded
+            if (project.visuals.length > 0) {
+                new Swiper('.swiper-container', {
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    speed: 800,
+                    spaceBetween: 0,
+                    effect: 'slide',
+                });
+            }
+
+            // Populate Project Links
+            const projectLinksContainer = document.getElementById('project-links');
+            projectLinksContainer.innerHTML = ''; // Clear previous content
+            if (project.liveLink && project.liveLink !== '#') {
+                projectLinksContainer.appendChild(createLinkButton(project.liveLink, "View Live"));
+            }
+            if (project.githubLink && project.githubLink !== '#') {
+                projectLinksContainer.appendChild(createLinkButton(project.githubLink, "GitHub Repo"));
+            }
         }
 
-        document.getElementById('carousel-next').addEventListener('click', () => {
-          currentIndex = (currentIndex + 1) % totalSlides;
-          updateCarousel();
-        });
-
-        document.getElementById('carousel-prev').addEventListener('click', () => {
-          currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-          updateCarousel();
-        });
-
-        indicators.forEach(indicator => {
-          indicator.addEventListener('click', (e) => {
-            currentIndex = parseInt(e.target.dataset.index);
-            updateCarousel();
-          });
-        });
-
-        // Autoplay functionality (optional)
-        // let autoplayInterval = setInterval(() => {
-        //   currentIndex = (currentIndex + 1) % totalSlides;
-        //   updateCarousel();
-        // }, 5000); // Change slide every 5 seconds
-
-        // Stop autoplay on user interaction and restart after a delay
-        // carouselSlides.addEventListener('mouseover', () => clearInterval(autoplayInterval));
-        // carouselSlides.addEventListener('mouseleave', () => {
-        //   autoplayInterval = setInterval(() => {
-        //     currentIndex = (currentIndex + 1) % totalSlides;
-        //     updateCarousel();
-        //   }, 5000);
-        // });
-
-      } else {
-        document.getElementById('project-title').textContent = "Project Not Found";
-        document.getElementById('project-description').innerHTML = "<p>The requested project could not be found.</p>";
-        document.getElementById('carousel-container').innerHTML = ''; // Hide carousel for not found projects
-        document.getElementById('project-tech-stack').innerHTML = '';
-        document.getElementById('project-links').innerHTML = '';
-      }
-    });
-  </script>
+        // Call the function to load project details when the page loads
+        document.addEventListener('DOMContentLoaded', getProjectDetails);
+    </script>
 </body>
 
 </html>
