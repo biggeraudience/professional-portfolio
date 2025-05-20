@@ -7,7 +7,7 @@
     <link href="css/style.css" rel="stylesheet" />
 
     <style>
-        /* Ensure all navbar icons are 32×32 */
+        /* Ensure all navbar icons are 32x32 */
         #site-navbar ul li img {
             width: 32px;
             height: 32px;
@@ -19,9 +19,27 @@
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: white;
+            color: white; /* Ensure text color is white as in index.html */
             cursor: pointer;
         }
+
+        /* Mobile-specific Navbar Styles (Copied from index.html) */
+        @media (max-width: 768px) {
+            #site-navbar ul li img {
+                width: 24px; /* Smaller icon size for mobile */
+                height: 24px;
+            }
+
+            #site-navbar ul li a {
+                font-size: 0.75rem; /* Smaller font size for labels */
+            }
+
+            #site-navbar ul {
+                padding: 0.5rem 0; /* Adjust overall padding if needed */
+                gap: 0.5rem; /* Add gap between each nav item */
+            }
+        }
+
         /* Custom styling for the round photo container */
         .round-photo-container {
             width: 150px; /* Adjust size as needed */
@@ -233,8 +251,7 @@
             </p>
 
             <form action="#" method="POST" class="space-y-6">
-                <div class="w-1/2">
-                    <label for="email" class="text-white text-lg block mb-2">Email:</label>
+                <div class="w-full"> <label for="email" class="text-white text-lg block mb-2">Email:</label>
                     <input type="email" id="email" name="email" placeholder="enter your email"
                            class="w-full p-3 rounded-lg bg-secondary-background-dark text-white placeholder-text-muted border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary h-10">
                 </div>
@@ -242,8 +259,8 @@
                 <div>
                     <label for="message" class="sr-only">Your Message</label>
                     <textarea id="message" name="message" placeholder="type your message here"
-                              class="w-full p-3 rounded-lg bg-secondary-background-dark text-white placeholder-text-muted border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
-                              rows="5" style="height: 120px;"> </textarea>
+                                 class="w-full p-3 rounded-lg bg-secondary-background-dark text-white placeholder-text-muted border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+                                 rows="5" style="height: 120px;"> </textarea>
                 </div>
 
                 <button type="submit" class="btn-primary flex items-center justify-center">
@@ -267,26 +284,61 @@
         function showNavbar() {
             nav.classList.remove('-translate-y-full');
             clearTimeout(hideTimer);
-            hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
+            hideTimer = setTimeout(hideNavbar, 2500); // Changed to call hideNavbar directly
         }
+
+        function hideNavbar() {
+            nav.classList.add('-translate-y-full');
+        }
+
+        // 1) Show on scroll
         window.addEventListener('scroll', showNavbar);
+
+        // 2) Show on page load
         document.addEventListener('DOMContentLoaded', showNavbar);
+
+        // 3) Show when mouse hovers directly over the visible bar
         nav.addEventListener('mouseenter', showNavbar);
-        nav.addEventListener('mouseleave', showNavbar);
-        window.addEventListener('mousemove', e => {
+
+        // 4) Hide 2.5s after leaving the nav (re-setting the timer)
+        nav.addEventListener('mouseleave', () => {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideNavbar, 2500);
+        });
+
+        // 5) Show when cursor hits top 50px of viewport
+        window.addEventListener('mousemove', (e) => {
             if (e.clientY < 50) showNavbar();
         });
 
         // === Dark mode toggle ===
         const toggleLi = document.getElementById('dark-toggle');
         const toggleIcon = document.getElementById('dark-toggle-icon');
+
         toggleLi.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
             toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
-        });
-        if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
 
-        // === Testimonial Card Stack Scroll Animation (Adapted from Project Card Animation) ===
+            // Save theme preference to localStorage
+            if (isDark) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Initial check for dark mode on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                toggleIcon.src = '../assets/ToggleOn Icon.svg';
+            } else {
+                document.documentElement.classList.remove('dark');
+                toggleIcon.src = '../assets/ToggleOff Icon.svg';
+            }
+        });
+
+        // === Testimonial Card Stack Scroll Animation ===
         document.addEventListener('DOMContentLoaded', () => {
             const testimonialsMain = document.getElementById('testimonials-main');
             const testimonialsList = document.getElementById('testimonials-list');
@@ -295,10 +347,7 @@
 
             if (testimonialCards.length === 0) return;
 
-            // Get the actual position of the testimonials list relative to the document
-            // This needs to be calculated dynamically after layout, so get it on demand or on resize
             let testimonialsListTop;
-
             let totalStackingHeight = 0;
             let firstCardHeight = 0;
             let cardGap = 0;
@@ -331,95 +380,59 @@
 
                 const viewportHeight = window.innerHeight;
                 // The amount of scroll space needed for all cards to stick and then for the last one to leave the screen
-                // Each card needs enough scroll space for its own height minus the sticky offset
-                // plus the gap for the next card to come into view.
                 totalStackingHeight = (testimonialCards.length - 1) * (firstCardHeight - stickyOffset + cardGap) + viewportHeight;
 
-
-                // Adjust body padding to extend the scrollable area
                 body.style.paddingBottom = `${totalStackingHeight}px`;
 
                 testimonialCards.forEach(item => {
                     resizeObserver.observe(item);
                 });
 
-                onScroll(); // Call onScroll after metrics are recalculated
+                onScroll();
             }
 
             function onScroll() {
                 const scrollY = window.scrollY;
 
-                // The point where the first card starts to stick
                 const animationZoneStart = testimonialsListTop - stickyOffset;
-
-                // The point where the last card finishes sticking (i.e., when all cards have stacked)
-                // This is effectively where the scroll can continue past the sticky section.
                 const animationZoneEnd = animationZoneStart + totalStackingHeight - (window.innerHeight - stickyOffset);
 
-
-                // This is the tricky part. We need to prevent natural scrolling *within* the stacking animation.
-                // We'll only clamp the scroll position if we are in the "sticky" range.
                 if (scrollY >= animationZoneStart && scrollY < animationZoneEnd) {
-                     body.classList.add('no-scroll');
-                    // Calculate the target scroll position if the body were not scroll-locked.
-                    // This creates a smooth virtual scroll within the sticky area.
+                    body.classList.add('no-scroll');
                     const clampedScrollY = clamp(scrollY, animationZoneStart, animationZoneEnd);
                     if (window.scrollY !== clampedScrollY) {
-                         // Only scroll if needed to prevent infinite loop on some browsers/setups
                         window.scrollTo(0, clampedScrollY);
                     }
                 } else if (scrollY >= animationZoneEnd) {
                     body.classList.remove('no-scroll');
-                    // Ensure padding is reset when out of the animation zone
                     body.style.paddingBottom = '0';
                 } else if (scrollY < animationZoneStart) {
                     body.classList.remove('no-scroll');
                     body.style.paddingBottom = `${totalStackingHeight}px`;
                 }
 
-
                 testimonialCards.forEach((currentItem, index) => {
-                    // Correct Z-index: the card that is currently active/on top should have the highest z-index.
-                    // Cards further down the list that haven't stuck yet should have lower z-index.
-                    // As a card becomes active, its z-index relative to the others should increase.
-                    // When a card fades out, its z-index effectively doesn't matter as much, but
-                    // the one that's currently scrolling into view (index) needs to be on top of (index - 1).
-                    // So, higher index means higher z-index when active.
-currentItem.style.zIndex = index + 1; // Or any starting number, e.g., 10 + index
-                    const previousItem = testimonialCards[index - 1]; // Get the card directly above this one
+                    currentItem.style.zIndex = index + 1;
+                    const previousItem = testimonialCards[index - 1];
 
-                    // Determine the scroll point at which the previous card should start to fade out
-                    // This happens when the current card's top aligns with the sticky point.
                     const fadeOutStartScroll = testimonialsListTop + index * (firstCardHeight + cardGap) - stickyOffset;
 
-                    if (index > 0) { // Only apply fade effect to cards after the first one
+                    if (index > 0) {
                         if (scrollY > fadeOutStartScroll) {
-                            // Calculate fade progress: starts when current card aligns with sticky top, fades as it covers previous.
-                            // The fade out happens over the height of one card, or some percentage of it.
                             const fadeProgress = clamp((scrollY - fadeOutStartScroll) / (previousItem.offsetHeight * 0.7), 0, 1);
                             previousItem.style.opacity = `${1 - fadeProgress}`;
                             if (fadeProgress >= 1) {
-                                previousItem.style.pointerEvents = 'none'; // Make fully faded cards unclickable
+                                previousItem.style.pointerEvents = 'none';
                             } else {
                                 previousItem.style.pointerEvents = 'auto';
                             }
                         } else {
-                            // Before its fade point, previous card should be fully visible
                             previousItem.style.opacity = 1;
                             previousItem.style.pointerEvents = 'auto';
                         }
                     }
                 });
 
-                // Ensure the very first card is always opaque unless it's the one fading out
-                if (testimonialCards.length > 0) {
-                    // When scrollY is below the animationZoneStart, all should be opaque.
-                    // The opacity logic for index > 0 takes care of this usually.
-                    // This ensures the current active card stays fully opaque.
-                    // The z-index assignment already ensures the correct stacking.
-                }
-
-                // If scrolled beyond the last card, ensure only the last one is visible
                 if (scrollY >= animationZoneEnd && testimonialCards.length > 0) {
                     testimonialCards.forEach((item, i) => {
                         item.style.opacity = (i === testimonialCards.length - 1) ? 1 : 0;
@@ -428,20 +441,18 @@ currentItem.style.zIndex = index + 1; // Or any starting number, e.g., 10 + inde
                 }
             }
 
-
             function clamp(x, min, max) {
                 return Math.min(Math.max(x, min), max);
             }
 
-            // Initial setup on DOMContentLoaded
             document.addEventListener('DOMContentLoaded', () => {
-                // Use setTimeout to ensure elements are fully rendered and positioned
                 setTimeout(() => {
                     calculateStackingMetrics();
-                }, 200); // Increased delay slightly
+                }, 200);
             });
 
             window.addEventListener('resize', () => {
+                testimonialCards.forEach(item => resizeObserver.unobserve(item));
                 calculateStackingMetrics();
             });
 

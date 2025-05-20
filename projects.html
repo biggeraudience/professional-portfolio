@@ -8,6 +8,91 @@
   <link href="css/style.css" rel="stylesheet" />
 
   <style>
+    /* Ensure all navbar icons are 32×32 */
+    #site-navbar ul li img {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* Make every nav link area clickable and show pointer */
+    #site-navbar ul li a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      /* keep your white text */
+      text-decoration: none;
+      /* no underlines */
+      cursor: pointer;
+      /* pointer on hover */
+    }
+
+    /* --- NEW CSS for Section Card Stack Animation --- */
+    .section-card {
+      position: sticky;
+      /* Adjust this value to control where the cards 'stick' on scroll, below your navbar */
+      top: 100px;
+      /* Ensures cards stack correctly, initial z-index */
+      z-index: 1;
+      /* Smooth fade out transition */
+      transition: opacity 0.3s ease-out;
+    }
+
+    /* Ensure the container for sections is set up for sticky children */
+    #sections-list {
+      display: flex;
+      flex-direction: column;
+      /* Adjust this gap to control initial spacing between cards */
+      gap: 2rem;
+      /* Using a gap to visually separate sections */
+      position: relative;
+      /* Important for positioning context of sticky children */
+    }
+
+    /* Style to prevent body scrolling when sections are stacking */
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    /* --- Mobile-specific Navbar Styles --- */
+    @media (max-width: 768px) {
+      #site-navbar ul li img {
+        width: 24px;
+        /* Smaller icon size for mobile */
+        height: 24px;
+      }
+
+      #site-navbar ul li a {
+        font-size: 0.75rem;
+        /* Smaller font size for labels */
+        /* Adjusted gap between icon and label, and overall nav item gap */
+      }
+
+      #site-navbar ul {
+        padding: 0.5rem 0;
+        /* Adjust overall padding if needed */
+        gap: 0.5rem;
+        /* Add gap between each nav item */
+      }
+    }
+
+    /* Invisible Scrollbar for Project Description */
+    .project-description-scroll {
+      overflow-y: auto;
+      /* Enable vertical scrolling */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    .project-description-scroll::-webkit-scrollbar {
+      display: none;
+      /* Hide scrollbar for Chrome, Safari, Opera */
+    }
+
+
+    /* Existing projects.html specific styles */
     #site-navbar ul li img {
       width: 32px;
       height: 32px;
@@ -36,11 +121,11 @@
     }
 
     .project-item {
-  margin-bottom: 2rem;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-              opacity 0.4s ease-out;
-  will-change: transform, opacity;
-}
+      margin-bottom: 2rem;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.4s ease-out;
+      will-change: transform, opacity;
+    }
 
     #projects-list {
       display: flex;
@@ -66,18 +151,46 @@
   <nav id="site-navbar"
     class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
     <ul class="flex justify-around items-center py-4">
-      <li><a href="index.html" class="flex flex-col items-center"><img src="../assets/Vector.svg"
-            alt="Home Icon"><span>HOME</span></a></li>
-      <li><a href="about.html" class="flex flex-col items-center"><img src="../assets/About Icon.svg"
-            alt="About Icon"><span>ABOUT</span></a></li>
-      <li><a href="projects.html" class="flex flex-col items-center"><img src="../assets/Projects Icon.svg"
-            alt="Projects Icon"><span>PROJECTS</span></a></li>
-      <li><a href="articles.html" class="flex flex-col items-center"><img src="../assets/Articles Icon.svg"
-            alt="Articles Icon"><span>ARTICLES</span></a></li>
-      <li><a href="hireMe.html" class="flex flex-col items-center"><img src="../assets/HireMe Icon.svg"
-            alt="Hire Me Icon"><span>HIRE ME</span></a></li>
-      <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img src="../assets/ToggleOff Icon.svg"
-            alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark mode</span></li>
+
+      <li>
+        <a href="index.html">
+          <img src="../assets/Vector.svg" alt="Home Icon">
+          <span>HOME</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="about.html">
+          <img src="../assets/About Icon.svg" alt="About Icon">
+          <span>ABOUT</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="projects.html">
+          <img src="../assets/Projects Icon.svg" alt="Projects Icon">
+          <span>PROJECTS</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="articles.html">
+          <img src="../assets/Articles Icon.svg" alt="Articles Icon">
+          <span>ARTICLES</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="hireMe.html">
+          <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
+          <span>HIRE ME</span>
+        </a>
+      </li>
+
+      <li id="dark-toggle" class="flex flex-col items-center text-white cursor-pointer">
+        <img src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
+        <span>dark mode</span>
+      </li>
     </ul>
   </nav>
 
@@ -89,7 +202,9 @@
 
       <div id="projects-list" class="mt-4">
 
-        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="alpha">
+        <section
+          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
+          data-project-id="alpha">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Alpha - Web Application</h3>
@@ -99,7 +214,8 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">This is the description for Project Alpha. It's a comprehensive web application built using
+              <p class="mb-2">This is the description for Project Alpha. It's a comprehensive web application built
+                using
                 modern technologies. We focused on creating a seamless user experience and robust backend performance.
                 Describe the project's purpose, key features, and your role.</p>
               <p>Paragraph two elaborating on the project details. You can mention specific challenges faced and
@@ -122,7 +238,9 @@
           </div>
         </section>
 
-        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="beta">
+        <section
+          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
+          data-project-id="beta">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Beta - Mobile App</h3>
@@ -132,10 +250,12 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Beta. This project was a mobile application developed for [Purpose].
+              <p class="mb-2">Description for Project Beta. This project was a mobile application developed for
+                [Purpose].
                 It involved [mention technologies like React Native, Flutter, Swift/Kotlin]. Explain the key features
                 and target audience.</p>
-              <p>Details about the development process, design considerations, and any unique aspects of the app. Discuss
+              <p>Details about the development process, design considerations, and any unique aspects of the app.
+                Discuss
                 the challenges of mobile development you encountered.</p>
             </div>
           </div>
@@ -151,7 +271,9 @@
           </div>
         </section>
 
-        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="gamma">
+        <section
+          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
+          data-project-id="gamma">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Gamma - Data Visualization</h3>
@@ -161,8 +283,11 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Gamma. This project focused on visualizing complex datasets to provide actionable insights. It involved [mention technologies like D3.js, Chart.js, Python/R for data processing].</p>
-              <p>Discuss the challenges of handling large datasets and designing effective visualizations. Explain the impact and results of the project.</p>
+              <p class="mb-2">Description for Project Gamma. This project focused on visualizing complex datasets to
+                provide actionable insights. It involved [mention technologies like D3.js, Chart.js, Python/R for data
+                processing].</p>
+              <p>Discuss the challenges of handling large datasets and designing effective visualizations. Explain the
+                impact and results of the project.</p>
             </div>
           </div>
           <div class="tech-stack-icons w-full mt-6">
@@ -175,7 +300,9 @@
             <button class="btn-primary explore-btn">explore project</button>
           </div>
         </section>
-          <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8" data-project-id="delta">
+        <section
+          class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8"
+          data-project-id="delta">
           <div class="flex flex-col lg:flex-row gap-6">
             <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
               <h3 class="text-lg font-semibold text-text-light mb-4">Project Delta - E-commerce Platform</h3>
@@ -185,14 +312,16 @@
               </div>
             </div>
             <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Delta. This project involved building a full-featured e-commerce platform with user authentication, product listings, cart functionality, and payment integration.</p>
-              <p>Details on the backend architecture (e.g., Node.js, Django, Ruby on Rails), frontend framework (e.g., React, Vue, Angular), and database design (e.g., PostgreSQL, MySQL).</p>
+              <p class="mb-2">Description for Project Delta. This project involved building a full-featured e-commerce
+                platform with user authentication, product listings, cart functionality, and payment integration.</p>
+              <p>Details on the backend architecture (e.g., Node.js, Django, Ruby on Rails), frontend framework (e.g.,
+                React, Vue, Angular), and database design (e.g., PostgreSQL, MySQL).</p>
             </div>
           </div>
           <div class="tech-stack-icons w-full mt-6">
             <img src="../assets/tech-icons/react.svg" alt="React Icon" class="w-8 h-8">
             <img src="../assets/tech-icons/nodejs.svg" alt="Node.js Icon" class="w-8 h-8">
-              <img src="../assets/tech-icons/express.svg" alt="Express Icon" class="w-8 h-8">
+            <img src="../assets/tech-icons/express.svg" alt="Express Icon" class="w-8 h-8">
             <img src="../assets/tech-icons/postgresql.svg" alt="PostgreSQL Icon" class="w-8 h-8">
             <img src="../assets/tech-icons/stripe.svg" alt="Stripe Icon" class="w-8 h-8">
           </div>
@@ -217,13 +346,30 @@
     function showNavbar() {
       nav.classList.remove('-translate-y-full');
       clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
+      hideTimer = setTimeout(hideNavbar, 2500);
     }
+
+    function hideNavbar() {
+      nav.classList.add('-translate-y-full');
+    }
+
+    // 1) Show on scroll
     window.addEventListener('scroll', showNavbar);
+
+    // 2) Show on page load
     document.addEventListener('DOMContentLoaded', showNavbar);
+
+    // 3) Show when mouse hovers directly over the visible bar
     nav.addEventListener('mouseenter', showNavbar);
-    nav.addEventListener('mouseleave', showNavbar);
-    window.addEventListener('mousemove', e => {
+
+    // 4) Hide 2.5s after leaving the nav
+    nav.addEventListener('mouseleave', () => {
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(hideNavbar, 2500);
+    });
+
+    // 5) Show when cursor hits top 50px of viewport
+    window.addEventListener('mousemove', (e) => {
       if (e.clientY < 50) showNavbar();
     });
 
@@ -326,8 +472,8 @@
 
           const previousItem = projectItems[index - 1];
 
-          const itemStackingStartScroll = projectsListTop + (index * (projectItems[0].offsetHeight + cardGap)); 
-          const itemStackingEndScroll = itemStackingStartScroll + previousItem.offsetHeight + cardGap; 
+          const itemStackingStartScroll = projectsListTop + (index * (projectItems[0].offsetHeight + cardGap));
+          const itemStackingEndScroll = itemStackingStartScroll + previousItem.offsetHeight + cardGap;
 
           currentItem.style.zIndex = 10 + index;
 
@@ -342,12 +488,12 @@
         if (scrollY > animationZoneEnd) {
           projectItems.forEach((item, index) => {
             item.style.zIndex = 10 + index;
-            item.style.opacity = 1; 
+            item.style.opacity = 1;
           });
           body.classList.remove('no-scroll');
           body.style.paddingBottom = '0';
         } else if (scrollY < animationZoneStart) {
-          projectItems.forEach(item => item.style.opacity = 1); 
+          projectItems.forEach(item => item.style.opacity = 1);
           body.classList.remove('no-scroll');
           body.style.paddingBottom = `${totalStackingHeight}px`;
         }

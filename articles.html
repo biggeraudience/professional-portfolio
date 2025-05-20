@@ -8,21 +8,40 @@
     <link href="css/style.css" rel="stylesheet" />
 
     <style>
-        /* Existing styles from projects page for navbar and general layout */
+        /* Ensure all navbar icons are 32×32 */
         #site-navbar ul li img {
             width: 32px;
             height: 32px;
         }
 
+        /* Make every nav link area clickable and show pointer */
         #site-navbar ul li a {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: white;
+            color: white; /* Ensure text color is white as in index.html */
             cursor: pointer;
         }
 
+        /* Mobile-specific Navbar Styles (Copied from index.html) */
+        @media (max-width: 768px) {
+            #site-navbar ul li img {
+                width: 24px; /* Smaller icon size for mobile */
+                height: 24px;
+            }
+
+            #site-navbar ul li a {
+                font-size: 0.75rem; /* Smaller font size for labels */
+            }
+
+            #site-navbar ul {
+                padding: 0.5rem 0; /* Adjust overall padding if needed */
+                gap: 0.5rem; /* Add gap between each nav item */
+            }
+        }
+
+        /* Existing styles from projects page for general layout and article cards */
         .thin-line {
             height: 0.5px;
             background-color: rgba(255, 255, 255, 0.5);
@@ -31,20 +50,16 @@
         /* Styles specific to articles for stacking effect */
         .article-item {
             position: sticky;
-            top: 60px;
-           
+            top: 60px; /* Adjust this value if your navbar height changes */
             z-index: 1;
             transition: opacity 0.3s ease-out;
-            min-height: calc(100vh - 60px);
+            min-height: calc(100vh - 60px); /* Adjusted to match top offset */
         }
 
         #articles-list {
             display: flex;
             flex-direction: column;
-            /* Adjust this gap to control initial spacing between cards */
             gap: 1rem;
-            /* Changed from 2rem to 1rem */
-            /* Important for positioning context of sticky children */
             position: relative;
         }
 
@@ -55,12 +70,9 @@
 
         /* Ensure main content has proper flow */
         #articles-main {
-            flex-1;
-            /* Keep flex-1 as before */
+            flex: 1;
             padding-top: 10px;
-            /* Adjust padding if navbar overlaps content */
             padding-bottom: 0;
-            /* Padding bottom will be added to body */
         }
 
         /* Specific styles for article cards */
@@ -68,60 +80,46 @@
             background-color: white;
             border: 1px solid white;
             border-radius: 20px;
-            /* equivalent to rounded-2xl */
             padding: 1.5rem;
-            /* equivalent to p-6 */
             display: flex;
             flex-direction: column;
             color: black;
-            /* Default text color for the white card */
         }
 
         .article-card-title {
             background-color: #CDEDA2;
-            /* Specific hex color as requested */
             color: black;
-            /* Title text is black as requested */
             border: 1px solid black;
             padding: 0.75rem 1rem;
             margin-bottom: 0.75rem;
             border-radius: 0.5rem;
             text-align: center;
             font-weight: 600;
-            /* semi-bold */
         }
 
         .article-card-date,
         .article-card-metadata {
             color: white;
-            /* These texts are white as requested */
             margin-bottom: 0.5rem;
             padding-left: 1rem;
-            /* Add some padding to align with the title block visual */
             padding-right: 1rem;
         }
 
         .article-card-date {
             font-size: 0.875rem;
-            /* text-sm */
             font-style: italic;
         }
 
         .article-card-metadata {
             font-size: 0.95rem;
-            /* slightly larger than snippet */
             font-weight: 500;
-            /* medium */
         }
 
         .article-card-snippet {
             color: black;
-            /* Snippet text is black as it's on the white card */
             font-size: 0.95rem;
-            /* text-sm */
             line-height: 1.5;
             margin-top: 0.75rem;
-            /* Space between metadata and snippet */
             margin-bottom: 1rem;
         }
     </style>
@@ -220,24 +218,59 @@
         function showNavbar() {
             nav.classList.remove('-translate-y-full');
             clearTimeout(hideTimer);
-            hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
+            hideTimer = setTimeout(hideNavbar, 2500); // Changed to call hideNavbar directly
         }
+
+        function hideNavbar() {
+            nav.classList.add('-translate-y-full');
+        }
+
+        // 1) Show on scroll
         window.addEventListener('scroll', showNavbar);
+
+        // 2) Show on page load
         document.addEventListener('DOMContentLoaded', showNavbar);
+
+        // 3) Show when mouse hovers directly over the visible bar
         nav.addEventListener('mouseenter', showNavbar);
-        nav.addEventListener('mouseleave', showNavbar);
-        window.addEventListener('mousemove', e => {
+
+        // 4) Hide 2.5s after leaving the nav (re-setting the timer)
+        nav.addEventListener('mouseleave', () => {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideNavbar, 2500);
+        });
+
+        // 5) Show when cursor hits top 50px of viewport
+        window.addEventListener('mousemove', (e) => {
             if (e.clientY < 50) showNavbar();
         });
 
         // === Dark mode toggle ===
         const toggleLi = document.getElementById('dark-toggle');
         const toggleIcon = document.getElementById('dark-toggle-icon');
+
         toggleLi.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
             toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+
+            // Save theme preference to localStorage
+            if (isDark) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
         });
-        if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
+
+        // Initial check for dark mode on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                toggleIcon.src = '../assets/ToggleOn Icon.svg';
+            } else {
+                document.documentElement.classList.remove('dark');
+                toggleIcon.src = '../assets/ToggleOff Icon.svg';
+            }
+        });
 
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -263,8 +296,7 @@
             if (articleItems.length === 0) return;
 
             const articlesMain = document.getElementById('articles-main');
-            const articlesListTop = articlesList.offsetTop + articlesMain.offsetTop;
-
+            let articlesListTop = articlesList.offsetTop + articlesMain.offsetTop; // Initial calculation
 
             let totalStackingHeight = 0;
             let firstCardHeight = 0;
@@ -272,12 +304,15 @@
 
             const resizeObserver = new ResizeObserver(entries => {
                 calculateStackingMetrics();
-                onScroll();
+                onScroll(); // Recalculate and apply on scroll
             });
 
 
             function calculateStackingMetrics() {
                 if (articleItems.length === 0) return;
+
+                // Re-calculate articlesListTop as elements might shift
+                articlesListTop = articlesList.offsetTop + articlesMain.offsetTop;
 
                 const computedStyle = window.getComputedStyle(articlesList);
                 cardGap = parseFloat(computedStyle.getPropertyValue('gap'));
@@ -286,7 +321,6 @@
                     console.warn("Could not determine CSS gap for #articles-list. Stacking height might be inaccurate.");
                 }
 
-                // Get the height of the first complete card (including title, metadata, and the white wrapper)
                 firstCardHeight = articleItems[0].offsetHeight;
                 let totalInitialHeight = 0;
                 articleItems.forEach(item => {
@@ -301,86 +335,101 @@
 
                 body.style.paddingBottom = `${totalStackingHeight}px`;
 
+                // Observe all article items to recalculate on their resize
                 articleItems.forEach(item => {
                     resizeObserver.observe(item);
                 });
 
-                onScroll();
+                calculateInitialOffsets(); // Recalculate offsets on metrics change
+                onScroll(); // Apply changes immediately
             }
 
 
             function onScroll() {
                 const scrollY = window.scrollY;
 
+                // Define the scroll range where the stacking animation occurs
                 const animationZoneStart = articlesListTop;
-
                 const animationZoneEnd = animationZoneStart + totalStackingHeight;
 
                 const isAnimating = scrollY >= animationZoneStart && scrollY <= animationZoneEnd;
 
                 if (isAnimating) {
+                    // Lock scrolling to the animation zone
                     body.classList.add('no-scroll');
                     window.scrollTo(0, clamp(scrollY, animationZoneStart, animationZoneEnd));
                 } else {
                     body.classList.remove('no-scroll');
                 }
 
+                // Calculate progress within the animation zone
                 const animationProgress = clamp((scrollY - animationZoneStart) / totalStackingHeight, 0, 1);
-
 
                 articleItems.forEach((currentItem, index) => {
                     if (index === 0) {
+                        // The first card always stays on top and fully opaque within the animation zone
                         currentItem.style.zIndex = 100;
                         currentItem.style.opacity = 1;
                         return;
                     }
 
-                    const previousItem = articleItems[index - 1];
+                    // Calculate the scroll points for each card's stacking
+                    // Each card starts "stacking" when the previous one is fully engaged.
+                    const previousItemOffset = initialOffsets[index - 1]; // Where the previous card was originally
+                    const currentItemOffset = initialOffsets[index]; // Where this card was originally
+
+                    // The scroll value where this card *starts* its "sticking"
+                    const itemStickStartScroll = animationZoneStart + (previousItemOffset - initialOffsets[0]);
+                    // The scroll value where this card *finishes* its "sticking" and the next one starts
+                    const itemStickEndScroll = animationZoneStart + (currentItemOffset - initialOffsets[0]);
+
+                    // Determine the progress for this specific item's transition
+                    const itemProgress = clamp((scrollY - itemStickStartScroll) / (currentItem.offsetHeight + cardGap), 0, 1);
 
 
-                    const itemStackingStartScroll = initialOffsets[index - 1] || articlesListTop;
-                    const itemStackingEndScroll = initialOffsets[index];
+                    currentItem.style.zIndex = 10 + index; // Ensure higher cards have higher z-index
 
-                    const itemProgress = clamp((scrollY - itemStackingStartScroll) / (itemStackingEndScroll - itemStackingStartScroll), 0, 1);
+                    if (scrollY >= itemStickStartScroll) {
+                        // When the scroll enters the stacking zone for this card
+                        const offsetFromTop = (index * 20); // Adjust this value for how much each card peeks out
 
-                    currentItem.style.zIndex = 10 + index;
+                        currentItem.style.transform = `translateY(${Math.max(0, scrollY - itemStickStartScroll)}px)`;
 
-                    if (index > 0) {
-                        previousItem.style.opacity = `${1 - itemProgress}`;
-
-                        if (scrollY > itemStackingEndScroll) {
-                            previousItem.style.opacity = 0;
-                        } else if (scrollY < itemStackingStartScroll) {
-                            previousItem.style.opacity = 1;
+                        currentItem.style.opacity = 1;
+                        if (index > 0) {
+                             // Fade out the previous card as the current one comes into view
+                            const fadeProgress = clamp((scrollY - itemStickStartScroll) / (currentItem.offsetHeight * 0.5), 0, 1);
+                            articleItems[index - 1].style.opacity = `${1 - fadeProgress}`;
                         }
+                    } else {
+                        // Before the stacking zone for this card, ensure it's in its original position
+                        currentItem.style.transform = `translateY(0)`;
+                        currentItem.style.opacity = 1;
                     }
 
-
+                    // Ensure the first card stays fully visible and on top always
+                    if (index === 0) {
+                        currentItem.style.opacity = 1;
+                        currentItem.style.transform = `translateY(${scrollY > animationZoneStart ? scrollY - animationZoneStart : 0}px)`;
+                    }
                 });
 
-                if (scrollY > animationZoneEnd) {
+                // Reset opacity and transform when scrolling outside the animation zone
+                if (scrollY < animationZoneStart || scrollY > animationZoneEnd) {
                     articleItems.forEach((item, index) => {
-                        item.style.zIndex = 10 + index;
+                        item.style.opacity = 1;
+                        item.style.transform = `translateY(0)`;
+                        item.style.zIndex = 1; // Reset z-index
                     });
-                }
-
-
-                if (scrollY >= animationZoneEnd) {
                     body.classList.remove('no-scroll');
                     body.style.paddingBottom = '0';
-                } else if (scrollY < animationZoneStart) {
-
-                    body.classList.remove('no-scroll');
-                    body.style.paddingBottom = `${totalStackingHeight}px`;
                 }
-
             }
 
 
             function clamp(x, min, max) {
                 return Math.min(Math.max(x, min), max);
             }
-
 
             let initialOffsets = [];
             function calculateInitialOffsets() {
@@ -392,17 +441,17 @@
                 setTimeout(() => {
                     calculateInitialOffsets();
                     calculateStackingMetrics();
-                }, 100);
+                }, 100); // Small delay to ensure all CSS is rendered
             });
 
             window.addEventListener('resize', () => {
+                // Remove resize observer on all elements to prevent multiple recalculations
+                articleItems.forEach(item => resizeObserver.unobserve(item));
                 calculateInitialOffsets();
                 calculateStackingMetrics();
             });
 
             window.addEventListener('scroll', onScroll);
-
-
         });
     </script>
 

@@ -5,40 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mubarak Afolabi — Article Details</title>
     <link href="css/style.css" rel="stylesheet" />
+    <style>
+        /* Ensure all navbar icons are 32×32 */
+        #site-navbar ul li img {
+            width: 32px;
+            height: 32px;
+        }
+        /* Make every nav link area clickable and show pointer */
+        #site-navbar ul li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white; /* Ensure text color is white as in index.html */
+            cursor: pointer;
+        }
+
+        /* Mobile-specific Navbar Styles (Copied from index.html) */
+        @media (max-width: 768px) {
+            #site-navbar ul li img {
+                width: 24px; /* Smaller icon size for mobile */
+                height: 24px;
+            }
+
+            #site-navbar ul li a {
+                font-size: 0.75rem; /* Smaller font size for labels */
+            }
+
+            #site-navbar ul {
+                padding: 0.5rem 0; /* Adjust overall padding if needed */
+                gap: 0.5rem; /* Add gap between each nav item */
+            }
+        }
+    </style>
 </head>
 <body class="bg-primary-background-dark text-text-light min-h-screen flex flex-col">
 
     <nav id="site-navbar"
-        class="sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+        class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
         <ul class="flex justify-around items-center py-4">
-            <li><a href="index.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Vector.svg"
-                         alt="Home Icon" class="w-8 h-8"><span>HOME</span></a></li>
-            <li><a href="about.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/About Icon.svg"
-                         alt="About Icon" class="w-8 h-8"><span>ABOUT</span></a></li>
-            <li><a href="projects.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Projects Icon.svg"
-                         alt="Projects Icon" class="w-8 h-8"><span>PROJECTS</span></a></li>
-            <li><a href="articles.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/Articles Icon.svg"
-                         alt="Articles Icon" class="w-8 h-8"><span>ARTICLES</span></a></li>
-            <li><a href="hireMe.html" class="flex flex-col items-center text-white cursor-pointer"><img src="../assets/HireMe Icon.svg"
-                         alt="Hire Me Icon" class="w-8 h-8"><span>HIRE ME</span></a></li>
-            <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img
-                     src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark
-                         mode</span></li>
+            <li><a href="index.html">
+                <img src="../assets/Vector.svg" alt="Home Icon">
+                <span>HOME</span></a>
+            </li>
+            <li><a href="about.html">
+                <img src="../assets/About Icon.svg" alt="About Icon">
+                <span>ABOUT</span></a>
+            </li>
+            <li><a href="projects.html">
+                <img src="../assets/Projects Icon.svg" alt="Projects Icon">
+                <span>PROJECTS</span></a>
+            </li>
+            <li><a href="articles.html">
+                <img src="../assets/Articles Icon.svg" alt="Articles Icon">
+                <span>ARTICLES</span></a>
+            </li>
+            <li><a href="hireMe.html">
+                <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
+                <span>HIRE ME</span></a>
+            </li>
+            <li id="dark-toggle" class="flex flex-col items-center text-white cursor-pointer">
+                <img src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
+                <span>dark mode</span>
+            </li>
         </ul>
     </nav>
 
     <main class="flex-1 py-10 px-4 container mx-auto">
         <section class="max-w-4xl mx-auto">
             <h1 id="article-detail-title" class="bg-[#CDEDA2] text-black border border-black p-4 mb-4 rounded-lg text-center font-extrabold text-3xl">
-                </h1>
+            </h1>
             <p id="article-detail-date" class="text-white mb-2 text-base italic text-center">
-                </p>
+            </p>
             <p id="article-detail-metadata" class="text-white mb-6 text-lg font-medium text-center">
-                </p>
+            </p>
 
             <div id="article-detail-content-card" class="bg-white border border-white rounded-2xl p-8 shadow-lg text-black">
                 <div id="article-detail-full-content" class="prose max-w-none">
-                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -55,24 +99,59 @@
         function showNavbar() {
             nav.classList.remove('-translate-y-full');
             clearTimeout(hideTimer);
-            hideTimer = setTimeout(() => nav.classList.add('-translate-y-full'), 2500);
+            hideTimer = setTimeout(hideNavbar, 2500);
         }
+
+        function hideNavbar() {
+            nav.classList.add('-translate-y-full');
+        }
+
+        // 1) Show on scroll
         window.addEventListener('scroll', showNavbar);
+
+        // 2) Show on page load
         document.addEventListener('DOMContentLoaded', showNavbar);
+
+        // 3) Show when mouse hovers directly over the visible bar
         nav.addEventListener('mouseenter', showNavbar);
-        nav.addEventListener('mouseleave', showNavbar);
-        window.addEventListener('mousemove', e => {
+
+        // 4) Hide 2.5s after leaving the nav (re-setting the timer)
+        nav.addEventListener('mouseleave', () => {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideNavbar, 2500);
+        });
+
+        // 5) Show when cursor hits top 50px of viewport
+        window.addEventListener('mousemove', (e) => {
             if (e.clientY < 50) showNavbar();
         });
 
         // === Dark mode toggle ===
         const toggleLi = document.getElementById('dark-toggle');
         const toggleIcon = document.getElementById('dark-toggle-icon');
+
         toggleLi.addEventListener('click', () => {
             const isDark = document.documentElement.classList.toggle('dark');
             toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+
+            // Save theme preference to localStorage
+            if (isDark) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
         });
-        if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
+
+        // Initial check for dark mode on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                toggleIcon.src = '../assets/ToggleOn Icon.svg';
+            } else {
+                document.documentElement.classList.remove('dark');
+                toggleIcon.src = '../assets/ToggleOff Icon.svg';
+            }
+        });
 
 
         // === Article Detail Content Loading ===

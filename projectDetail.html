@@ -25,6 +25,29 @@
             cursor: pointer;
         }
 
+        /* --- Mobile-specific Navbar Styles --- */
+        @media (max-width: 768px) {
+            #site-navbar ul li img {
+                width: 24px;
+                /* Smaller icon size for mobile */
+                height: 24px;
+            }
+
+            #site-navbar ul li a {
+                font-size: 0.75rem;
+                /* Smaller font size for labels */
+                /* Adjusted gap between icon and label, and overall nav item gap */
+            }
+
+            #site-navbar ul {
+                padding: 0.5rem 0;
+                /* Adjust overall padding if needed */
+                gap: 0.5rem;
+                /* Add gap between each nav item */
+            }
+        }
+
+
         .thin-line {
             height: 0.5px;
             background-color: rgba(255, 255, 255, 0.5);
@@ -109,18 +132,46 @@
     <nav id="site-navbar"
         class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
         <ul class="flex justify-around items-center py-4">
-            <li><a href="index.html" class="flex flex-col items-center"><img src="../assets/Vector.svg"
-                        alt="Home Icon"><span>HOME</span></a></li>
-            <li><a href="about.html" class="flex flex-col items-center"><img src="../assets/About Icon.svg"
-                        alt="About Icon"><span>ABOUT</span></a></li>
-            <li><a href="projects.html" class="flex flex-col items-center"><img src="../assets/Projects Icon.svg"
-                        alt="Projects Icon"><span>PROJECTS</span></a></li>
-            <li><a href="articles.html" class="flex flex-col items-center"><img src="../assets/Articles Icon.svg"
-                        alt="Articles Icon"><span>ARTICLES</span></a></li>
-            <li><a href="hireMe.html" class="flex flex-col items-center"><img src="../assets/HireMe Icon.svg"
-                        alt="Hire Me Icon"><span>HIRE ME</span></a></li>
-            <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img
-                    src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark mode</span></li>
+
+            <li>
+                <a href="index.html">
+                    <img src="../assets/Vector.svg" alt="Home Icon">
+                    <span>HOME</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="about.html">
+                    <img src="../assets/About Icon.svg" alt="About Icon">
+                    <span>ABOUT</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="projects.html">
+                    <img src="../assets/Projects Icon.svg" alt="Projects Icon">
+                    <span>PROJECTS</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="articles.html">
+                    <img src="../assets/Articles Icon.svg" alt="Articles Icon">
+                    <span>ARTICLES</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="hireMe.html">
+                    <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
+                    <span>HIRE ME</span>
+                </a>
+            </li>
+
+            <li id="dark-toggle" class="flex flex-col items-center cursor-pointer">
+                <img src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
+                <span>dark mode</span>
+            </li>
         </ul>
     </nav>
 
@@ -134,26 +185,27 @@
 
             <h2 class="section-heading">The Project Problem</h2>
             <div class="section-content" id="project-problem">
-                </div>
+            </div>
 
             <div class="project-detail-thin-line mx-auto mb-6"></div>
 
             <h2 class="section-heading">The Goal</h2>
             <div class="section-content" id="project-goal">
-                </div>
+            </div>
 
             <div class="project-detail-thin-line mx-auto mb-6"></div>
 
             <h2 class="section-heading">Design Research and UI/UX Process</h2>
             <div class="section-content" id="project-design-process">
-                </div>
+            </div>
 
             <div class="project-detail-thin-line mx-auto mb-6"></div>
 
             <h2 class="section-heading">Project Visuals</h2>
-            <div class="swiper-container w-full h-[500px] bg-secondary-background-dark rounded-lg overflow-hidden relative mb-8">
+            <div
+                class="swiper-container w-full h-[500px] bg-secondary-background-dark rounded-lg overflow-hidden relative mb-8">
                 <div class="swiper-wrapper" id="project-visuals-swiper">
-                    </div>
+                </div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -162,31 +214,31 @@
 
             <h2 class="section-heading">About the Project</h2>
             <div class="section-content" id="project-about">
-                </div>
+            </div>
 
             <div class="project-detail-thin-line mx-auto mb-6"></div>
 
             <h2 class="section-heading">Tech Stack</h2>
             <div class="section-content flex flex-wrap gap-4 items-center" id="project-tech-stack">
-                </div>
+            </div>
 
             <div class="project-detail-thin-line mx-auto mb-6"></div>
 
             <h2 class="section-heading">Challenges</h2>
             <div class="section-content" id="project-challenges">
-                </div>
+            </div>
 
             <div class="project-detail-thin-line mx-auto mb-6"></div>
 
             <h2 class="section-heading">Solutions</h2>
             <div class="section-content" id="project-solutions">
-                </div>
+            </div>
 
             <div class="project-detail-thin-line mx-auto mb-6"></div>
 
             <h2 class="section-heading">Lessons</h2>
             <div class="section-content" id="project-lessons">
-                </div>
+            </div>
         </section>
     </main>
 
@@ -239,7 +291,7 @@
                     { type: "image", src: "https://via.placeholder.com/1200x675/00FF00/FFFFFF?text=Project+Alpha+Screenshot+3" },
                 ],
                 about: `Project Alpha is a dynamic web application designed to streamline and enhance task management. It offers a comprehensive suite of features, including personalized dashboards, task categorization, due date tracking, and priority settings. For collaborative efforts, users can create shared projects, assign tasks to team members, and monitor progress in real-time. The application also includes notification systems for upcoming deadlines and completed tasks, ensuring users stay informed and on track. Built with a focus on performance and scalability, Project Alpha leverages modern web technologies to deliver a fast, responsive, and secure user experience across all devices.
-                <p class="mt-4">The platform's intuitive drag-and-drop interface makes organizing tasks effortless, while advanced filtering and search capabilities allow users to quickly locate specific information. We also integrated a robust authentication system and implemented stringent data encryption protocols to ensure user data privacy and security. Regular updates and feature enhancements are planned based on user feedback and emerging industry trends, making Project Alpha a continually evolving solution for efficient task management.</p>`,
+                                <p class="mt-4">The platform's intuitive drag-and-drop interface makes organizing tasks effortless, while advanced filtering and search capabilities allow users to quickly locate specific information. We also integrated a robust authentication system and implemented stringent data encryption protocols to ensure user data privacy and security. Regular updates and feature enhancements are planned based on user feedback and emerging industry trends, making Project Alpha a continually evolving solution for efficient task management.</p>`,
                 techStack: [
                     { name: "React", icon: "../assets/tech-icons/react.svg" },
                     { name: "Node.js", icon: "../assets/tech-icons/node.svg" },
@@ -251,11 +303,11 @@
                     { name: "CSS3", icon: "../assets/tech-icons/css3.svg" },
                 ],
                 challenges: `One of the main challenges was ensuring real-time synchronization of tasks across multiple users in collaborative projects. This required careful design of the WebSocket integration and robust error handling for concurrent updates. Another significant hurdle was optimizing database queries for large datasets to maintain fast load times, especially when users had numerous tasks and projects. We also faced complexities in implementing a highly customizable notification system that could be tailored to individual user preferences without overwhelming them with alerts.
-                <p class="mt-4">Furthermore, ensuring cross-browser compatibility and responsiveness across a wide range of devices presented its own set of challenges, necessitating thorough testing and fine-tuning of CSS. Integrating third-party APIs for features like calendar synchronization also required careful management of authentication and data formats.</p>`,
+                                <p class="mt-4">Furthermore, ensuring cross-browser compatibility and responsiveness across a wide range of devices presented its own set of challenges, necessitating thorough testing and fine-tuning of CSS. Integrating third-party APIs for features like calendar synchronization also required careful management of authentication and data formats.</p>`,
                 solutions: `To address real-time synchronization, we implemented a robust WebSocket solution using Socket.IO, ensuring instant updates for all connected clients. For database optimization, we employed indexing strategies, denormalization where appropriate, and implemented server-side caching mechanisms, significantly reducing query times. The customizable notification system was built with a flexible microservices architecture, allowing users to define notification types and delivery methods, preventing alert fatigue.
-                <p class="mt-4">Cross-browser and responsiveness issues were tackled through extensive use of Tailwind CSS's utility-first approach and meticulous testing on various browsers and devices, employing responsive design principles. For API integrations, we utilized secure OAuth 2.0 flows for authentication and developed custom data parsers to handle varying data structures, ensuring seamless integration and data consistency.</p>`,
+                                <p class="mt-4">Cross-browser and responsiveness issues were tackled through extensive use of Tailwind CSS's utility-first approach and meticulous testing on various browsers and devices, employing responsive design principles. For API integrations, we utilized secure OAuth 2.0 flows for authentication and developed custom data parsers to handle varying data structures, ensuring seamless integration and data consistency.</p>`,
                 lessons: `This project reinforced the importance of thorough upfront planning and a flexible architectural design. We learned that investing more time in initial UI/UX research and prototyping, even for seemingly minor features, significantly reduces rework later in the development cycle. Agile methodologies proved invaluable in adapting to evolving requirements and incorporating user feedback continuously. Effective communication within the team and with stakeholders was crucial for resolving challenges quickly and keeping the project on track.
-                <p class="mt-4">We also gained deeper insights into performance optimization techniques for large-scale web applications and the complexities of building secure and scalable real-time features. The experience highlighted the necessity of comprehensive testing, from unit tests to end-to-end integration tests, to ensure the robustness and reliability of the application.</p>`
+                                <p class="mt-4">We also gained deeper insights into performance optimization techniques for large-scale web applications and the complexities of building secure and scalable real-time features. The experience highlighted the necessity of comprehensive testing, from unit tests to end-to-end integration tests, to ensure the robustness and reliability of the application.</p>`
             },
             "beta": {
                 title: "Project Beta",
@@ -377,7 +429,7 @@
                 const div = document.createElement('div');
                 div.className = 'flex flex-col items-center';
                 div.innerHTML = `<img src="${tech.icon}" alt="${tech.name} Icon" class="w-10 h-10">
-                                 <span class="text-xs mt-1">${tech.name}</span>`;
+                                            <span class="text-xs mt-1">${tech.name}</span>`;
                 techStackContainer.appendChild(div);
             });
 
@@ -391,9 +443,9 @@
                     slide.innerHTML = `<img src="${visual.src}" alt="${project.title} ${visual.type}" class="w-full h-full object-contain">`;
                 } else if (visual.type === 'video') {
                     slide.innerHTML = `<video controls class="w-full h-full object-contain">
-                                         <source src="${visual.src}" type="video/mp4">
-                                         Your browser does not support the video tag.
-                                       </video>`;
+                                                    <source src="${visual.src}" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                  </video>`;
                 }
                 swiperWrapper.appendChild(slide);
             });
