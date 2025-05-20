@@ -1,216 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mubarak Afolabi — Portfolio</title>
-  <link href="css/style.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mubarak Afolabi — Portfolio</title>
+    <link href="css/style.css" rel="stylesheet" />
 
-  <style>
-    /* Ensure all navbar icons are 32×32 */
-    #site-navbar ul li img {
-      width: 32px;
-      height: 32px;
-    }
+    <style>
+        /* Ensure all navbar icons are 32×32 */
+        #site-navbar ul li img {
+            width: 32px;
+            height: 32px;
+        }
 
-    /* Make every nav link area clickable and show pointer */
-    #site-navbar ul li a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #fff; /* keep your white text */
-      text-decoration: none; /* no underlines */
-      cursor: pointer; /* pointer on hover */
-    }
+        /* Make every nav link area clickable and show pointer */
+        #site-navbar ul li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            /* keep your white text */
+            text-decoration: none;
+            /* no underlines */
+            cursor: pointer;
+            /* pointer on hover */
+        }
 
-    /* --- NEW CSS for Section Card Stack Animation --- */
-    .section-card {
-      position: sticky;
-      /* Adjust this value to control where the cards 'stick' on scroll, below your navbar */
-      top: 100px;
-      /* Ensures cards stack correctly, initial z-index */
-      z-index: 1;
-      /* Smooth fade out transition */
-      transition: opacity 0.3s ease-out;
-    }
+        /* --- NEW CSS for Section Card Stack Animation --- */
+        .section-card {
+            position: sticky;
+            /* Adjust this value to control where the cards 'stick' on scroll, below your navbar */
+            top: 100px;
+            /* Ensures cards stack correctly, initial z-index */
+            z-index: 1;
+            /* Smooth fade out transition */
+            transition: opacity 0.3s ease-out;
+        }
 
-    /* Ensure the container for sections is set up for sticky children */
-    #sections-list {
-      display: flex;
-      flex-direction: column;
-      /* Adjust this gap to control initial spacing between cards */
-      gap: 2rem;
-      /* Using a gap to visually separate sections */
-      position: relative;
-      /* Important for positioning context of sticky children */
-    }
+        /* Ensure the container for sections is set up for sticky children */
+        #sections-list {
+            display: flex;
+            flex-direction: column;
+            /* Adjust this gap to control initial spacing between cards */
+            gap: 2rem;
+            /* Using a gap to visually separate sections */
+            position: relative;
+            /* Important for positioning context of sticky children */
+        }
 
-    /* Style to prevent body scrolling when sections are stacking */
-    body.no-scroll {
-      overflow: hidden;
-    }
+        /* Style to prevent body scrolling when sections are stacking */
+        body.no-scroll {
+            overflow: hidden;
+        }
 
-    /* --- Mobile-specific Navbar Styles --- */
-    @media (max-width: 768px) {
-      #site-navbar ul li img {
-        width: 24px; /* Smaller icon size for mobile */
-        height: 24px;
-      }
+        /* --- Mobile-specific Navbar Styles --- */
+        @media (max-width: 768px) {
+            #site-navbar ul li img {
+                width: 24px;
+                /* Smaller icon size for mobile */
+                height: 24px;
+            }
 
-      #site-navbar ul li a {
-        font-size: 0.75rem; /* Smaller font size for labels */
-        /* Adjusted gap between icon and label, and overall nav item gap */
-      }
+            #site-navbar ul li a {
+                font-size: 0.75rem;
+                /* Smaller font size for labels */
+                /* Adjusted gap between icon and label, and overall nav item gap */
+            }
 
-      #site-navbar ul {
-        padding: 0.5rem 0; /* Adjust overall padding if needed */
-        gap: 0.5rem; /* Add gap between each nav item */
-      }
-    }
+            #site-navbar ul {
+                padding: 0.5rem 0;
+                /* Adjust overall padding if needed */
+                gap: 0.5rem;
+                /* Add gap between each nav item */
+            }
+        }
 
-    /* Invisible Scrollbar for Project Description */
-    .project-description-scroll {
-      overflow-y: auto; /* Enable vertical scrolling */
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
+        /* Invisible Scrollbar for Project Description */
+        .project-description-scroll {
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
 
-    .project-description-scroll::-webkit-scrollbar {
-      display: none; /* Hide scrollbar for Chrome, Safari, Opera */
-    }
-  </style>
+        .project-description-scroll::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+
+        /* --- Footer Sticky Styles --- */
+        html,
+        body {
+            height: 100%;
+            /* Ensure html and body take full height */
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            /* Use flexbox for the body */
+            flex-direction: column;
+            /* Arrange content and footer vertically */
+        }
+
+        main {
+            /* Add a main tag to wrap your main content */
+            flex: 1;
+            /* Allow the main content to grow and push the footer down */
+        }
+
+        footer {
+            margin-top: auto;
+            /* Push the footer to the bottom */
+        }
+    </style>
 </head>
 
-<body>
-  <nav id="site-navbar"
-    class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
-    <ul class="flex justify-around items-center py-4">
+<body class="bg-primary-background-dark text-text-light">
+    <nav id="site-navbar"
+        class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+        <ul class="flex justify-around items-center py-4">
 
-      <li>
-        <a href="index.html">
-          <img src="../assets/Vector.svg" alt="Home Icon">
-          <span>HOME</span>
-        </a>
-      </li>
+            <li>
+                <a href="index.html">
+                    <img src="../assets/Vector.svg" alt="Home Icon">
+                    <span>HOME</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="about.html">
-          <img src="../assets/About Icon.svg" alt="About Icon">
-          <span>ABOUT</span>
-        </a>
-      </li>
+            <li>
+                <a href="about.html">
+                    <img src="../assets/About Icon.svg" alt="About Icon">
+                    <span>ABOUT</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="projects.html">
-          <img src="../assets/Projects Icon.svg" alt="Projects Icon">
-          <span>PROJECTS</span>
-        </a>
-      </li>
+            <li>
+                <a href="projects.html">
+                    <img src="../assets/Projects Icon.svg" alt="Projects Icon">
+                    <span>PROJECTS</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="articles.html">
-          <img src="../assets/Articles Icon.svg" alt="Articles Icon">
-          <span>ARTICLES</span>
-        </a>
-      </li>
+            <li>
+                <a href="articles.html">
+                    <img src="../assets/Articles Icon.svg" alt="Articles Icon">
+                    <span>ARTICLES</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="hireMe.html">
-          <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
-          <span>HIRE ME</span>
-        </a>
-      </li>
+            <li>
+                <a href="hireMe.html">
+                    <img src="../assets/HireMe Icon.svg" alt="Hire Me Icon">
+                    <span>HIRE ME</span>
+                </a>
+            </li>
 
-      <li id="dark-toggle" class="flex flex-col items-center text-white cursor-pointer">
-        <img src="../assets/ToggleOff Icon.svg" alt="Toggle Dark Mode" id="dark-toggle-icon">
-        <span>dark mode</span>
-      </li>
-    </ul>
-  </nav>
+            <li id="theme-toggle" class="flex flex-col items-center text-white cursor-pointer">
+                <img src="../assets/ToggleOff Icon.svg" alt="Toggle Grayscale Mode" id="theme-toggle-icon">
+                <span>theme</span>
+            </li>
+        </ul>
+    </nav>
 
-  <script>
-    const nav = document.getElementById('site-navbar');
-    let hideTimer;
+    <script>
+        const nav = document.getElementById('site-navbar');
+        let hideTimer;
 
-    function showNavbar() {
-      nav.classList.remove('-translate-y-full');
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(hideNavbar, 2500);
-    }
+        function showNavbar() {
+            nav.classList.remove('-translate-y-full');
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideNavbar, 2500);
+        }
 
-    function hideNavbar() {
-      nav.classList.add('-translate-y-full');
-    }
+        function hideNavbar() {
+            nav.classList.add('-translate-y-full');
+        }
 
-    // 1) Show on scroll
-    window.addEventListener('scroll', showNavbar);
+        // 1) Show on scroll
+        window.addEventListener('scroll', showNavbar);
 
-    // 2) Show on page load
-    document.addEventListener('DOMContentLoaded', showNavbar);
+        // 2) Show on page load
+        document.addEventListener('DOMContentLoaded', showNavbar);
 
-    // 3) Show when mouse hovers directly over the visible bar
-    nav.addEventListener('mouseenter', showNavbar);
+        // 3) Show when mouse hovers directly over the visible bar
+        nav.addEventListener('mouseenter', showNavbar);
 
-    // 4) Hide 2.5s after leaving the nav
-    nav.addEventListener('mouseleave', () => {
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(hideNavbar, 2500);
-    });
+        // 4) Hide 2.5s after leaving the nav
+        nav.addEventListener('mouseleave', () => {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideNavbar, 2500);
+        });
 
-    // 5) Show when cursor hits top 50px of viewport
-    window.addEventListener('mousemove', (e) => {
-      if (e.clientY < 50) showNavbar();
-    });
+        // 5) Show when cursor hits top 50px of viewport
+        window.addEventListener('mousemove', (e) => {
+            if (e.clientY < 50) showNavbar();
+        });
 
-    // Dark‑mode toggle
-    const toggleLi = document.getElementById('dark-toggle');
-    const toggleIcon = document.getElementById('dark-toggle-icon');
-    toggleLi.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      toggleIcon.src = isDark ?
-        '../assets/ToggleOn Icon.svg' :
-        '../assets/ToggleOff Icon.svg';
-    });
-  </script>
+        // Grayscale theme toggle
+        const toggleLi = document.getElementById('theme-toggle');
+        const toggleIcon = document.getElementById('theme-toggle-icon');
+        toggleLi.addEventListener('click', () => {
+            const isGrayscale = document.body.classList.toggle('grayscale-mode');
+            toggleIcon.src = isGrayscale ?
+                '../assets/ToggleOn Icon.svg' :
+                '../assets/ToggleOff Icon.svg';
 
-  <body class="bg-primary-background-dark text-text-light">
-    <div class="py-10">
-      <div class="container mx-auto space-y-8 px-4">
-        <section id="intro" class="section-card bg-primary p-6 flex rounded-2xl z-10">
-          <div class="w-1/2 flex flex-col items-center space-y-4">
-            <div id="photo-box" class="border border-black rounded-lg w-32 h-32 overflow-hidden">
-              <img src="assets/uploads/whatsapp-image-2025-04-17-at-19.03.37_9f53c603.jpg"
-                alt="Mubarak Afolabi's Profile Picture" class="object-cover w-full h-full">
-            </div>
+            // Store user's preference in localStorage
+            localStorage.setItem('themePreference', isGrayscale ? 'grayscale' : 'default');
+        });
 
-            <div class="flex items-center space-x-3">
-              <div class="btn-icon-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
-                  fill="#5F6368">
-                  <path
-                    d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q65 0 123 19t107 53l-58 59q-38-24-81-37.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-18-2-36t-6-35l65-65q11 32 17 66t6 70q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-56-216L254-466l56-56 114 114 400-401 56 56-456 457Z" />
-                </svg>
-              </div>
-              <div class="btn-text-wrapper text-text-dark">
-                Available
-              </div>
-            </div>
+        // Apply theme preference on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('themePreference') === 'grayscale') {
+                document.body.classList.add('grayscale-mode');
+                toggleIcon.src = '../assets/ToggleOn Icon.svg';
+            } else {
+                document.body.classList.remove('grayscale-mode');
+                toggleIcon.src = '../assets/ToggleOff Icon.svg';
+            }
+        });
+    </script>
 
-            <div class="text-text-dark text-sm text-center">
-              Abuja UTC+1<br />
-              <span id="clock">--:-- --</span>
-            </div>
-          </div>
+    <main>
+        <div class="py-10">
+            <div class="container mx-auto space-y-8 px-4">
+                <section id="intro" class="section-card bg-primary p-6 flex rounded-2xl z-10">
+                    <div class="w-1/2 flex flex-col items-center space-y-4">
+                        <div id="photo-box" class="border border-black rounded-lg w-32 h-32 overflow-hidden">
+                            <img src="assets/uploads/whatsapp-image-2025-04-17-at-19.03.37_9f53c603.jpg"
+                                alt="Mubarak Afolabi's Profile Picture" class="object-cover w-full h-full">
+                        </div>
 
-          <div class="w-1/2 flex flex-col items-center space-y-4">
-            <h1 class="text-text-dark text-[18px] font-bold">mubarak afolabi</h1>
-            <p class="text-text-dark text-sm">full stack developer, ui/ux designer</p>
+                        <div class="flex items-center space-x-3">
+                            <div class="btn-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                                    width="30px" fill="#5F6368">
+                                    <path
+                                        d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q65 0 123 19t107 53l-58 59q-38-24-81-37.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-18-2-36t-6-35l65-65q11 32 17 66t6 70q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-56-216L254-466l56-56 114 114 400-401 56 56-456 457Z" />
+                                </svg>
+                            </div>
+                            <div class="btn-text-wrapper text-text-dark">
+                                Available
+                            </div>
+                        </div>
 
-            <div class="w-full max-w-xs space-y-2">
-              <button class="btn-primary w-full flex items-center justify-center">
-                <div class="btn-icon-wrapper mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-linkedin"
-                    viewBox="0 0 16 16">…</svg>
+                        <div class="text-text-dark text-sm text-center">
+                            Abuja UTC+1<br />
+                            <span id="clock">--:-- --</span>
+                        </div>
+                    </div>
+
+                    <div class="w-1/2 flex flex-col items-center space-y-4">
+                        <h1 class="text-text-dark text-[18px] font-bold">mubarak afolabi</h1>
+                        <p class="text-text-dark text-sm">full stack developer, ui/ux designer</p>
+
+                        <div class="w-full max-w-xs space-y-2">
+                            <button class="btn-primary w-full flex items-center justify-center">
+                                <div class="btn-icon-wrapper mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-linkedin"
+                                        viewBox="0 0 16 16">…</svg>
                 </div>
                 <div class="btn-text-wrapper">
                   connect with me on linkedin
@@ -277,7 +329,7 @@
               <div class="carousel-item flex-shrink-0 w-full h-full">
                 <img src="assets/women landing page.png" alt="Project Image 2" class="object-cover w-full h-full" />
               </div>
-              </div>
+            </div>
             <button id="carousel-prev" class="btn-carousel absolute left-2 top-1/2 transform -translate-y-1/2">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-left"
                 viewBox="0 0 16 16">
@@ -323,132 +375,120 @@
             <button class="btn-primary mt-4">explore project</button>
           </div>
         </section>
-        <section class="flex flex-col items-center z-10">
-          <span class="flex items-center">
-            © 2025 Mubarak Afolabi. All rights reserved.
-          </span>
-        </section>
       </div>
     </div>
+  </main> <footer class="bg-primary-background-dark text-text-light py-4">
+    <section class="flex flex-col items-center">
+      <span class="flex items-center">
+        © 2025 Mubarak Afolabi. All rights reserved.
+      </span>
+    </section>
+  </footer>
 
-    <script>
-      // === CLOCK: Abuja UTC+1 ===
-      function updateClock() {
-        const now = new Date();
-        const offsetInMs = 1 * 60 * 60 * 1000; // UTC+1
-        const localTime = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + offsetInMs);
+  <script>
+    // === CLOCK: Abuja UTC+1 ===
+    function updateClock() {
+      const now = new Date();
+      // Use toLocaleString for accurate timezone handling
+      const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Africa/Lagos' // Lagos is UTC+1, same as Abuja
+      };
+      const clockText = now.toLocaleString('en-US', options);
+      const clockElement = document.getElementById('clock');
+      if (clockElement) clockElement.textContent = clockText;
+    }
 
-        const hours = localTime.getHours();
-        const minutes = localTime.getMinutes();
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const displayHours = hours % 12 || 12;
+    updateClock();
+    setInterval(updateClock, 1000); // Update every second for better accuracy
 
-        const clockText = `${String(displayHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${amppm}`;
-        const clockElement = document.getElementById('clock');
-        if (clockElement) clockElement.textContent = clockText;
+    // === CAROUSEL ===
+    const carouselTrack = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const items = document.querySelectorAll('#carousel-track .carousel-item');
+    // const video = document.getElementById('video-1'); // Uncomment if you add video
+    // const videoControl = document.getElementById('video-control'); // Uncomment if you add video
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      carouselTrack.style.transform = `translateX(${offset}%)`;
+
+      document.querySelectorAll('video').forEach(vid => vid.pause());
+      const currentVideo = items[currentIndex].querySelector('video');
+      if (currentVideo) {
+        currentVideo.play();
+        // if (videoControl) videoControl.classList.remove('hidden'); // Uncomment if you add video
+      } else {
+        // if (videoControl) videoControl.classList.add('hidden'); // Uncomment if you add video
       }
+    }
 
-      updateClock();
-      setInterval(updateClock, 60000);
-
-      // === CAROUSEL ===
-      const carouselTrack = document.getElementById('carousel-track');
-      const prevBtn = document.getElementById('carousel-prev');
-      const nextBtn = document.getElementById('carousel-next');
-      const items = document.querySelectorAll('#carousel-track .carousel-item');
-      // const video = document.getElementById('video-1'); // Uncomment if you add video
-      // const videoControl = document.getElementById('video-control'); // Uncomment if you add video
-      let currentIndex = 0;
-
-      function updateCarousel() {
-        const offset = -currentIndex * 100;
-        carouselTrack.style.transform = `translateX(${offset}%)`;
-
-        document.querySelectorAll('video').forEach(vid => vid.pause());
-        const currentVideo = items[currentIndex].querySelector('video');
-        if (currentVideo) {
-          currentVideo.play();
-          // if (videoControl) videoControl.classList.remove('hidden'); // Uncomment if you add video
-        } else {
-          // if (videoControl) videoControl.classList.add('hidden'); // Uncomment if you add video
-        }
-      }
-
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
-        updateCarousel();
-      });
-
-      nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % items.length;
-        updateCarousel();
-      });
-
-      // Uncomment if you add video
-      /*
-      if (videoControl && video) {
-        videoControl.addEventListener('click', () => {
-          if (video.paused) {
-            video.play();
-          } else {
-            video.pause();
-          }
-        });
-      }
-      */
-
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
       updateCarousel();
-    </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const sections = Array.from(document.querySelectorAll('.section-card'));
-        const body = document.body;
+    });
 
-        // compute total height & padding-bottom
-        function updatePadding() {
-          const gap = parseFloat(getComputedStyle(document.getElementById('sections-list')).gap) || 0;
-          const total = sections.reduce((sum, s) => sum + s.offsetHeight, 0) +
-            gap * (sections.length - 1) -
-            sections[0].offsetHeight +
-            Math.max(0, window.innerHeight - sections[0].offsetHeight);
-          body.style.paddingBottom = `${total}px`;
-        }
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    });
 
-        function clamp(x, min, max) {
-          return Math.min(Math.max(x, min), max);
-        }
+    updateCarousel();
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = Array.from(document.querySelectorAll('.section-card'));
+      const body = document.body;
 
-        function onScroll() {
-          const scrollY = window.scrollY;
-          const top0 = document.getElementById('sections-list').offsetTop;
-          const end = top0 + parseFloat(body.style.paddingBottom);
-          if (scrollY >= top0 && scrollY <= end) {
-            body.classList.add('no-scroll');
-            window.scrollTo(0, clamp(scrollY, top0, end));
-          } else body.classList.remove('no-scroll');
+      // compute total height & padding-bottom
+      function updatePadding() {
+        const gap = parseFloat(getComputedStyle(document.getElementById('sections-list')).gap) || 0;
+        const total = sections.reduce((sum, s) => sum + s.offsetHeight, 0) +
+          gap * (sections.length - 1) -
+          sections[0].offsetHeight +
+          Math.max(0, window.innerHeight - sections[0].offsetHeight);
+        body.style.paddingBottom = `${total}px`;
+      }
 
-          sections.forEach((sec, i) => {
-            if (i === 0) return sec.style.opacity = '1';
-            const prev = sections[i - 1];
-            const start = prev.offsetTop;
-            const finish = sec.offsetTop;
-            const prog = clamp((scrollY - start) / (finish - start), 0, 1);
-            sec.style.zIndex = 10 + i;
-            prev.style.opacity = `${1 - prog}`;
-          });
-        }
+      function clamp(x, min, max) {
+        return Math.min(Math.max(x, min), max);
+      }
 
-        window.addEventListener('scroll', onScroll);
-        window.addEventListener('resize', () => {
-          updatePadding();
-          onScroll();
+      function onScroll() {
+        const scrollY = window.scrollY;
+        const top0 = document.getElementById('sections-list').offsetTop;
+        const end = top0 + parseFloat(body.style.paddingBottom);
+        if (scrollY >= top0 && scrollY <= end) {
+          body.classList.add('no-scroll');
+          window.scrollTo(0, clamp(scrollY, top0, end));
+        } else body.classList.remove('no-scroll');
+
+        sections.forEach((sec, i) => {
+          if (i === 0) return sec.style.opacity = '1';
+          const prev = sections[i - 1];
+          const start = prev.offsetTop;
+          const finish = sec.offsetTop;
+          const prog = clamp((scrollY - start) / (finish - start), 0, 1);
+          sec.style.zIndex = 10 + i;
+          prev.style.opacity = `${1 - prog}`;
         });
-        setTimeout(() => {
-          updatePadding();
-          onScroll();
-        }, 100);
-      });
-    </script>
+      }
 
-  </body>
+      window.addEventListener('scroll', onScroll);
+      window.addEventListener('resize', () => {
+        updatePadding();
+        onScroll();
+      });
+      setTimeout(() => {
+        updatePadding();
+        onScroll();
+      }, 100);
+    });
+  </script>
+
+</body>
 </html>
