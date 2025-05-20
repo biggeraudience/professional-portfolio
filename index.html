@@ -17,55 +17,72 @@
   <script src="https://cdn.jsdelivr.net/npm/js-yaml-browser@4.1.0/dist/js-yaml.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="js/contentLoader.js"></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <style>
+    /* Default Navbar styles */
     #site-navbar ul li img {
-        width: 32px;
-        height: 32px;
+      width: 32px;
+      height: 32px;
     }
 
     #site-navbar ul li a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: #fff;
-        text-decoration: none;
-        cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #site-navbar ul li a span { /* Target the span specifically for text */
+      font-size: 1rem; /* Default font size */
     }
 
+    /* Mobile / Tablet Navbar adjustments */
+    @media (max-width: 768px) {
+      #site-navbar ul li img {
+        width: 24px; /* Smaller icons on mobile */
+        height: 24px;
+      }
+      #site-navbar ul li a span {
+        font-size: 0.75rem; /* Smaller text on mobile */
+      }
+    }
+
+    /* Existing styles below */
     .section-card {
-        position: sticky;
-        top: 100px;
-        z-index: 1;
-        transition: opacity 0.3s ease-out;
+      position: sticky;
+      top: 100px;
+      z-index: 1;
+      transition: opacity 0.3s ease-out;
     }
 
     #sections-list {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: relative;
     }
 
     .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 {
-        @apply text-text-dark font-bold mb-3 mt-6;
+      @apply text-text-dark font-bold mb-3 mt-6;
     }
     .markdown-content h1 { @apply text-2xl; }
     .markdown-content h2 { @apply text-xl; }
     .markdown-content h3 { @apply text-lg; }
     .markdown-content p {
-        @apply mb-4 leading-relaxed;
+      @apply mb-4 leading-relaxed;
     }
     .markdown-content ul, .markdown-content ol {
-        @apply list-disc list-inside mb-4;
+      @apply list-disc list-inside mb-4;
     }
     .markdown-content a {
-        @apply text-text-dark underline;
+      @apply text-text-dark underline;
     }
   </style>
 </head>
 
-<body>
+<body class="bg-primary-background-dark text-text-light min-h-screen flex flex-col">
   <nav id="site-navbar"
        class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
     <ul class="flex justify-around items-center py-4">
@@ -114,9 +131,7 @@
     </ul>
   </nav>
 
-<body class="bg-primary-background-dark text-text-light">
-  <div class="py-10">
-    <div class="container mx-auto space-y-8 px-4" id="sections-list">
+  <div class="py-10 flex-1"> <div class="container mx-auto space-y-8 px-4" id="sections-list">
       <section id="intro" class="section-card bg-primary p-6 flex rounded-2xl z-10">
         <div class="w-1/2 flex flex-col items-center space-y-4">
           <div class="border border-black rounded-lg w-32 h-32 overflow-hidden">
@@ -138,15 +153,13 @@
           </div>
         </div>
 
-<div class="w-1/2 flex flex-col items-center space-y-4">
-  <h1 id="intro-headline" class="text-text-dark text-[18px] font-bold text-center">Mubarak Afolabi</h1>
-  <p id="intro-subheadline" class="text-text-dark text-sm text-center">Full Stack Developer, UI/UX Designer</p>
+        <div class="w-1/2 flex flex-col items-center space-y-4">
+          <h1 id="intro-headline" class="text-text-dark text-[18px] font-bold text-center">Mubarak Afolabi</h1>
+          <p id="intro-subheadline" class="text-text-dark text-sm text-center">Full Stack Developer, UI/UX Designer</p>
 
-  <div id="social-links-container" class="w-full max-w-xs space-y-2">
-    </div>
-
-</div>
-
+          <div id="social-links-container" class="w-full max-w-xs space-y-2">
+            </div>
+        </div>
       </section>
 
       <section id="statement" class="section-card bg-secondary p-8 rounded-2xl relative flex flex-col items-center z-10">
@@ -167,13 +180,13 @@
           <a href="projects.html" class="btn-primary">View All Projects</a>
         </div>
       </section>
-
-      <section class="flex flex-col items-center z-10">
-        <span id="footer-text" class="flex items-center">
-          </span>
-      </section>
     </div>
   </div>
+
+  <section class="flex flex-col items-center text-text-muted py-10 z-10">
+    <span id="footer-text">
+      </span>
+  </section>
 
   <script>
     const nav = document.getElementById('site-navbar');
@@ -345,11 +358,11 @@
                       iconHtml = `<div class="btn-icon-wrapper mr-4"><img src="${link.icon}" alt="${link.platform} Icon" class="w-6 h-6"></div>`;
                   } else {
                       iconHtml = `<div class="btn-icon-wrapper mr-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                                  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
-                                                  <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
-                                                </svg>
-                                            </div>`;
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                         <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
+                                         <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
+                                       </svg>
+                                   </div>`;
                   }
 
                   button.innerHTML = `${iconHtml}<div class="btn-text-wrapper">${link.platform}</div>`;
@@ -361,12 +374,12 @@
                 resumeButton.className = 'btn-primary w-full flex items-center justify-center';
                 resumeButton.onclick = () => window.open(siteSettings.resumeFile, '_blank');
                 resumeButton.innerHTML = `<div class="btn-icon-wrapper mr-4">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
-                                                  <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                                  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
-                                                </svg>
-                                            </div>
-                                            <div class="btn-text-wrapper">view my resume</div>`;
+                                           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                                             <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                                           </svg>
+                                       </div>
+                                       <div class="btn-text-wrapper">view my resume</div>`;
                 socialLinksContainer.appendChild(resumeButton);
               }
           } else {
@@ -374,6 +387,15 @@
           }
       }
     });
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+         
+        }
+      });
+    }
+
   </script>
 
 </body>
