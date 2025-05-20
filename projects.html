@@ -4,11 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mubarak Afolabi — Projects</title>
+  <title id="site-title-meta">Mubarak Afolabi — Projects</title>
   <link href="css/style.css" rel="stylesheet" />
 
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml-browser@4.1.0/dist/js-yaml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/contentLoader.js"></script>
+
   <style>
-    /* Existing styles */
     #site-navbar ul li img {
       width: 32px;
       height: 32px;
@@ -36,36 +39,55 @@
       gap: 0.75rem;
     }
 
-   .project-item {
-      position: sticky;
-      top: 60px;          /* bump it below your navbar */
-      z-index: 1;
-      transition: opacity 0.3s ease-out;
+    .tech-stack-icons img {
+      width: 32px; /* Set a consistent size for tech icons */
+      height: 32px;
+      object-fit: contain; /* Ensure icons scale correctly without distortion */
+    }
 
-      min-height: calc(100vh - 60px); }
+    .project-item {
+      margin-bottom: 2rem;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.4s ease-out;
+      will-change: transform, opacity;
+      position: sticky; /* Make project cards sticky for stacking */
+      top: 100px; /* Adjust this value to control where the cards 'stick' */
+      z-index: 1; /* Ensures cards stack correctly, initial z-index */
+    }
 
     #projects-list {
       display: flex;
       flex-direction: column;
-      /* Adjust this gap to control initial spacing between cards */
       gap: 2rem;
-      /* Important for positioning context of sticky children */
       position: relative;
-      /* Need sufficient height to allow sticky elements to stick */
-      /* This will be managed by JS adding padding to body */
     }
 
-    /* Style to prevent body scrolling when projects are stacking */
     body.no-scroll {
       overflow: hidden;
     }
 
-    /* Ensure main content has proper flow */
-      #projects-main {
-          flex-1; /* Keep flex-1 as before */
-          padding-top: 10px; /* Adjust padding if navbar overlaps content */
-          padding-bottom: 0; /* Padding bottom will be added to body */
-      }
+    #projects-main {
+      flex: 1;
+      padding-top: 10px;
+      padding-bottom: 0;
+    }
+
+    /* Styles for Markdown content within dynamic sections */
+    .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 {
+        @apply text-text-light font-bold mb-3 mt-6;
+    }
+    .markdown-content h1 { @apply text-2xl; }
+    .markdown-content h2 { @apply text-xl; }
+    .markdown-content h3 { @apply text-lg; }
+    .markdown-content p {
+        @apply mb-4 leading-relaxed;
+    }
+    .markdown-content ul, .markdown-content ol {
+        @apply list-disc list-inside mb-4;
+    }
+    .markdown-content a {
+        @apply text-text-light underline; /* Adjust color as needed for dark theme */
+    }
   </style>
 </head>
 
@@ -74,18 +96,18 @@
   <nav id="site-navbar"
     class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
     <ul class="flex justify-around items-center py-4">
-      <li><a href="index.html" class="flex flex-col items-center"><img src="../assets/Vector.svg"
+      <li><a href="index.html" class="flex flex-col items-center"><img src="assets/Vector.svg"
             alt="Home Icon"><span>HOME</span></a></li>
-      <li><a href="about.html" class="flex flex-col items-center"><img src="../assets/About Icon.svg"
+      <li><a href="about.html" class="flex flex-col items-center"><img src="assets/About Icon.svg"
             alt="About Icon"><span>ABOUT</span></a></li>
-      <li><a href="projects.html" class="flex flex-col items-center"><img src="../assets/Projects Icon.svg"
+      <li><a href="projects.html" class="flex flex-col items-center"><img src="assets/Projects Icon.svg"
             alt="Projects Icon"><span>PROJECTS</span></a></li>
-      <li><a href="articles.html" class="flex flex-col items-center"><img src="../assets/Articles Icon.svg"
+      <li><a href="articles.html" class="flex flex-col items-center"><img src="assets/Articles Icon.svg"
             alt="Articles Icon"><span>ARTICLES</span></a></li>
-      <li><a href="hireMe.html" class="flex flex-col items-center"><img src="../assets/HireMe Icon.svg"
+      <li><a href="hireMe.html" class="flex flex-col items-center"><img src="assets/HireMe Icon.svg"
             alt="Hire Me Icon"><span>HIRE ME</span></a></li>
-      <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img src="../assets/ToggleOff Icon.svg"
-          alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark mode</span></li>
+      <li id="dark-toggle" class="flex flex-col items-center cursor-pointer"><img src="assets/ToggleOff Icon.svg"
+            alt="Toggle Dark Mode" id="dark-toggle-icon"><span>dark mode</span></li>
     </ul>
   </nav>
 
@@ -96,130 +118,18 @@
       <div class="thin-line mt-3 mx-4"></div>
 
       <div id="projects-list" class="mt-4">
-
-        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="alpha">
-          <div class="flex flex-col lg:flex-row gap-6">
-            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
-              <h3 class="text-lg font-semibold text-text-light mb-4">Project Alpha - Web Application</h3>
-              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
-                <img src="https://via.placeholder.com/800x600" alt="Project Alpha Image"
-                  class="block w-full h-full object-cover" />
-              </div>
-            </div>
-            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">This is the description for Project Alpha. It's a comprehensive web application built using
-                modern technologies. We focused on creating a seamless user experience and robust backend performance.
-                Describe the project's purpose, key features, and your role.</p>
-              <p>Paragraph two elaborating on the project details. You can mention specific challenges faced and
-                solutions implemented. This text should give a good overview.</p>
-              <p>A third paragraph if needed to fill space or add more context. The max-height will ensure this
-                container doesn't push the tech stack and button too far down relative to the image height.</p>
-            </div>
-          </div>
-          <div class="tech-stack-icons w-full mt-6">
-            <img src="../assets/tech-icons/react.svg" alt="React Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/node.svg" alt="Node Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/tailwind.svg" alt="Tailwind Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/mongodb.svg" alt="MongoDB Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/javascript.svg" alt="JavaScript Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/html5.svg" alt="HTML5 Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/css3.svg" alt="CSS3 Icon" class="w-8 h-8">
-          </div>
-          <div class="w-full flex justify-center mt-4">
-            <button class="btn-primary explore-btn">explore project</button>
-          </div>
-        </section>
-
-        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="beta">
-          <div class="flex flex-col lg:flex-row gap-6">
-            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
-              <h3 class="text-lg font-semibold text-text-light mb-4">Project Beta - Mobile App</h3>
-              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
-                <img src="https://via.placeholder.com/800x600?text=Project+Beta" alt="Project Beta Image"
-                  class="block w-full h-full object-cover" />
-              </div>
-            </div>
-            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Beta. This project was a mobile application developed for [Purpose].
-                It involved [mention technologies like React Native, Flutter, Swift/Kotlin]. Explain the key features
-                and target audience.</p>
-              <p>Details about the development process, design considerations, and any unique aspects of the app. Discuss
-                the challenges of mobile development you encountered.</p>
-            </div>
-          </div>
-          <div class="tech-stack-icons w-full mt-6">
-            <img src="../assets/tech-icons/react-native.svg" alt="React Native Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/firebase.svg" alt="Firebase Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/javascript.svg" alt="JavaScript Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/css3.svg" alt="CSS3 Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/figma.svg" alt="Figma Icon" class="w-8 h-8">
-          </div>
-          <div class="w-full flex justify-center mt-4">
-            <button class="btn-primary explore-btn">explore project</button>
-          </div>
-        </section>
-
-        <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="gamma">
-          <div class="flex flex-col lg:flex-row gap-6">
-            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
-              <h3 class="text-lg font-semibold text-text-light mb-4">Project Gamma - Data Visualization</h3>
-              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
-                <img src="https://via.placeholder.com/800x600?text=Project+Gamma" alt="Project Gamma Image"
-                  class="block w-full h-full object-cover" />
-              </div>
-            </div>
-            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Gamma. This project focused on visualizing complex datasets to provide actionable insights. It involved [mention technologies like D3.js, Chart.js, Python/R for data processing].</p>
-              <p>Discuss the challenges of handling large datasets and designing effective visualizations. Explain the impact and results of the project.</p>
-            </div>
-          </div>
-          <div class="tech-stack-icons w-full mt-6">
-            <img src="../assets/tech-icons/d3js.svg" alt="D3.js Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/python.svg" alt="Python Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/javascript.svg" alt="JavaScript Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/html5.svg" alt="HTML5 Icon" class="w-8 h-8">
-          </div>
-          <div class="w-full flex justify-center mt-4">
-            <button class="btn-primary explore-btn">explore project</button>
-          </div>
-        </section>
-          <section class="project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col" data-project-id="delta">
-          <div class="flex flex-col lg:flex-row gap-6">
-            <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
-              <h3 class="text-lg font-semibold text-text-light mb-4">Project Delta - E-commerce Platform</h3>
-              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
-                <img src="https://via.placeholder.com/800x600?text=Project+Delta" alt="Project Delta Image"
-                  class="block w-full h-full object-cover" />
-              </div>
-            </div>
-            <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2" style="max-height:75%;">
-              <p class="mb-2">Description for Project Delta. This project involved building a full-featured e-commerce platform with user authentication, product listings, cart functionality, and payment integration.</p>
-              <p>Details on the backend architecture (e.g., Node.js, Django, Ruby on Rails), frontend framework (e.g., React, Vue, Angular), and database design (e.g., PostgreSQL, MySQL).</p>
-            </div>
-          </div>
-          <div class="tech-stack-icons w-full mt-6">
-            <img src="../assets/tech-icons/react.svg" alt="React Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/nodejs.svg" alt="Node.js Icon" class="w-8 h-8">
-             <img src="../assets/tech-icons/express.svg" alt="Express Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/postgresql.svg" alt="PostgreSQL Icon" class="w-8 h-8">
-            <img src="../assets/tech-icons/stripe.svg" alt="Stripe Icon" class="w-8 h-8">
-          </div>
-          <div class="w-full flex justify-center mt-4">
-            <button class="btn-primary explore-btn">explore project</button>
-          </div>
-        </section>
-
-
+        <p id="loading-message" class="text-center text-text-muted mt-8">Loading projects...</p>
       </div>
     </div>
   </main>
 
   <footer class="text-center text-text-muted bg-primary-background-dark py-4 z-40 mt-2">
-    <span>© 2025 Mubarak Afolabi. All rights reserved.</span>
+    <span id="footer-text">
+      </span>
   </footer>
 
   <script>
-  
+    // === NAV BAR LOGIC ===
     const nav = document.getElementById('site-navbar');
     let hideTimer;
 
@@ -236,186 +146,262 @@
       if (e.clientY < 50) showNavbar();
     });
 
-    
+    // Dark-mode toggle
     const toggleLi = document.getElementById('dark-toggle');
     const toggleIcon = document.getElementById('dark-toggle-icon');
     toggleLi.addEventListener('click', () => {
       const isDark = document.documentElement.classList.toggle('dark');
-      toggleIcon.src = isDark ? '../assets/ToggleOn Icon.svg' : '../assets/ToggleOff Icon.svg';
+      toggleIcon.src = isDark ? 'assets/ToggleOn Icon.svg' : 'assets/ToggleOff Icon.svg';
     });
-    if (document.documentElement.classList.contains('dark')) toggleIcon.src = '../assets/ToggleOn Icon.svg';
+    // Set initial toggle state on load
+    if (document.documentElement.classList.contains('dark')) toggleIcon.src = 'assets/ToggleOn Icon.svg';
 
 
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.explore-btn').forEach(btn => btn.addEventListener('click', e => {
-        e.preventDefault();
-        // Get the parent project-item to find the data-project-id
-        const projectItem = e.target.closest('.project-item');
-        if (projectItem) {
-            const projectId = projectItem.dataset.projectId;
-            window.location.href = `projectDetail.html?id=${projectId}`;
-        } else {
-            console.error("Could not find parent .project-item for the clicked button.");
+    // === DYNAMIC CONTENT LOADING FOR PROJECTS ===
+    document.addEventListener('DOMContentLoaded', async () => {
+      const siteSettings = await loadSiteSettings();
+      const projectsData = await loadProjectsList();
+      const projectsListContainer = document.getElementById('projects-list');
+      const loadingMessage = document.getElementById('loading-message');
+
+      // Update Site Title in <head>
+      const siteTitleMeta = document.getElementById('site-title-meta');
+      if (siteTitleMeta) {
+          siteTitleMeta.textContent = siteSettings.siteTitle ? `${siteSettings.siteTitle} — Projects` : 'Mubarak Afolabi — Projects';
+      }
+
+      // Update Header Profile Photo
+      const headerProfilePhoto = document.getElementById('profile-photo-header');
+      if (headerProfilePhoto) {
+          headerProfilePhoto.src = siteSettings.profilePhotoHeader || 'assets/profile.jpg';
+      }
+
+      // Update Footer Text
+      const footerTextSpan = document.getElementById('footer-text');
+      if (footerTextSpan) {
+          footerTextSpan.textContent = siteSettings.footerText || '© 2025 Mubarak Afolabi. All rights reserved.';
+      }
+
+      if (projectsData && projectsData.length > 0) {
+        loadingMessage.remove(); // Remove loading message once content is available
+
+        projectsData.forEach(project => {
+          const projectItem = document.createElement('section');
+          projectItem.className = 'project-item bg-secondary-background-dark border-[1px] border-white rounded-2xl p-6 flex flex-col mb-8';
+          projectItem.dataset.projectId = project.slug; // Use slug as project ID
+
+          let mediaHtml = '';
+          if (project.featuredImage) {
+            mediaHtml = `
+              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video">
+                <img src="${project.featuredImage}" alt="${project.title} Image" class="block w-full h-full object-cover" />
+              </div>
+            `;
+          } else if (project.featuredVideo) {
+            mediaHtml = `
+              <div class="w-full border border-white rounded-lg overflow-hidden aspect-video relative">
+                <video src="${project.featuredVideo}" class="block w-full h-full object-cover" muted loop playsinline></video>
+                <button class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full video-control">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M10.804 8 5 4.636v6.728L10.804 8zm.792-.696a1.5 1.5 0 0 1 0 1.392l-6.363 4.566A1.5 1.5 0 0 1 3 12.207V3.793a1.5 1.5 0 0 1 2.396-1.107z"/>
+                  </svg>
+                </button>
+              </div>
+            `;
+          }
+
+          let techStackHtml = '';
+          if (project.techStack && project.techStack.length > 0) {
+            techStackHtml = `
+              <div class="tech-stack-icons w-full mt-6">
+                ${project.techStack.map(tech => `<img src="${tech.icon}" alt="${tech.name} Icon" title="${tech.name}">`).join('')}
+              </div>
+            `;
+          }
+
+          projectItem.innerHTML = `
+            <div class="flex flex-col lg:flex-row gap-6">
+              <div class="w-full lg:w-1/2 flex flex-col items-start flex-shrink-0">
+                <h3 class="text-lg font-semibold text-text-light mb-4">${project.title}</h3>
+                ${mediaHtml}
+              </div>
+              <div class="w-full lg:w-1/2 text-text-light text-sm overflow-y-auto pr-2 markdown-content" style="max-height:75%;">
+                ${project.summary ? marked.parse(project.summary) : '<p>No summary provided. Please update this project in the CMS.</p>'}
+              </div>
+            </div>
+            ${techStackHtml}
+            <div class="w-full flex justify-center mt-4">
+              <button class="btn-primary explore-btn" data-slug="${project.slug}">explore project</button>
+            </div>
+          `;
+          projectsListContainer.appendChild(projectItem);
+        });
+
+        // Add event listeners to dynamically created explore buttons
+        document.querySelectorAll('.explore-btn').forEach(btn => btn.addEventListener('click', e => {
+          e.preventDefault();
+          const projectSlug = e.target.dataset.slug;
+          if (projectSlug) {
+            window.location.href = `projectDetail.html?slug=${projectSlug}`;
+          } else {
+            console.error("Project slug not found for the clicked button.");
             window.location.href = 'projectDetail.html'; // Fallback
-        }
-      }));
+          }
+        }));
+
+        // Add event listeners for dynamically created video controls
+        document.querySelectorAll('.video-control').forEach(button => {
+            button.addEventListener('click', () => {
+                const video = button.previousElementSibling; // The video element is the sibling before the button
+                if (video) {
+                    if (video.paused) {
+                        video.play();
+                        button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M4 4h1v8H4V4zm2.5 0h1v8H6.5V4zm3 0h1v8H9.5V4zm3 0h1v8H12.5V4z"/>
+                                            </svg>`; // Pause icon
+                    } else {
+                        video.pause();
+                        button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M10.804 8 5 4.636v6.728L10.804 8zm.792-.696a1.5 1.5 0 0 1 0 1.392l-6.363 4.566A1.5 1.5 0 0 1 3 12.207V3.793a1.5 1.5 0 0 1 2.396-1.107z"/>
+                                            </svg>`; // Play icon
+                    }
+                }
+            });
+        });
+
+      } else {
+        loadingMessage.textContent = 'No projects found. Please add projects via the CMS.';
+      }
+
+      // Re-initialize the scroll animation after projects are loaded
+      initializeProjectStackAnimation();
     });
 
-    // === Project Card Stack Scroll Animation ===
-    document.addEventListener('DOMContentLoaded', () => {
+
+    // === PROJECT CARD STACK SCROLL ANIMATION ===
+    function initializeProjectStackAnimation() {
       const projectsList = document.getElementById('projects-list');
+      if (!projectsList) return;
+
       const projectItems = projectsList.querySelectorAll('.project-item');
       const body = document.body;
 
-      if (projectItems.length === 0) return;
+      if (projectItems.length === 0) {
+        body.classList.remove('no-scroll');
+        body.style.paddingBottom = '0px';
+        return;
+      }
 
-      const projectsMain = document.getElementById('projects-main');
-      const projectsListTop = projectsList.offsetTop + projectsMain.offsetTop; // Account for main's padding/margin
-
-
+      let projectsListTop = projectsList.offsetTop + (document.getElementById('projects-main')?.offsetTop || 0);
+      let cardGap = parseFloat(window.getComputedStyle(projectsList).getPropertyValue('gap')) || 0;
       let totalStackingHeight = 0;
-      let firstCardHeight = 0;
-      let cardGap = 0;
 
-        const resizeObserver = new ResizeObserver(entries => {
-            calculateStackingMetrics();
-            onScroll(); 
+      const resizeObserver = new ResizeObserver(() => {
+        calculateStackingMetrics();
+        onScroll();
+      });
+
+      function calculateStackingMetrics() {
+        projectsListTop = projectsList.offsetTop + (document.getElementById('projects-main')?.offsetTop || 0);
+
+        let totalInitialHeight = 0;
+        projectItems.forEach(item => {
+          totalInitialHeight += item.offsetHeight;
         });
 
+        totalInitialHeight += (projectItems.length - 1) * cardGap;
 
-        function calculateStackingMetrics() {
-            if (projectItems.length === 0) return;
+        const viewportHeight = window.innerHeight;
+        const firstCardHeight = projectItems[0].offsetHeight;
+        const extraScrollSpace = Math.max(0, viewportHeight - firstCardHeight);
+        totalStackingHeight = (projectItems.length > 0 ? totalInitialHeight - firstCardHeight : 0) + extraScrollSpace;
 
-            
-            const computedStyle = window.getComputedStyle(projectsList);
-            cardGap = parseFloat(computedStyle.getPropertyValue('gap'));
-            if (isNaN(cardGap)) {
-                 cardGap = 0; 
-                 console.warn("Could not determine CSS gap for #projects-list. Stacking height might be inaccurate.");
-            }
+        body.style.paddingBottom = `${totalStackingHeight}px`;
 
-
-            firstCardHeight = projectItems[0].offsetHeight;
-            let totalInitialHeight = 0;
-              projectItems.forEach(item => {
-                  totalInitialHeight += item.offsetHeight;
-              });
-
-              totalInitialHeight += (projectItems.length - 1) * cardGap;
-
-
-              
-              const viewportHeight    = window.innerHeight;
-          const extraScrollSpace  = Math.max(0, viewportHeight - firstCardHeight);
-          totalStackingHeight   = totalInitialHeight - firstCardHeight + extraScrollSpace;
-
-              body.style.paddingBottom = `${totalStackingHeight}px`;
-
-              projectItems.forEach(item => {
-                 resizeObserver.observe(item); 
-            });
-
-            onScroll();
-        }
-
+        projectItems.forEach(item => {
+          resizeObserver.observe(item);
+        });
+      }
 
       function onScroll() {
-        const scrollY = window.scrollY; 
-
+        const scrollY = window.scrollY;
         const animationZoneStart = projectsListTop;
-
         const animationZoneEnd = animationZoneStart + totalStackingHeight;
 
         const isAnimating = scrollY >= animationZoneStart && scrollY <= animationZoneEnd;
 
         if (isAnimating) {
           body.classList.add('no-scroll');
-              window.scrollTo(0, clamp(scrollY, animationZoneStart, animationZoneEnd));
+          window.scrollTo(0, clamp(scrollY, animationZoneStart, animationZoneEnd));
         } else {
-           body.classList.remove('no-scroll');
+          body.classList.remove('no-scroll');
         }
-
-        const animationProgress = clamp((scrollY - animationZoneStart) / totalStackingHeight, 0, 1);
-
 
         projectItems.forEach((currentItem, index) => {
-              if (index === 0) {
-                  currentItem.style.zIndex = 100; 
-                  currentItem.style.opacity = 1; 
-                  return;
-              }
-
-              const previousItem = projectItems[index - 1];
-
-              
-              const itemStackingStartScroll = initialOffsets[index - 1] || projectsListTop; 
-              const itemStackingEndScroll = initialOffsets[index];
-
-              const itemProgress = clamp((scrollY - itemStackingStartScroll) / (itemStackingEndScroll - itemStackingStartScroll), 0, 1);
-
-                 currentItem.style.zIndex = 10 + index; 
-
-              if (index > 0) {
-                   previousItem.style.opacity = `${1 - itemProgress}`;
-
-                  if (scrollY > itemStackingEndScroll) {
-                       previousItem.style.opacity = 0; 
-                  } else if (scrollY < itemStackingStartScroll) {
-                       previousItem.style.opacity = 1; 
-                  }
-              }
-
-
-        });
-
-          if (scrollY > animationZoneEnd) {
-               projectItems.forEach((item, index) => {
-                  item.style.zIndex = 10 + index;
-               });
+          if (index === 0) {
+            currentItem.style.zIndex = 100;
+            currentItem.style.opacity = 1;
+            return;
           }
 
+          const previousItem = projectItems[index - 1];
 
-           if (scrollY >= animationZoneEnd) {
-            body.classList.remove('no-scroll');
-            body.style.paddingBottom = '0'; 
+          // Calculate where the current card *starts* to become active in the scroll,
+          // which is when the previous card has scrolled enough for this one to 'stick'.
+          // This is approximately the top of the previous card + its height + gap,
+          // relative to the start of the overall stacking section.
+          const cardScrollStartOffset = (index > 0 ? (projectItems[0].offsetHeight + cardGap) * index : 0);
+          const itemStackingStartScroll = animationZoneStart + cardScrollStartOffset;
+
+          currentItem.style.zIndex = 10 + index; // Ensure higher cards are on top
+
+          if (scrollY >= itemStackingStartScroll) {
+            const progress = clamp((scrollY - itemStackingStartScroll) / (currentItem.offsetHeight + cardGap), 0, 1);
+            previousItem.style.opacity = `${1 - progress}`;
+          } else {
+            // Before its sticking point, previous items should be fully visible
+            previousItem.style.opacity = 1;
+          }
+
+          // Ensure the current item (and subsequent ones) are visible as they come into view
+          if (scrollY < itemStackingStartScroll) {
+              currentItem.style.opacity = 1;
+          } else {
+              // Once the previous item starts fading, the current one should be fully opaque
+              currentItem.style.opacity = 1;
+          }
+        });
+
+        // Handle cases where scroll is outside the animation zone
+        if (scrollY > animationZoneEnd) {
+          projectItems.forEach((item, index) => {
+            item.style.zIndex = 10 + index;
+            item.style.opacity = 1;
+          });
+          body.classList.remove('no-scroll');
+          body.style.paddingBottom = '0px'; // Reset padding when animation is done
         } else if (scrollY < animationZoneStart) {
-            
-              body.classList.remove('no-scroll');
-              body.style.paddingBottom = `${totalStackingHeight}px`; 
+          projectItems.forEach(item => item.style.opacity = 1);
+          body.classList.remove('no-scroll');
+          body.style.paddingBottom = `${totalStackingHeight}px`;
         }
-
       }
-
 
       function clamp(x, min, max) {
         return Math.min(Math.max(x, min), max);
       }
 
-      
-        let initialOffsets = [];
-        function calculateInitialOffsets() {
-            initialOffsets = Array.from(projectItems).map(item => item.offsetTop);
-        }
+      // Initial calculations and event listeners
+      setTimeout(() => { // Small delay to ensure all content (especially images) are loaded before computing heights
+        calculateStackingMetrics();
+        onScroll();
+      }, 300);
 
-
-      
-      document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                calculateInitialOffsets();
-                calculateStackingMetrics(); 
-            }, 100); 
-      });
-
-      window.addEventListener('resize', () => {
-            calculateInitialOffsets();
-            calculateStackingMetrics(); 
-      });
-
+      window.removeEventListener('scroll', onScroll); // Remove old listener
       window.addEventListener('scroll', onScroll);
-
-
-      
-    });
+      window.removeEventListener('resize', calculateStackingMetrics); // Remove old listener
+      window.addEventListener('resize', calculateStackingMetrics);
+    }
   </script>
 
 </body>

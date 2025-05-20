@@ -1,0 +1,176 @@
+# admin/config.yml
+backend:
+  name: git-gateway
+  branch: main # CHANGE TO 'master' if your default branch is master
+
+# This will allow content to be reviewed before publishing
+publish_mode: editorial_workflow
+
+# Media and Public Folders
+# The folder where uploaded files will be stored in your Git repo
+media_folder: "assets/uploads"
+# The public path to the media folder, used in the frontend
+public_folder: "/assets/uploads"
+
+# Collections define your content types
+collections:
+  # --- Global Site Settings ---
+  - name: "site_settings"
+    label: "Site Settings"
+    delete: false # Prevent accidental deletion
+    files:
+      - file: "content/settings/main.md" # Path to the single settings file
+        label: "Main Settings"
+        fields:
+          - {label: "Site Title", name: "site_title", widget: "string", default: "Mubarak Afolabi's Portfolio"}
+          - {label: "Resume File", name: "resume_file", widget: "file", allow_multiple: false, default: "/assets/resume.pdf", media_folder: "assets", public_folder: "/assets", hint: "Upload your resume PDF."}
+          - {label: "Profile Photo (Header)", name: "profile_photo_header", widget: "image", default: "/assets/profile.jpg", hint: "Main profile photo for header/navbar."}
+          - {label: "Footer Text", name: "footer_text", widget: "string", default: "© 2025 Mubarak Afolabi. All rights reserved."}
+          - label: "Social Links"
+            name: "social_links"
+            widget: "list"
+            hint: "Add your social media profiles."
+            fields:
+              - {label: "Platform", name: "platform", widget: "string", hint: "e.g., LinkedIn, GitHub"}
+              - {label: "URL", name: "url", widget: "string", hint: "Full URL to your profile (e.g., https://linkedin.com/in/yourprofile)"}
+              - {label: "Icon (Optional)", name: "icon", widget: "image", required: false, hint: "SVG icon for the platform, uploaded to assets/uploads"}
+
+  # --- Intro Section Content ---
+  - name: "intro"
+    label: "Intro Section"
+    delete: false
+    files:
+      - file: "content/sections/intro.md"
+        label: "Intro Content"
+        fields:
+          - {label: "Headline", name: "headline", widget: "string", hint: "Your main greeting or title (e.g., 'Hello, I am Mubarak Afolabi')"}
+          - {label: "Subheadline", name: "subheadline", widget: "string", hint: "A short descriptive phrase (e.g., 'A Creative Full Stack Developer')"}
+          - {label: "Introduction Text", name: "intro_text", widget: "markdown", hint: "Your main introductory paragraph(s)"}
+          - {label: "Profile Image (Intro)", name: "intro_profile_image", widget: "image", default: "/assets/profile-large.jpg", hint: "Large profile image for the intro section"}
+
+  # --- Projects Collection ---
+  - name: "projects"
+    label: "Projects"
+    folder: "content/projects" # Where project files will be stored
+    create: true # Allow creation of new projects
+    slug: "{{id}}" # Use the 'id' field as the filename (e.g., 'my-awesome-project.md')
+    fields:
+      - {label: "Project ID (Unique)", name: "id", widget: "string", pattern: ["^[a-z0-9-]+$", "Must be lowercase alphanumeric, dashes only. Used in URL."], hint: "A unique identifier for the project (e.g., 'my-portfolio-site'). Used in URL, cannot be changed after creation."}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Type", name: "type", widget: "string", hint: "e.g., Web Application, Mobile App, Data Visualization"}
+      - {label: "My Role", name: "role", widget: "string", hint: "e.g., Fullstack Developer, UI/UX Designer"}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image", hint: "Image shown on the main Projects page list."}
+      - {label: "Problem", name: "problem", widget: "markdown"}
+      - {label: "Goal", name: "goal", widget: "markdown"}
+      - {label: "Design Research and UI/UX Process", name: "designProcess", widget: "markdown", required: false}
+      - label: "Project Visuals"
+        name: "visuals"
+        widget: "list"
+        summary: "{{fields.type}} - {{fields.src}}"
+        fields:
+          - {label: "Type", name: "type", widget: "select", options: ["image", "video"]}
+          - {label: "Media File", name: "src", widget: "image", hint: "Upload image or video file. For video, only MP4 is widely supported."}
+      - {label: "About the Project", name: "about", widget: "markdown"}
+      - label: "Tech Stack"
+        name: "techStack"
+        widget: "list"
+        hint: "List the technologies used in this project."
+        summary: "{{fields.name}}"
+        fields:
+          - {label: "Technology Name", name: "name", widget: "string"}
+          - {label: "Icon", name: "icon", widget: "image", required: false, hint: "Upload icon directly or select from assets/uploads. Consider using existing tech icons from 'Tech Icons (Library)'."}
+      - {label: "Challenges", name: "challenges", widget: "markdown", required: false}
+      - {label: "Solutions", name: "solutions", widget: "markdown", required: false}
+      - {label: "Lessons Learned", name: "lessons", widget: "markdown", required: false}
+
+  # --- Articles Collection ---
+  - name: "articles"
+    label: "Articles"
+    folder: "content/articles"
+    create: true
+    slug: "{{slug}}" # Filename based on a 'slug' field
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string", pattern: ["^[a-z0-9-]+$", "Must be lowercase alphanumeric, dashes only. Used in URL."], hint: "A unique, URL-friendly identifier (e.g., 'my-first-blog-post'). Cannot be changed after creation."}
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false, hint: "Image displayed at the top of the article."}
+      - {label: "Author", name: "author", widget: "string", default: "Mubarak Afolabi"}
+      - {label: "Excerpt", name: "excerpt", widget: "string", required: false, hint: "Short summary for listing page."}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        field: {label: "Tag", name: "tag", widget: "string"}
+
+  # --- Testimonials Collection (for general use) ---
+  # Note: The 'Hire Me' page is configured to use inline testimonials for simplicity,
+  # but this collection still exists if you want to manage testimonials separately
+  # and pull them into other parts of your site, or change the Hire Me page later.
+  - name: "testimonials"
+    label: "Testimonials (General)"
+    folder: "content/testimonials"
+    create: true
+    fields:
+      - {label: "Author Name", name: "author", widget: "string"}
+      - {label: "Author Title/Company (Optional)", name: "title", widget: "string", required: false}
+      - {label: "Testimonial Content", name: "content", widget: "markdown", hint: "The actual testimonial text."}
+      - {label: "Order", name: "order", widget: "number", value_type: "int", min: 1, step: 1, default: 10, hint: "Lower number means it appears earlier in the list. Default is 10."}
+
+  # --- Tech Icons (Library) ---
+  - name: "tech_icons_library"
+    label: "Tech Icons (Library)"
+    delete: false
+    files:
+      - file: "content/assets/tech_icons_list.md" # A single file to store the list of icons
+        label: "Manage Available Tech Icons"
+        fields:
+          - label: "Available Tech Icons"
+            name: "icons"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Name", name: "name", widget: "string", hint: "e.g., React, Node.js"}
+              - {label: "Icon File", name: "icon_file", widget: "image", media_folder: "assets/tech-icons", public_folder: "/assets/tech-icons", hint: "Upload an SVG file for the tech icon. This is for a shared library."}
+
+  # --- About Me Page Content ---
+  - name: "about_page"
+    label: "About Page"
+    delete: false
+    files:
+      - file: "content/pages/about.md" # Path to the single About Me file
+        label: "About Me Content"
+        fields:
+          - {label: "Introduction", name: "introduction", widget: "markdown", hint: "Your main introduction on the About page."}
+          - {label: "Skills & Tools", name: "skills", widget: "markdown", hint: "List your skills, technologies, and tools."}
+          - {label: "Experience", name: "experience", widget: "markdown", hint: "Details about your professional experience."}
+          - {label: "Philosophy", name: "philosophy", widget: "markdown", hint: "Your working philosophy or approach."}
+          - {label: "Beyond Work", name: "beyond_work", widget: "markdown", hint: "Information about your hobbies, interests outside work."}
+          - {label: "Call to Action Text", name: "cta_text", widget: "string", default: "Want to dive deeper and know more about me?"}
+          - {label: "Resume URL", name: "resume_url", widget: "string", default: "/assets/resume.pdf", hint: "URL to your resume PDF (can be uploaded to assets/uploads)."}
+
+  # --- Hire Me Page Content ---
+  - name: "hire_me_page"
+    label: "Hire Me Page"
+    delete: false
+    files:
+      - file: "content/pages/hireMe.md" # Path to the single Hire Me file
+        label: "Hire Me Content"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string", default: "Let's Collaborate"}
+          - {label: "Profile Photo (Hire Me)", name: "profile_photo", widget: "image", default: "/assets/profile-hireme.jpg", hint: "Photo for the 'Hire Me' section."}
+          - {label: "Tagline", name: "tagline", widget: "string", default: "Turning Ideas into Reality, One Line of Code at a Time."}
+          - {label: "Introduction Text", name: "introduction", widget: "markdown", hint: "A warm introduction for potential clients."}
+          - {label: "What I Can Help You Achieve", name: "what_i_can_do", widget: "markdown", hint: "Explain your services or capabilities. Use bullet points or lists."}
+          - {label: "Why Work With Me", name: "why_work_with_me", widget: "markdown", hint: "Highlight your unique selling points."}
+          - {label: "Reach Out Guide", name: "reach_out_guide", widget: "markdown", hint: "Tips on what information to include when contacting you."}
+          - {label: "Call to Action", name: "call_to_action", widget: "string", default: "Ready to Start Your Next Project? Let's Talk!"}
+          - label: "Testimonials (Inline)"
+            name: "testimonials"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Title / Company", name: "title_company", widget: "string", required: false}
+              - {label: "Quote", name: "quote", widget: "text"}
+              - {label: "Contact Email (Optional)", name: "contact_email", widget: "string", required: false, pattern: ["^[^@]+@[^@]+\\.[^@]+$", "Invalid email address."]}
+              - {label: "Photo", name: "photo", widget: "image", required: false}

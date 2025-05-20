@@ -1,0 +1,14 @@
+# netlify.toml
+[build]
+  publish = "." # Your build output directory (your project root for this static site)
+  command = "npm run build" # Executes the combined content and CSS build script
+
+# Redirects for Netlify CMS admin
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Netlify Identity configuration for build environment (optional, but good practice)
+[build.environment]
+  NODE_VERSION = "18" # Ensure Netlify uses a compatible Node.js version
