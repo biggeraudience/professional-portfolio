@@ -270,10 +270,7 @@
                 const sectionsListStyle = getComputedStyle(sectionsList);
                 const gap = parseFloat(sectionsListStyle.getPropertyValue('gap')) || 0;
 
-                // The stackableHeight is effectively what the height of the sections list would be if all were laid out
-                // We're not explicitly using this to set body padding anymore as the 'dummy-scroll-end' approach
-                // combined with `marginBottom` on `sections-list` handles the scrollable space.
-
+               
                 const dummyScrollEnd = document.getElementById('dummy-scroll-end');
                 if (!dummyScrollEnd) {
                     const div = document.createElement('div');
@@ -281,8 +278,7 @@
                     sectionsList.parentNode.appendChild(div);
                 }
 
-                // This bottom padding ensures you can scroll sufficiently to reveal the last card
-                // Adjust the multiplier (e.g., 0.5) if you need more or less scroll space
+               
                 const containerBottomPadding = sections.length * window.innerHeight * 0.5;
                 sectionsList.style.marginBottom = `${containerBottomPadding}px`;
             }
