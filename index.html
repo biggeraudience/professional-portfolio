@@ -1,402 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="site-title-meta">Mubarak Afolabi — Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="site-title-meta">Mubarak Afolabi — Portfolio</title>
 
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
-  <link rel="manifest" href="./assets/site.webmanifest">
-  <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-  <link href="css/style.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="manifest" href="./assets/site.webmanifest">
+    <link rel="mask-icon" href="./assets/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link href="css/style.css" rel="stylesheet" />
 
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml-browser@4.1.0/dist/js-yaml.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="js/contentLoader.js"></script>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml-browser@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/contentLoader.js"></script>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <style>
-    /* Default Navbar styles */
-    #site-navbar ul li img {
-      width: 32px;
-      height: 32px;
-    }
+    <style>
+        /* Default Navbar styles */
+        #site-navbar ul li img {
+            width: 32px;
+            height: 32px;
+        }
 
-    #site-navbar ul li a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    #site-navbar ul li a span { /* Target the span specifically for text */
-      font-size: 1rem; /* Default font size */
-    }
+        #site-navbar ul li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #site-navbar ul li a span { /* Target the span specifically for text */
+            font-size: 1rem; /* Default font size */
+        }
 
-    /* Mobile / Tablet Navbar adjustments */
-    @media (max-width: 768px) {
-      #site-navbar ul li img {
-        width: 24px; /* Smaller icons on mobile */
-        height: 24px;
-      }
-      #site-navbar ul li a span {
-        font-size: 0.75rem; /* Smaller text on mobile */
-      }
-    }
+        /* Mobile / Tablet Navbar adjustments */
+        @media (max-width: 768px) {
+            #site-navbar ul li img {
+                width: 24px; /* Smaller icons on mobile */
+                height: 24px;
+            }
+            #site-navbar ul li a span {
+                font-size: 0.75rem; /* Smaller text on mobile */
+            }
+        }
 
-    /* Existing styles below */
-    .section-card {
-      position: sticky;
-      top: 100px;
-      z-index: 1;
-      transition: opacity 0.3s ease-out;
-    }
+        /* Existing styles below */
+        .section-card {
+            position: sticky;
+            top: 100px;
+            z-index: 1;
+            transition: opacity 0.3s ease-out;
+        }
 
-    #sections-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      position: relative;
-    }
+        #sections-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
 
-    .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 {
-      @apply text-text-dark font-bold mb-3 mt-6;
-    }
-    .markdown-content h1 { @apply text-2xl; }
-    .markdown-content h2 { @apply text-xl; }
-    .markdown-content h3 { @apply text-lg; }
-    .markdown-content p {
-      @apply mb-4 leading-relaxed;
-    }
-    .markdown-content ul, .markdown-content ol {
-      @apply list-disc list-inside mb-4;
-    }
-    .markdown-content a {
-      @apply text-text-dark underline;
-    }
-  </style>
+        .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 {
+            /* These should be Tailwind classes for your text-dark color, font-bold, margin, etc. */
+            /* Ensure these are applied correctly by your Tailwind setup */
+            font-weight: bold;
+            margin-bottom: 0.75rem; /* Equivalent to mb-3 */
+            margin-top: 1.5rem; /* Equivalent to mt-6 */
+            color: var(--color-text-dark); /* Assuming you have CSS variables for colors */
+        }
+        .markdown-content h1 { font-size: 1.5rem; /* Equivalent to text-2xl */ }
+        .markdown-content h2 { font-size: 1.25rem; /* Equivalent to text-xl */ }
+        .markdown-content h3 { font-size: 1.125rem; /* Equivalent to text-lg */ }
+        .markdown-content p {
+            margin-bottom: 1rem; /* Equivalent to mb-4 */
+            line-height: 1.625; /* Equivalent to leading-relaxed */
+        }
+        .markdown-content ul, .markdown-content ol {
+            list-style: disc; /* Equivalent to list-disc */
+            padding-left: 1.5rem; /* Equivalent to list-inside */
+            margin-bottom: 1rem; /* Equivalent to mb-4 */
+        }
+        .markdown-content a {
+            color: var(--color-text-dark); /* Assuming you have CSS variables for colors */
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body class="bg-primary-background-dark text-text-light min-h-screen flex flex-col">
-  <nav id="site-navbar"
-       class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
-    <ul class="flex justify-around items-center py-4">
+    <nav id="site-navbar"
+         class="navbar sticky top-0 w-full border border-black backdrop-blur bg-primary-background-dark bg-opacity-50 transform transition-transform duration-500 -translate-y-full z-50">
+        <ul class="flex justify-around items-center py-4">
 
-      <li>
-        <a href="index.html">
-          <img src="assets/Vector.svg" alt="Home Icon">
-          <span>HOME</span>
-        </a>
-      </li>
+            <li>
+                <a href="index.html">
+                    <img src="assets/Vector.svg" alt="Home Icon">
+                    <span>HOME</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="about.html">
-          <img src="assets/About Icon.svg" alt="About Icon">
-          <span>ABOUT</span>
-        </a>
-      </li>
+            <li>
+                <a href="about.html">
+                    <img src="assets/About Icon.svg" alt="About Icon">
+                    <span>ABOUT</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="projects.html">
-          <img src="assets/Projects Icon.svg" alt="Projects Icon">
-          <span>PROJECTS</span>
-        </a>
-      </li>
+            <li>
+                <a href="projects.html">
+                    <img src="assets/Projects Icon.svg" alt="Projects Icon">
+                    <span>PROJECTS</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="articles.html">
-          <img src="assets/Articles Icon.svg" alt="Articles Icon">
-          <span>ARTICLES</span>
-        </a>
-      </li>
+            <li>
+                <a href="articles.html">
+                    <img src="assets/Articles Icon.svg" alt="Articles Icon">
+                    <span>ARTICLES</span>
+                </a>
+            </li>
 
-      <li>
-        <a href="hireMe.html">
-          <img src="assets/HireMe Icon.svg" alt="Hire Me Icon">
-          <span>HIRE ME</span>
-        </a>
-      </li>
+            <li>
+                <a href="hireMe.html">
+                    <img src="assets/HireMe Icon.svg" alt="Hire Me Icon">
+                    <span>HIRE ME</span>
+                </a>
+            </li>
 
-      <li id="dark-toggle" class="flex flex-col items-center text-white cursor-pointer">
-        <img src="assets/ToggleOff Icon.svg"
-              alt="Toggle Dark Mode"
-              id="dark-toggle-icon">
-        <span>dark mode</span>
-      </li>
-    </ul>
-  </nav>
+            <li id="dark-toggle" class="flex flex-col items-center text-white cursor-pointer">
+                <img src="assets/ToggleOff Icon.svg"
+                     alt="Toggle Dark Mode"
+                     id="dark-toggle-icon">
+                <span>dark mode</span>
+            </li>
+        </ul>
+    </nav>
 
-  <div class="py-10 flex-1"> <div class="container mx-auto space-y-8 px-4" id="sections-list">
-      <section id="intro" class="section-card bg-primary p-6 flex rounded-2xl z-10">
-        <div class="w-1/2 flex flex-col items-center space-y-4">
-          <div class="border border-black rounded-lg w-32 h-32 overflow-hidden">
-            <img id="intro-profile-image" src="assets/profile-large.jpg" alt="Profile Image" class="w-full h-full object-cover">
-          </div>
+    <div class="py-10 flex-1">
+        <div class="container mx-auto space-y-8 px-4" id="sections-list">
+            <section id="intro" class="section-card bg-primary p-6 flex rounded-2xl z-10">
+                <div class="w-1/2 flex flex-col items-center space-y-4">
+                    <div class="border border-black rounded-lg w-32 h-32 overflow-hidden">
+                        <img id="intro-profile-image" src="assets/profile-large.jpg" alt="Profile Image" class="w-full h-full object-cover">
+                    </div>
 
-          <div class="flex items-center space-x-3">
-            <div class="btn-icon-wrapper">
-             <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#5F6368"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q65 0 123 19t107 53l-58 59q-38-24-81-37.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-18-2-36t-6-35l65-65q11 32 17 66t6 70q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-56-216L254-466l56-56 114 114 400-401 56 56-456 457Z"/></svg>
-            </div>
-            <div class="btn-text-wrapper text-text-dark">
-              Available
-            </div>
-          </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="btn-icon-wrapper">
+                           <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#5F6368"><path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q65 0 123 19t107 53l-58 59q-38-24-81-37.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-18-2-36t-6-35l65-65q11 32 17 66t6 70q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-56-216L254-466l56-56 114 114 400-401 56 56-456 457Z"/></svg>
+                        </div>
+                        <div class="btn-text-wrapper text-text-dark">
+                            Available
+                        </div>
+                    </div>
 
-          <div class="text-text-dark text-sm text-center">
-            Abuja UTC+1<br />
-            <span id="clock">--:-- --</span>
-          </div>
+                    <div class="text-text-dark text-sm text-center">
+                        Abuja UTC+1<br />
+                        <span id="clock">--:-- --</span>
+                    </div>
+                </div>
+
+                <div class="w-1/2 flex flex-col items-center space-y-4">
+                    <h1 id="intro-headline" class="text-text-dark text-[18px] font-bold text-center"></h1>
+                    <p id="intro-subheadline" class="text-text-dark text-sm text-center"></p>
+
+                    <div id="social-links-container" class="w-full max-w-xs space-y-2">
+                    </div>
+                </div>
+            </section>
+
+            <section id="statement" class="section-card bg-secondary p-8 rounded-2xl relative flex flex-col items-center z-10">
+                <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-px bg-text-dark"></div>
+                <div class="flex items-center space-x-4 py-4">
+                    <div class="w-px h-16 bg-text-dark"></div>
+                    <div class="text-center space-y-3 max-w-xl markdown-content" id="intro-text">
+                    </div>
+                    <div class="w-px h-16 bg-text-dark"></div>
+                </div>
+                <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-px bg-text-dark"></div>
+            </section>
+
+            <section id="projects-overview" class="section-card bg-secondary-background-dark border-[5px] border-white rounded-2xl p-6 flex z-10">
+                <div class="w-full flex flex-col justify-center items-center text-center">
+                    <h2 class="text-text-light text-lg font-semibold mb-4">Explore My Latest Projects</h2>
+                    <p class="text-text-light text-sm mb-6">Visit the dedicated projects page to see my full portfolio.</p>
+                    <a href="projects.html" class="btn-primary">View All Projects</a>
+                </div>
+            </section>
         </div>
-
-        <div class="w-1/2 flex flex-col items-center space-y-4">
-          <h1 id="intro-headline" class="text-text-dark text-[18px] font-bold text-center">Mubarak Afolabi</h1>
-          <p id="intro-subheadline" class="text-text-dark text-sm text-center">Full Stack Developer, UI/UX Designer</p>
-
-          <div id="social-links-container" class="w-full max-w-xs space-y-2">
-            </div>
-        </div>
-      </section>
-
-      <section id="statement" class="section-card bg-secondary p-8 rounded-2xl relative flex flex-col items-center z-10">
-        <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-px bg-text-dark"></div>
-        <div class="flex items-center space-x-4 py-4">
-          <div class="w-px h-16 bg-text-dark"></div>
-          <div class="text-center space-y-3 max-w-xl markdown-content" id="intro-text">
-            </div>
-          <div class="w-px h-16 bg-text-dark"></div>
-        </div>
-        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-px bg-text-dark"></div>
-      </section>
-
-      <section id="projects-overview" class="section-card bg-secondary-background-dark border-[5px] border-white rounded-2xl p-6 flex z-10">
-        <div class="w-full flex flex-col justify-center items-center text-center">
-          <h2 class="text-text-light text-lg font-semibold mb-4">Explore My Latest Projects</h2>
-          <p class="text-text-light text-sm mb-6">Visit the dedicated projects page to see my full portfolio.</p>
-          <a href="projects.html" class="btn-primary">View All Projects</a>
-        </div>
-      </section>
     </div>
-  </div>
 
-  <section class="flex flex-col items-center text-text-muted py-10 z-10">
-    <span id="footer-text">
-      </span>
-  </section>
+    <section class="flex flex-col items-center text-text-muted py-10 z-10">
+        <span id="footer-text">
+        </span>
+    </section>
 
-  <script>
-    const nav = document.getElementById('site-navbar');
-    let hideTimer;
+    <script>
+        const nav = document.getElementById('site-navbar');
+        let hideTimer;
 
-    function showNavbar() {
-      nav.classList.remove('-translate-y-full');
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(hideNavbar, 2500);
-    }
-
-    function hideNavbar() {
-      nav.classList.add('-translate-y-full');
-    }
-
-    window.addEventListener('scroll', showNavbar);
-
-    document.addEventListener('DOMContentLoaded', showNavbar);
-
-    nav.addEventListener('mouseenter', showNavbar);
-
-    nav.addEventListener('mouseleave', () => {
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(hideNavbar, 2500);
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (e.clientY < 50) showNavbar();
-    });
-
-    const toggleLi = document.getElementById('dark-toggle');
-    const toggleIcon = document.getElementById('dark-toggle-icon');
-    toggleLi.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      toggleIcon.src = isDark
-        ? 'assets/ToggleOn Icon.svg'
-        : 'assets/ToggleOff Icon.svg';
-    });
-
-
-    function updateClock() {
-      const now = new Date();
-      const offsetInMs = 1 * 60 * 60 * 1000;
-      const localTime = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + offsetInMs);
-
-      const hours = localTime.getHours();
-      const minutes = localTime.getMinutes();
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      const displayHours = hours % 12 || 12;
-
-      const clockText = `${String(displayHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${ampm}`;
-      const clockElement = document.getElementById('clock');
-      if (clockElement) clockElement.textContent = clockText;
-    }
-
-    updateClock();
-    setInterval(updateClock, 60000);
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = Array.from(document.querySelectorAll('.section-card'));
-      const sectionsList = document.getElementById('sections-list');
-      const NAVBAR_HEIGHT = 100;
-
-      function clamp(x, min, max) {
-        return Math.min(Math.max(x, min), max);
-      }
-
-      function setScrollableArea() {
-        if (!sectionsList || sections.length === 0) return;
-
-        let totalSectionsHeight = 0;
-        sections.forEach(sec => {
-          totalSectionsHeight += sec.offsetHeight;
-        });
-
-        const sectionsListStyle = getComputedStyle(sectionsList);
-        const gap = parseFloat(sectionsListStyle.getPropertyValue('gap')) || 0;
-
-        const stackableHeight = totalSectionsHeight + (gap * (sections.length - 1));
-
-        const dummyScrollEnd = document.getElementById('dummy-scroll-end');
-        if (!dummyScrollEnd) {
-          const div = document.createElement('div');
-          div.id = 'dummy-scroll-end';
-          sectionsList.parentNode.appendChild(div);
+        function showNavbar() {
+            nav.classList.remove('-translate-y-full');
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideNavbar, 2500);
         }
 
-        const containerBottomPadding = sections.length * window.innerHeight * 0.5;
-        sectionsList.style.marginBottom = `${containerBottomPadding}px`;
-      }
-
-      function onScroll() {
-        const scrollY = window.scrollY;
-
-        sections.forEach((sec, i) => {
-          if (i === 0) {
-            sec.style.opacity = '1';
-            sec.style.zIndex = 10 + i;
-            return;
-          }
-
-          const prevSec = sections[i - 1];
-
-          const currentSectionOffsetTop = sec.offsetTop;
-
-          const stickyStartPoint = currentSectionOffsetTop - NAVBAR_HEIGHT;
-
-          const animationRange = sec.offsetHeight * 0.5;
-          const fadeOutStart = stickyStartPoint;
-          const fadeOutEnd = stickyStartPoint + animationRange;
-
-          let progress = clamp((scrollY - fadeOutStart) / animationRange, 0, 1);
-
-          if (prevSec) {
-            prevSec.style.opacity = `${1 - progress}`;
-          }
-
-          sec.style.zIndex = 10 + i;
-        });
-      }
-
-      window.addEventListener('scroll', onScroll);
-      window.addEventListener('resize', () => {
-        setScrollableArea();
-        onScroll();
-      });
-      requestAnimationFrame(() => {
-        setScrollableArea();
-        onScroll();
-      });
-    });
-
-    document.addEventListener('DOMContentLoaded', async () => {
-      const siteSettings = await loadSiteSettings();
-      const introContent = await loadIntroContent();
-
-      const siteTitleMeta = document.getElementById('site-title-meta');
-      if (siteTitleMeta) {
-          siteTitleMeta.textContent = siteSettings.siteTitle || 'Mubarak Afolabi — Portfolio';
-      }
-
-      const footerTextSpan = document.getElementById('footer-text');
-      if (footerTextSpan) {
-          footerTextSpan.textContent = siteSettings.footerText || '© 2025 Mubarak Afolabi. All rights reserved.';
-      }
-
-      const headline = document.getElementById('intro-headline');
-      const subheadline = document.getElementById('intro-subheadline');
-      const introText = document.getElementById('intro-text');
-      const introProfileImage = document.getElementById('intro-profile-image');
-      const socialLinksContainer = document.getElementById('social-links-container');
-
-
-      if (headline) headline.textContent = introContent.headline || 'Mubarak Afolabi';
-      if (subheadline) subheadline.textContent = introContent.subheadline || 'Full Stack Developer, UI/UX Designer';
-      if (introText) introText.innerHTML = introContent.introText || '<p>Welcome to my portfolio. This is placeholder text. Update me via the CMS!</p>';
-      if (introProfileImage) introProfileImage.src = introContent.introProfileImage || 'assets/profile-large.jpg';
-
-      if (socialLinksContainer) {
-          socialLinksContainer.innerHTML = '';
-          if (siteSettings.socialLinks && siteSettings.socialLinks.length > 0) {
-              siteSettings.socialLinks.forEach(link => {
-                  const button = document.createElement('button');
-                  button.className = 'btn-primary w-full flex items-center justify-center';
-                  button.onclick = () => window.open(link.url, '_blank');
-
-                  let iconHtml = '';
-                  if (link.icon) {
-                      iconHtml = `<div class="btn-icon-wrapper mr-4"><img src="${link.icon}" alt="${link.platform} Icon" class="w-6 h-6"></div>`;
-                  } else {
-                      iconHtml = `<div class="btn-icon-wrapper mr-4">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-                                         <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
-                                         <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
-                                       </svg>
-                                   </div>`;
-                  }
-
-                  button.innerHTML = `${iconHtml}<div class="btn-text-wrapper">${link.platform}</div>`;
-                  socialLinksContainer.appendChild(button);
-              });
-
-              if (siteSettings.resumeFile) {
-                const resumeButton = document.createElement('button');
-                resumeButton.className = 'btn-primary w-full flex items-center justify-center';
-                resumeButton.onclick = () => window.open(siteSettings.resumeFile, '_blank');
-                resumeButton.innerHTML = `<div class="btn-icon-wrapper mr-4">
-                                           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
-                                             <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
-                                           </svg>
-                                       </div>
-                                       <div class="btn-text-wrapper">view my resume</div>`;
-                socialLinksContainer.appendChild(resumeButton);
-              }
-          } else {
-              socialLinksContainer.innerHTML = '<p class="text-sm text-text-muted text-center">No social links configured in CMS.</p>';
-          }
-      }
-    });
-
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-         
+        function hideNavbar() {
+            nav.classList.add('-translate-y-full');
         }
-      });
-    }
 
-  </script>
+        window.addEventListener('scroll', showNavbar);
+        document.addEventListener('DOMContentLoaded', showNavbar);
+        nav.addEventListener('mouseenter', showNavbar);
+        nav.addEventListener('mouseleave', () => {
+            clearTimeout(hideTimer);
+            hideTimer = setTimeout(hideNavbar, 2500);
+        });
+        window.addEventListener('mousemove', (e) => {
+            if (e.clientY < 50) showNavbar();
+        });
 
+        const toggleLi = document.getElementById('dark-toggle');
+        const toggleIcon = document.getElementById('dark-toggle-icon');
+        toggleLi.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            toggleIcon.src = isDark
+                ? 'assets/ToggleOn Icon.svg'
+                : 'assets/ToggleOff Icon.svg';
+        });
+
+        function updateClock() {
+            const now = new Date();
+            const offsetInMs = 1 * 60 * 60 * 1000;
+            const localTime = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + offsetInMs);
+
+            const hours = localTime.getHours();
+            const minutes = localTime.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+
+            const clockText = `${String(displayHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${ampm}`;
+            const clockElement = document.getElementById('clock');
+            if (clockElement) clockElement.textContent = clockText;
+        }
+
+        updateClock();
+        setInterval(updateClock, 60000);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = Array.from(document.querySelectorAll('.section-card'));
+            const sectionsList = document.getElementById('sections-list');
+            const NAVBAR_HEIGHT = 100;
+
+            function clamp(x, min, max) {
+                return Math.min(Math.max(x, min), max);
+            }
+
+            function setScrollableArea() {
+                if (!sectionsList || sections.length === 0) return;
+
+                let totalSectionsHeight = 0;
+                sections.forEach(sec => {
+                    totalSectionsHeight += sec.offsetHeight;
+                });
+
+                const sectionsListStyle = getComputedStyle(sectionsList);
+                const gap = parseFloat(sectionsListStyle.getPropertyValue('gap')) || 0;
+
+                // The stackableHeight is effectively what the height of the sections list would be if all were laid out
+                // We're not explicitly using this to set body padding anymore as the 'dummy-scroll-end' approach
+                // combined with `marginBottom` on `sections-list` handles the scrollable space.
+
+                const dummyScrollEnd = document.getElementById('dummy-scroll-end');
+                if (!dummyScrollEnd) {
+                    const div = document.createElement('div');
+                    div.id = 'dummy-scroll-end';
+                    sectionsList.parentNode.appendChild(div);
+                }
+
+                // This bottom padding ensures you can scroll sufficiently to reveal the last card
+                // Adjust the multiplier (e.g., 0.5) if you need more or less scroll space
+                const containerBottomPadding = sections.length * window.innerHeight * 0.5;
+                sectionsList.style.marginBottom = `${containerBottomPadding}px`;
+            }
+
+            function onScroll() {
+                const scrollY = window.scrollY;
+
+                sections.forEach((sec, i) => {
+                    // The first section always stays visible and fully opaque
+                    if (i === 0) {
+                        sec.style.opacity = '1';
+                        sec.style.zIndex = 10 + i;
+                        return;
+                    }
+
+                    const prevSec = sections[i - 1]; // Get the previous section to calculate its fade out
+
+                    // Calculate the point where the current section starts to become sticky
+                    // This is its top position minus the height of the fixed navbar
+                    const currentSectionOffsetTop = sec.offsetTop;
+                    const stickyStartPoint = currentSectionOffsetTop - NAVBAR_HEIGHT;
+
+                    // Define the range over which the fade out/in animation occurs for the previous section
+                    // A value like 0.5 means the fade happens over half the height of the current sticky section
+                    const animationRange = sec.offsetHeight * 0.5;
+                    const fadeOutStart = stickyStartPoint;
+                    const fadeOutEnd = stickyStartPoint + animationRange;
+
+                    // Calculate progress (0 to 1) for the animation based on scroll position
+                    let progress = clamp((scrollY - fadeOutStart) / animationRange, 0, 1);
+
+                    // Apply opacity to the *previous* section, fading it out as the current one scrolls up
+                    if (prevSec) {
+                        prevSec.style.opacity = `${1 - progress}`;
+                    }
+
+                    // Set z-index to ensure higher sections stack correctly on top of lower ones
+                    sec.style.zIndex = 10 + i;
+                });
+            }
+
+            // Event listeners for scroll and resize
+            window.addEventListener('scroll', onScroll);
+            window.addEventListener('resize', () => {
+                setScrollableArea();
+                onScroll();
+            });
+            // Initial call to set up areas and positions
+            requestAnimationFrame(() => {
+                setScrollableArea();
+                onScroll();
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const siteSettings = await loadSiteSettings();
+            const introContent = await loadIntroContent();
+
+            const siteTitleMeta = document.getElementById('site-title-meta');
+            if (siteTitleMeta) {
+                siteTitleMeta.textContent = siteSettings.siteTitle || 'Mubarak Afolabi — Portfolio';
+            }
+
+            const footerTextSpan = document.getElementById('footer-text');
+            if (footerTextSpan) {
+                footerTextSpan.textContent = siteSettings.footerText || '© 2025 Mubarak Afolabi. All rights reserved.';
+            }
+
+            const headline = document.getElementById('intro-headline');
+            const subheadline = document.getElementById('intro-subheadline');
+            const introText = document.getElementById('intro-text');
+            const introProfileImage = document.getElementById('intro-profile-image');
+            const socialLinksContainer = document.getElementById('social-links-container');
+
+
+            if (headline) headline.textContent = introContent.headline || 'Mubarak Afolabi';
+            if (subheadline) subheadline.textContent = introContent.subheadline || 'Full Stack Developer, UI/UX Designer';
+            // IMPORTANT: Use innerHTML to render the Markdown content as HTML
+            if (introText) introText.innerHTML = introContent.introText || '<p class="text-text-dark text-md">Building Digital Experiences, Pixel by Pixel, Line by Line.</p><p class="text-text-dark text-sm">I\'m a Fullstack Developer and UI/UX Designer who thrives at the intersection of code and creativity. My passion lies in taking ideas from concept to polished, user-friendly products...</p>';
+            // Make sure the image path from CMS is correctly assigned
+            if (introProfileImage) introProfileImage.src = introContent.introProfileImage || 'assets/profile-large.jpg';
+
+            if (socialLinksContainer) {
+                socialLinksContainer.innerHTML = ''; // Clear any existing content
+                if (siteSettings.socialLinks && siteSettings.socialLinks.length > 0) {
+                    siteSettings.socialLinks.forEach(link => {
+                        const button = document.createElement('button');
+                        button.className = 'btn-primary w-full flex items-center justify-center';
+                        button.onclick = () => window.open(link.url, '_blank');
+
+                        let iconHtml = '';
+                        // Assuming link.icon contains the direct path to the image uploaded via CMS (e.g., /assets/uploads/linkedin.svg)
+                        if (link.icon) {
+                            iconHtml = `<div class="btn-icon-wrapper mr-4"><img src="${link.icon}" alt="${link.platform} Icon" class="w-6 h-6"></div>`;
+                        } else {
+                            // Fallback generic link icon if no specific icon is provided
+                            iconHtml = `<div class="btn-icon-wrapper mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+                                                <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
+                                                <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829c.439-.439.439-1.152 0-1.591a.5.5 0 0 1 .707-.707l1.828 1.829a4 4 0 1 1-5.657 5.657l-1.828-1.829a.5.5 0 0 1 .707-.707l1.828 1.829a3 3 0 1 0 4.243-4.243z"/>
+                                            </svg>
+                                        </div>`;
+                        }
+
+                        button.innerHTML = `${iconHtml}<div class="btn-text-wrapper">${link.platform}</div>`;
+                        socialLinksContainer.appendChild(button);
+                    });
+
+                    // Add Resume button separately, if resumeFile exists in siteSettings
+                    if (siteSettings.resumeFile) {
+                        const resumeButton = document.createElement('button');
+                        resumeButton.className = 'btn-primary w-full flex items-center justify-center';
+                        resumeButton.onclick = () => window.open(siteSettings.resumeFile, '_blank');
+                        resumeButton.innerHTML = `<div class="btn-icon-wrapper mr-4">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                                                            <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="btn-text-wrapper">view my resume</div>`;
+                        socialLinksContainer.appendChild(resumeButton);
+                    }
+                } else {
+                    socialLinksContainer.innerHTML = '<p class="text-sm text-text-muted text-center">No social links configured in CMS.</p>';
+                }
+            }
+        });
+
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    // Optional: Add a login prompt here if needed
+                }
+            });
+        }
+    </script>
 </body>
 </html>
